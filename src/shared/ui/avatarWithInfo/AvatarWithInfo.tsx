@@ -1,6 +1,5 @@
 // react
 import type { FC } from "react";
-import { useState } from "react";
 // components
 import { Avatar } from '../avatar/Avatar';
 // libs
@@ -22,8 +21,8 @@ interface AvatarWithInfoProps {
 
 export const AvatarWithInfo: FC<AvatarWithInfoProps> = ({
     imageUrl,
-    firstName = "Nicola",
-    lastName = "Harris",
+    firstName,
+    lastName,
     email,
     userCardSize = "40",
     uiType = "none",
@@ -31,7 +30,6 @@ export const AvatarWithInfo: FC<AvatarWithInfoProps> = ({
     isOnlineIndicator = true,
     onClick,
 }) => {
-    const [isFocused, setIsFocused] = useState(false);
     return (
         <div
             className={clsx(styles.userCard, {
@@ -45,13 +43,9 @@ export const AvatarWithInfo: FC<AvatarWithInfoProps> = ({
                 [styles.none]: uiType === "none",
                 // isClickable
                 [styles.clickable]: isClickable,
-                // isFocused
-                [styles.focused]: isFocused,
             })}
             onClick={onClick}
             tabIndex={uiType === "fill" ? 0 : -1}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
         >
             <Avatar
                 imageUrl={imageUrl}
@@ -64,7 +58,7 @@ export const AvatarWithInfo: FC<AvatarWithInfoProps> = ({
                 className={styles.avatarWrapper}
             />
             <div className={styles.userInfo}>
-                <h2 className={styles.userName}>{`${firstName} ${lastName}`}</h2>
+                <p className={styles.userName}>{`${firstName} ${lastName}`}</p>
                 <p className={styles.userEmail}>{email}</p>
             </div>
         </div>
