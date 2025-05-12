@@ -3,12 +3,16 @@ import { useState } from 'react';
 // components
 import { Select } from '@/widgets/select/ui/Select/Select';
 import { Input } from '@/shared/ui/input';
+import { Button } from '@/shared/ui/button/Button';
+import { Avatar } from '@/shared/ui/avatar';
+import { AvatarWithInfo } from '@/shared/ui/avatarWithInfo';
 // assets
 import SearchIcon from '@/shared/assets/svg/icons/search.svg?react';
 // styles
 import styles from './App.module.scss';
 // data
 import { optionsData } from '@/widgets/select/model/optionsData';
+import { VerificationCodeInput } from '@/shared/ui/verificationCodeInput';
 
 export const App = () => {
     const [selected1, setSelected1] = useState<typeof optionsData>([]);
@@ -17,17 +21,14 @@ export const App = () => {
     const [selected4, setSelected4] = useState<typeof optionsData>([]);
     const [selected5, setSelected5] = useState<typeof optionsData>([]);
 
-    console.log(selected2);
+    const handleComplete = (code: string) => {
+        console.log("Entered code:", code);
+    };
+
     return (
         <div className={styles.App}>
-            <h2 style={{ margin: '50px 0' }}>Input</h2>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '40px',
-                }}
-            >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', marginTop: '40px' }}>
+                <h2>Input</h2>
                 <Input
                     type="password"
                     label="disabled input"
@@ -38,7 +39,6 @@ export const App = () => {
                     tooltipText="This is a tooltip text"
                     disabled
                 />
-
                 <Input
                     type="password"
                     label="Email"
@@ -48,9 +48,8 @@ export const App = () => {
                     tooltipText="This is a tooltip text"
                     isQuiet
                     helperText="This is a hint text to help user."
-                    isShowBadge={true}
+                    isShowBadge
                 />
-
                 <Input
                     type="text"
                     label="Label"
@@ -101,15 +100,8 @@ export const App = () => {
                 />
             </div>
 
-            {/* Select */}
-            <h2 style={{ margin: '50px 0' }}>Select</h2>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '50px',
-                }}
-            >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', marginTop: '40px' }}>
+                <h2>Select</h2>
                 <Select
                     label="Choose a color"
                     isClearable
@@ -123,9 +115,8 @@ export const App = () => {
                     helperText="This is a hint text to help user."
                     tooltipText="This is a tooltip"
                     isShowTooltip
-                    isShowIcons={true}
+                    isShowIcons
                 />
-
                 <Select
                     label="Multiple colors"
                     isClearable
@@ -139,7 +130,7 @@ export const App = () => {
                     // @ts-expect-error
                     setSelected={setSelected2}
                     helperText="Helper text"
-                    isShowIcons={true}
+                    isShowIcons
                 />
                 <Select
                     label="With error"
@@ -155,7 +146,6 @@ export const App = () => {
                     // @ts-expect-error
                     setSelected={setSelected3}
                 />
-
                 <Select
                     label="not searchable"
                     isClearable
@@ -168,7 +158,7 @@ export const App = () => {
                     helperText="This is a hint text to help user."
                     tooltipText="This is a tooltip"
                     isShowTooltip
-                    uiType={'outline'}
+                    uiType="outline"
                 />
                 <Select
                     label="disabled"
@@ -183,8 +173,134 @@ export const App = () => {
                     tooltipText="This is a tooltip"
                     isShowTooltip
                     isQuiet
-                    disabled={true}
+                    disabled
                 />
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', marginTop: '40px' }}>
+                <h2>Button</h2>
+                <Button uiType="outline" uiColor="secondary" leftIcon rightIcon>
+                    Button textеееееееее
+                </Button>
+                <Button uiType="fill" uiColor="danger" leftIcon rightIcon>
+                    Button textеееееееее
+                </Button>
+                <Button uiType="fill" uiColor="success" leftIcon>
+                    Button textеееееееее
+                </Button>
+            </div>
+
+            <div style={{ marginTop: '40px' }}>
+                <h2>Avatar</h2>
+                <div style={{ display: 'flex', gap: '40px', marginTop: '40px' }}>
+                    <Avatar
+                        imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjN68kEfXRgeGWTS8I5S01p9GD5ljIDek91Q&s"
+                        firstName="Nicola"
+                        lastName="Harris"
+                        size="24"
+                        isOnlineIndicator
+                    />
+                    <Avatar firstName="Nicola" lastName="Harris" size="32" isOnlineIndicator={false} />
+                    <Avatar firstName="Nicola" lastName="Harris" size="40" isOnlineIndicator={false} />
+                </div>
+            </div>
+
+            <div style={{ marginTop: '40px' }}>
+                <h2>AvatarWithInfo</h2>
+                <AvatarWithInfo
+                    imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjN68kEfXRgeGWTS8I5S01p9GD5ljIDek91Q&s"
+                    firstName="Nicola"
+                    lastName="Harris"
+                    userCardSize="32"
+                    isClickable
+                    email="nicolaharris@rubikui.com"
+                    isOnlineIndicator={false}
+                />
+                <AvatarWithInfo
+                    imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjN68kEfXRgeGWTS8I5S01p9GD5ljIDek91Q&s"
+                    firstName="Nicola"
+                    lastName="Harris"
+                    userCardSize="40"
+                    uiType="fill"
+                    email="nicolaharris@rubikui.com"
+                />
+                <AvatarWithInfo
+                    imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjN68kEfXRgeGWTS8I5S01p9GD5ljIDek91Q&s"
+                    firstName="Nicola"
+                    lastName="Harris"
+                    userCardSize="48"
+                    isClickable
+                    uiType="fill"
+                    email="nicolaharris@rubikui.com"
+                />
+                <AvatarWithInfo
+                    firstName="Nicola"
+                    lastName="Harris"
+                    userCardSize="56"
+                    isClickable
+                    isOnlineIndicator={false}
+                    uiType="fill"
+                    email="nicolaharris@rubikui.com"
+                />
+            </div>
+
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "start",
+                    gap: "20px",
+                    marginTop: "40px"
+                }}
+            >
+                <h2>VerificationCodeInput</h2>
+                <div style={{ display: "flex", alignItems: "start", gap: "20px" }}>
+                    <VerificationCodeInput
+                        title="Secure code"
+                        helperText="This is a hint text to help user."
+                        length={4}
+                        size="small"
+                        onComplete={handleComplete}
+                    />
+                    <VerificationCodeInput
+                        title="Secure code"
+                        helperText="This is a hint text to help user."
+                        length={4}
+                        size="medium"
+                        onComplete={handleComplete}
+                    />
+                    <VerificationCodeInput
+                        title="Secure code"
+                        helperText="This is a hint text to help user."
+                        length={4}
+                        size="large"
+                        onComplete={handleComplete}
+                    />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "start", gap: "20px" }}>
+                    <VerificationCodeInput
+                        title="Secure code"
+                        helperText="This is a hint text to help user."
+                        length={6}
+                        size="small"
+                        onComplete={handleComplete}
+                    />
+                    <VerificationCodeInput
+                        title="Secure code"
+                        helperText="This is a hint text to help user."
+                        length={6}
+                        size="medium"
+                        onComplete={handleComplete}
+                    />
+                    <VerificationCodeInput
+                        title="Secure code"
+                        helperText="This is a hint text to help user."
+                        length={6}
+                        size="large"
+                        onComplete={handleComplete}
+                        disabled
+                    />
+                </div>
             </div>
         </div>
     );
