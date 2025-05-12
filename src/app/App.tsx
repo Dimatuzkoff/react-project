@@ -3,7 +3,7 @@ import { useState } from 'react';
 // components
 import { Select } from '@/widgets/select/ui/Select/Select';
 import { Input } from '@/shared/ui/input';
-import { Button } from '@/shared/ui/button/Button';
+import { Button } from '@/shared/ui/button';
 import { Avatar } from '@/shared/ui/avatar';
 import { AvatarWithInfo } from '@/shared/ui/avatarWithInfo';
 // assets
