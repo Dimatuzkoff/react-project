@@ -2,7 +2,7 @@
 import type { ReactNode, FC } from 'react';
 import { memo } from 'react';
 // components
-import { Tooltip } from '../tooltip/Tooltip';
+import { InfoTooltip } from '../infoTooltip/InfoTooltip';
 // lib
 import clsx from 'clsx';
 import { getOSBadge } from '../../lib/os/getOSBadge';
@@ -81,7 +81,7 @@ export const Input: FC<InputProps> = memo(
                             {isRequired && (
                                 <span className={styles.required}>*</span>
                             )}
-                            {tooltipText && <Tooltip text={tooltipText} />}
+                            {tooltipText && <InfoTooltip children={tooltipText} />}
                         </div>
                     )}
 

@@ -4,14 +4,13 @@ import { useState } from 'react';
 // assets
 import info from './../../assets/svg/icons/info.svg';
 // styles
-import styles from './Tooltip.module.scss';
+import styles from './InfoTooltip.module.scss';
 
-interface TooltipProps {
-    text: string;
+interface InfoTooltipProps {
     children?: ReactNode;
 }
 
-export const Tooltip: FC<TooltipProps> = ({ text }) => {
+export const InfoTooltip: FC<InfoTooltipProps> = ({ children }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
@@ -24,7 +23,7 @@ export const Tooltip: FC<TooltipProps> = ({ text }) => {
             {isVisible && (
                 <div className={styles.tooltipContainer}>
                     <span className={styles.tooltip}>
-                        <span className={styles.tooltipText}>{text}</span>
+                        <span className={styles.tooltipText}>{children}</span>
                     </span>
                     <span className={styles.tooltipArrow}></span>
                 </div>
@@ -32,3 +31,5 @@ export const Tooltip: FC<TooltipProps> = ({ text }) => {
         </span>
     );
 };
+
+
