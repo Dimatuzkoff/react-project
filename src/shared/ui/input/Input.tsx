@@ -1,9 +1,14 @@
-import clsx from 'clsx';
-import styles from './Input.module.scss';
-import { type ReactNode, type FC, memo } from 'react';
+// react
+import type { ReactNode, FC } from 'react';
+import { memo } from 'react';
+// components
 import { Tooltip } from '../tooltip/Tooltip';
+// lib
+import clsx from 'clsx';
 import { getOSBadge } from '../../lib/os/getOSBadge';
 import { useShortcutFocus } from '../../lib/shortcutFocus/useShortcutFocus';
+// styles
+import styles from './Input.module.scss';
 
 interface InputProps {
     children?: React.ReactNode;

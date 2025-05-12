@@ -1,6 +1,10 @@
-import { FC, ReactNode, useState } from 'react';
-import styles from './Tooltip.module.scss';
+// react
+import type { FC, ReactNode } from 'react';
+import { useState } from 'react';
+// assets
 import info from './../../assets/svg/icons/info.svg';
+// styles
+import styles from './Tooltip.module.scss';
 
 interface TooltipProps {
     text: string;

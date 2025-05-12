@@ -1,4 +1,6 @@
-import { type FC, useRef, type ChangeEvent } from "react";
+// react
+import type { FC, ChangeEvent } from 'react';
+import { useRef } from "react";
 // styles
 import styles from "./VerificationCodeInput.module.scss";
 // libs

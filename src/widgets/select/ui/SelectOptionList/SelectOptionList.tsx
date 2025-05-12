@@ -1,4 +1,7 @@
-import { type FC, useMemo } from 'react';
+// react
+import type { FC } from 'react';
+import { useMemo } from 'react';
+// types
 import type { OptionType } from '../Select/Select';
 // components
 import { SelectOption } from '../SelectOption/SelectOption';

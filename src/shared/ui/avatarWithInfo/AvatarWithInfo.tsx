@@ -1,7 +1,12 @@
-import {type FC, useState} from "react";
+// react
+import type { FC } from "react";
+import { useState } from "react";
+// components
+import { Avatar } from '../avatar/Avatar';
+// libs
 import clsx from "clsx";
+// styles
 import styles from "./AvatarWithInfo.module.scss";
-import {Avatar} from "../avatar/Avatar";
 
 interface AvatarWithInfoProps {
     imageUrl?: string;

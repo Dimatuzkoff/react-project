@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+// styles
 import styles from './Dropdown.module.scss';
 
 interface DropdownProps {

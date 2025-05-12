@@ -1,4 +1,7 @@
-import { type FC, useEffect, useRef } from 'react';
+// react
+import type { FC } from 'react';
+import { useEffect, useRef } from 'react';
+// types
 import type { OptionType } from '../Select/Select';
 // styles
 import styles from './SelectPickedOption.module.scss';

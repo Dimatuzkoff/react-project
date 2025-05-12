@@ -1,12 +1,6 @@
 //react
-import {
-    type FC,
-    useState,
-    useRef,
-    type ReactNode,
-    type Dispatch,
-    type SetStateAction,
-} from 'react';
+import type {FC, ReactNode, Dispatch, SetStateAction} from 'react';
+import {useState, useRef} from 'react';
 //hooks
 import { useClickOutside } from '@/shared/lib/clickOutside/useClickOutside';
 //components
