@@ -1,5 +1,5 @@
 // react
-import { FC } from 'react';
+import type { FC } from 'react';
 // styles
 import styles from './Tabs.module.scss';
 import { TabsArrows } from '../TabsArrows/TabsArrows';
