@@ -1,7 +1,7 @@
 // react
-import { FC } from "react";
+import { FC } from 'react';
 // styles
-import styles from "./TabsArrows.module.scss";
+import styles from './TabsArrows.module.scss';
 
 interface TabsArrowsProps {}
 

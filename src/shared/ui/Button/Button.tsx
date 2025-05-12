@@ -1,7 +1,7 @@
 // react
-import { FC } from "react";
+import { FC } from 'react';
 // styles
-import styles from "./Button.module.scss";
+import styles from './Button.module.scss';
 
 interface ButtonProps {}
 

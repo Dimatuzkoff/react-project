@@ -3,10 +3,10 @@ $box-sizing: border-box;
 
 // Сброс стилей для всех элементов
 %reset {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
 }
 
 html,
@@ -90,7 +90,7 @@ time,
 mark,
 audio,
 video {
-    @extend %reset;
+  @extend %reset;
 }
 
 // HTML5 display-role reset for older browsers
@@ -105,40 +105,40 @@ hgroup,
 menu,
 nav,
 section {
-    display: block;
+  display: block;
 }
 
 ol,
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 blockquote,
 q {
-    quotes: none;
+  quotes: none;
 }
 
 blockquote::before,
 blockquote::after,
 q::before,
 q::after {
-    content: "";
-    content: none;
+  content: '';
+  content: none;
 }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 * {
-    box-sizing: $box-sizing;
+  box-sizing: $box-sizing;
 }
 
 input,
 img,
 button {
-    outline: none;
-    user-select: none;
-    border: none;
+  outline: none;
+  user-select: none;
+  border: none;
 }
