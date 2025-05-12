@@ -2,7 +2,7 @@
 import type { ReactNode, FC } from 'react';
 import { memo } from 'react';
 // components
-import { InfoTooltip } from '../infoTooltip/InfoTooltip';
+import { InfoTooltip } from '../InfoTooltip';
 // lib
 import clsx from 'clsx';
 import { getOSBadge } from '../../lib/os/getOSBadge';

@@ -2,17 +2,17 @@
 import { useState } from 'react';
 // components
 import { Select } from '@/widgets/select/ui/Select/Select';
-import { Input } from '@/shared/ui/input';
-import { Button } from '@/shared/ui/button';
-import { Avatar } from '@/shared/ui/avatar';
-import { AvatarWithInfo } from '@/shared/ui/avatarWithInfo';
+import { Input } from '@/shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
+import { Avatar } from '@/shared/ui/Avatar';
+import { AvatarWithInfo } from '@/shared/ui/AvatarWithInfo';
 // assets
 import SearchIcon from '@/shared/assets/svg/icons/search.svg?react';
 // styles
 import styles from './App.module.scss';
 // data
 import { optionsData } from '@/widgets/select/model/optionsData';
-import { VerificationCodeInput } from '@/shared/ui/verificationCodeInput';
+import { VerificationCodeInput } from '@/shared/ui/VerificationCodeInput';
 
 export const App = () => {
     const [selected1, setSelected1] = useState<typeof optionsData>([]);
@@ -22,12 +22,19 @@ export const App = () => {
     const [selected5, setSelected5] = useState<typeof optionsData>([]);
 
     const handleComplete = (code: string) => {
-        console.log("Entered code:", code);
+        console.log('Entered code:', code);
     };
 
     return (
         <div className={styles.App}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', marginTop: '40px' }}>
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '40px',
+                    marginTop: '40px',
+                }}
+            >
                 <h2>Input</h2>
                 <Input
                     type="password"
@@ -100,7 +107,14 @@ export const App = () => {
                 />
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', marginTop: '40px' }}>
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '40px',
+                    marginTop: '40px',
+                }}
+            >
                 <h2>Select</h2>
                 <Select
                     label="Choose a color"
@@ -177,7 +191,14 @@ export const App = () => {
                 />
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', marginTop: '40px' }}>
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '40px',
+                    marginTop: '40px',
+                }}
+            >
                 <h2>Button</h2>
                 <Button uiType="outline" uiColor="secondary" leftIcon rightIcon>
                     Button textеееееееее
@@ -192,7 +213,9 @@ export const App = () => {
 
             <div style={{ marginTop: '40px' }}>
                 <h2>Avatar</h2>
-                <div style={{ display: 'flex', gap: '40px', marginTop: '40px' }}>
+                <div
+                    style={{ display: 'flex', gap: '40px', marginTop: '40px' }}
+                >
                     <Avatar
                         imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjN68kEfXRgeGWTS8I5S01p9GD5ljIDek91Q&s"
                         firstName="Nicola"
@@ -200,8 +223,18 @@ export const App = () => {
                         size="24"
                         isOnlineIndicator
                     />
-                    <Avatar firstName="Nicola" lastName="Harris" size="32" isOnlineIndicator={false} />
-                    <Avatar firstName="Nicola" lastName="Harris" size="40" isOnlineIndicator={false} />
+                    <Avatar
+                        firstName="Nicola"
+                        lastName="Harris"
+                        size="32"
+                        isOnlineIndicator={false}
+                    />
+                    <Avatar
+                        firstName="Nicola"
+                        lastName="Harris"
+                        size="40"
+                        isOnlineIndicator={false}
+                    />
                 </div>
             </div>
 
@@ -246,15 +279,21 @@ export const App = () => {
 
             <div
                 style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "start",
-                    gap: "20px",
-                    marginTop: "40px"
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'start',
+                    gap: '20px',
+                    marginTop: '40px',
                 }}
             >
                 <h2>VerificationCodeInput</h2>
-                <div style={{ display: "flex", alignItems: "start", gap: "20px" }}>
+                <div
+                    style={{
+                        display: 'flex',
+                        alignItems: 'start',
+                        gap: '20px',
+                    }}
+                >
                     <VerificationCodeInput
                         title="Secure code"
                         helperText="This is a hint text to help user."
@@ -277,7 +316,14 @@ export const App = () => {
                         onComplete={handleComplete}
                     />
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "start", gap: "20px" }}>
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'start',
+                        gap: '20px',
+                    }}
+                >
                     <VerificationCodeInput
                         title="Secure code"
                         helperText="This is a hint text to help user."
