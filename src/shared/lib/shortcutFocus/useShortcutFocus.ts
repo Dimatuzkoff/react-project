@@ -6,20 +6,20 @@ import { useShortcut } from '../shortcut/useShortcut';
  * @returns ref для привязки к инпуту
  */
 export const useShortcutFocus = () => {
-  const inputRef = useRef<HTMLInputElement | null>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
-  useShortcut(
-    event => {
-      const isMac = navigator.userAgent.toLowerCase().includes('mac');
-      const isWindows = navigator.userAgent.toLowerCase().includes('win');
+    useShortcut(
+        event => {
+            const isMac = navigator.userAgent.toLowerCase().includes('mac');
+            const isWindows = navigator.userAgent.toLowerCase().includes('win');
 
-      return (
-        (isMac && event.metaKey && event.key.toLowerCase() === 'k') ||
-        (isWindows && event.ctrlKey && event.key.toLowerCase() === 'k')
-      );
-    },
-    () => inputRef.current?.focus()
-  );
+            return (
+                (isMac && event.metaKey && event.key.toLowerCase() === 'k') ||
+                (isWindows && event.ctrlKey && event.key.toLowerCase() === 'k')
+            );
+        },
+        () => inputRef.current?.focus()
+    );
 
-  return inputRef;
+    return inputRef;
 };

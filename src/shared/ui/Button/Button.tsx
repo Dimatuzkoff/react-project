@@ -6,5 +6,5 @@ import styles from './Button.module.scss';
 interface ButtonProps {}
 
 export const Button: FC<ButtonProps> = ({}) => {
-  return <div className={styles.Button}></div>;
+    return <div className={styles.Button}></div>;
 };

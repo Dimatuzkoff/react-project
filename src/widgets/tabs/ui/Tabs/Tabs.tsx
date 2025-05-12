@@ -7,9 +7,9 @@ import { TabsArrows } from '../TabsArrows/TabsArrows';
 interface TabsProps {}
 
 export const Tabs: FC<TabsProps> = ({}) => {
-  return (
-    <div className={styles.Tabs}>
-      <TabsArrows></TabsArrows>
-    </div>
-  );
+    return (
+        <div className={styles.Tabs}>
+            <TabsArrows></TabsArrows>
+        </div>
+    );
 };

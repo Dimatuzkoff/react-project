@@ -6,18 +6,18 @@ import { useEffect } from 'react';
  * @param callback Функция, выполняемая при совпадении
  */
 export const useShortcut = (
-  keyCombo: (event: KeyboardEvent) => boolean,
-  callback: () => void
+    keyCombo: (event: KeyboardEvent) => boolean,
+    callback: () => void
 ) => {
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (keyCombo(event)) {
-        event.preventDefault();
-        callback();
-      }
-    };
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (keyCombo(event)) {
+                event.preventDefault();
+                callback();
+            }
+        };
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [keyCombo, callback]);
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [keyCombo, callback]);
 };
