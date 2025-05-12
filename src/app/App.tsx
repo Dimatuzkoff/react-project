@@ -1,7 +1,8 @@
 // styles
 
-import styles from "./App.module.scss";
+import styles from "./App.module.css";
 
 export const App = () => {
-  return <div className={styles.App}></div>;
+    return <div className={styles.App}>
+    </div>;
 };
