@@ -5,6 +5,7 @@ import { useRef } from "react";
 import styles from "./VerificationCodeInput.module.scss";
 // libs
 import clsx from "clsx";
+import { DIGIT_REGEX } from "../../lib/regex/digit";
 
 interface VerificationCodeInputProps {
     title?: string;
@@ -13,12 +14,8 @@ interface VerificationCodeInputProps {
     length?: number;
     size?: "small" | "medium" | "large";
     placeholder?: string;
-    type?: "text";
     onComplete?: (code: string) => void;
 }
-
-// разрешает только одну цифру или пустое значение
-const DIGIT_REGEX = /^\d?$/; 
 
 export const VerificationCodeInput: FC<VerificationCodeInputProps> = ({
     title,
@@ -27,7 +24,6 @@ export const VerificationCodeInput: FC<VerificationCodeInputProps> = ({
     length = 4,
     size = "medium",
     placeholder = "0",
-    type = "text",
     onComplete,
 }) => {
     const inputsRef = useRef<Array<HTMLInputElement | null>>(Array.from({length}));
@@ -72,7 +68,7 @@ export const VerificationCodeInput: FC<VerificationCodeInputProps> = ({
                             ref={(el) => {
                                 inputsRef.current[index] = el;
                             }}
-                            type={type}
+                            type="text"
                             placeholder={placeholder}
                             maxLength={1}
                             className={clsx(styles.input, {
