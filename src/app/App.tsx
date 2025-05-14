@@ -6,6 +6,7 @@ import { Input } from '@/shared/ui/Input';
 import { Button } from '@/shared/ui/Button';
 import { Avatar } from '@/shared/ui/Avatar';
 import { AvatarWithInfo } from '@/shared/ui/AvatarWithInfo';
+import { Tabs } from '@/widgets/tabs';
 // assets
 import SearchIcon from '@/shared/assets/svg/icons/search.svg?react';
 // styles
@@ -346,6 +347,27 @@ export const App = () => {
                         onComplete={handleComplete}
                         disabled
                     />
+                </div>
+            </div>
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'start',
+                    marginTop: '40px',
+                }}
+            >
+                <h2 style={{ marginBottom: '50px' }}>Scrollable Tabs</h2>
+                <div className="tabWrapper" style={{ maxWidth: '700px' }}>
+                    <Tabs size="32" variant="underlineFilled" />
+                </div>
+                <h2 style={{ marginBottom: '50px' }}>Dropdown Tabs</h2>
+                <div className="tabWrapper" style={{ maxWidth: '700px' }}>
+                    <Tabs size="40" behavior="dropdown" />
+                </div>
+                <h2 style={{ marginBottom: '50px' }}>Arrows Tabs</h2>
+                <div className="tabWrapper" style={{ maxWidth: '700px' }}>
+                    <Tabs size="40" behavior="arrows" />
                 </div>
             </div>
         </div>

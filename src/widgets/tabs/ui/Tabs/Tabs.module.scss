@@ -2,6 +2,7 @@
 @import '../../../../app/styles/variables/global.scss';
 
 .container {
+    position: relative;
     display: flex;
     flex-direction: column;
 
@@ -26,9 +27,13 @@
 
     .dropdownPosition {
         width: 200px;
-        position: relative;
+        position: absolute;
+        bottom: -4px;
+        right: 0;
+        transform: translateY(50%);
         text-align: center;
         margin-left: auto;
+        z-index: 1;
     }
 
     .content {

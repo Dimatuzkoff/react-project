@@ -1,15 +1,15 @@
 //react
 import { useState, useRef } from 'react';
 //hooks
-import { useClickOutside } from '../../../../shared/libs/hooks/useClickOutside';
+import { useClickOutside } from '@/shared/libs/hooks/useClickOutside';
 import { useContainerWidth } from '../../libs/hooks/useContainerWidth';
 //libs
 import clsx from 'clsx';
 //ui
 import { TabsToolIcon } from '../TabsToolIcon/TabsToolIcon';
 import { TabsList } from '../TabsList/TabsList.tsx';
-import { Dropdown } from '../Selects/Dropdown';
-import { TabDropdownList } from './TabDropdownList';
+import { Dropdown } from '@/shared/ui/dropdown/Dropdown.tsx';
+import { TabsDropdownList } from '../TabsDropdownList/TabsDropdownList.tsx';
 //styles
 import styles from './Tabs.module.scss';
 //data
@@ -109,7 +109,7 @@ export const Tabs = ({
                         className={clsx(styles.dropdownPosition)}
                     >
                         <Dropdown isOpen={isOpenDropdown}>
-                            <TabDropdownList
+                            <TabsDropdownList
                                 onClick={selectTab}
                                 variant={variant}
                                 activeTab={activeTab}
