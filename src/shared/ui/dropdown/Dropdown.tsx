@@ -7,6 +7,6 @@ interface DropdownProps {
     onClose?: () => void;
 }
 
-export const Dropdown = ({ children, isOpen = true }: DropdownProps) => {
+export const Dropdown = ({ children, isOpen }: DropdownProps) => {
     return isOpen ? <div className={styles.dropdown}>{children}</div> : null;
 };
