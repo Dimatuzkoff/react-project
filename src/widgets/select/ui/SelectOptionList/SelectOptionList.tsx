@@ -2,7 +2,7 @@
 import type { FC } from 'react';
 import { useMemo } from 'react';
 // types
-import type { OptionType } from '../Select/Select';
+import type { OptionType } from '../../model/types/OptionType';
 // components
 import { SelectOption } from '../SelectOption/SelectOption';
 // styles

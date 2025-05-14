@@ -4,8 +4,8 @@ import { useState, useRef } from 'react';
 //hooks
 import { useClickOutside } from '@/shared/lib/clickOutside/useClickOutside';
 //components
-import { Dropdown } from '@/shared/ui/Dropdown';
-import { Input } from '@/shared/ui/Input';
+import { Dropdown } from '@/shared/ui/dropdown';
+import { Input } from '@/shared/ui/input';
 import { SelectOptionList } from '../SelectOptionList/SelectOptionList';
 import { SelectPickedOption } from '../SelectPickedOption/SelectPickedOption';
 //assets
@@ -15,12 +15,8 @@ import clear from '@/shared/assets/svg/icons/clear.svg';
 import styles from './Select.module.scss';
 //libs
 import clsx from 'clsx';
-
-export interface OptionType {
-    label: string;
-    icon?: ReactNode;
-    [key: string]: any;
-}
+//types
+import type { OptionType } from '../../model/types/OptionType';
 
 interface SelectProps {
     label: string;
