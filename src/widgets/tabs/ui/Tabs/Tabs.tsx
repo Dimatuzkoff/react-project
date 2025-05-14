@@ -101,6 +101,7 @@ export const Tabs = ({
                         behavior={behavior}
                         isDisabled={isDisabled}
                         size={size}
+                        isOpenDropdown={isOpenDropdown}
                     />
                 </div>
                 {behavior === 'dropdown' && (

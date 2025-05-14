@@ -13,6 +13,7 @@ interface TabsToolIconProps {
     isRotate?: boolean;
     position: 'left' | 'right';
     isDisabled?: boolean;
+    isOpenDropdown?: boolean;
 }
 
 export const TabsToolIcon = ({
@@ -22,6 +23,7 @@ export const TabsToolIcon = ({
     isRotate,
     position,
     isDisabled,
+    isOpenDropdown,
 }: TabsToolIconProps) => {
     const src =
         behavior === 'arrows'
@@ -42,6 +44,10 @@ export const TabsToolIcon = ({
                             [styles.size36]: size === '36',
                             [styles.size40]: size === '40',
                             [styles.rotate]: isRotate,
+                            [styles.active]:
+                                isOpenDropdown && behavior === 'dropdown',
+                            [styles.gap]:
+                                behavior === 'dropdown' && position === 'right',
                         })}
                     >
                         <img src={src} alt="icon" />

@@ -351,9 +351,6 @@ export const App = () => {
             </div>
             <div
                 style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'start',
                     marginTop: '40px',
                 }}
             >
