@@ -8,7 +8,7 @@ import clsx from 'clsx';
 //ui
 import { TabsToolIcon } from '../TabsToolIcon/TabsToolIcon';
 import { TabsList } from '../TabsList/TabsList.tsx';
-import { Dropdown } from '@/shared/ui/Dropdown/Dropdown.tsx';
+import { Dropdown } from '@/shared/ui/dropdown';
 import { TabsDropdownList } from '../TabsDropdownList/TabsDropdownList.tsx';
 //styles
 import styles from './Tabs.module.scss';
