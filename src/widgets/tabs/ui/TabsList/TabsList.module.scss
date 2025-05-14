@@ -1,5 +1,5 @@
-@import '../../../../app/styles/mixins/index';
-@import '../../../../app/styles/variables/global.scss';
+@use '../../../../app/styles/mixins/index' as mixins;
+@use '../../../../app/styles/variables/global' as vars;
 
 .tabsWrapper {
     display: flex;

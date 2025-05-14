@@ -1,5 +1,5 @@
-@import '../../../../app/styles/mixins/index';
-@import '../../../../app/styles/variables/global.scss';
+@use '../../../../app/styles/mixins/index' as mixins;
+@use '../../../../app/styles/variables/global' as vars;
 
 .container {
     position: relative;
@@ -7,10 +7,10 @@
     flex-direction: column;
 
     .tabsWrapper {
-        @include flexContainer(row);
+        @include mixins.flexContainer(row);
         justify-content: space-between;
         width: 100%;
-        border-bottom: 1px solid $gray-300;
+        border-bottom: 1px solid vars.$gray-300;
 
         &.size32 {
             height: 31px;
@@ -37,7 +37,7 @@
     }
 
     .content {
-        @include flexCenter(row);
+        @include mixins.flexCenter(row);
         width: 100%;
         height: 100px;
     }
