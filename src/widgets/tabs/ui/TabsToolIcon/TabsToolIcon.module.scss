@@ -1,0 +1,24 @@
+@import '../../../../app/styles/mixins/index';
+@import '../../../../app/styles/variables/global.scss';
+
+.icon {
+    @include flexCenter(row);
+    height: 100%;
+    cursor: pointer;
+
+    &.size32 {
+        width: 32px;
+    }
+
+    &.size36 {
+        width: 36px;
+    }
+
+    &.size40 {
+        width: 40px;
+    }
+
+    &.rotate {
+        transform: rotate(180deg);
+    }
+}

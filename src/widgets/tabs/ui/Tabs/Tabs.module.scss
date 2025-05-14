@@ -1,0 +1,39 @@
+@import '../../../../app/styles/mixins/index';
+@import '../../../../app/styles/variables/global.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+
+    .tabsWrapper {
+        @include flexContainer(row);
+        justify-content: space-between;
+        width: 100%;
+        border-bottom: 1px solid $gray-300;
+
+        &.size32 {
+            height: 31px;
+        }
+
+        &.size36 {
+            height: 35px;
+        }
+
+        &.size40 {
+            height: 39px;
+        }
+    }
+
+    .dropdownPosition {
+        width: 200px;
+        position: relative;
+        text-align: center;
+        margin-left: auto;
+    }
+
+    .content {
+        @include flexCenter(row);
+        width: 100%;
+        height: 100px;
+    }
+}
