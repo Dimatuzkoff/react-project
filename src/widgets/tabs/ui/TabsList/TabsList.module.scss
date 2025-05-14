@@ -1,5 +1,5 @@
-@use '../../../../app/styles/mixins/index' as mixins;
-@use '../../../../app/styles/variables/global' as vars;
+@use '@/app/styles/mixins/index' as mixins;
+@use '@/app/styles/variables/global' as vars;
 
 .tabsWrapper {
     display: flex;

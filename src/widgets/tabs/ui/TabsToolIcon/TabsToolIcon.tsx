@@ -1,8 +1,8 @@
 //libs
 import clsx from 'clsx';
 //assets
-import Arrow from '../../../../shared/assets/svg/icons/arrowRight.svg';
-import OpenTabsDropdownIcon from '../../../../shared/assets/svg/icons/dotsVertical.svg';
+import Arrow from '@/shared/assets/svg/icons/arrowRight.svg';
+import OpenTabsDropdownIcon from '@/shared/assets/svg/icons/dotsVertical.svg';
 //styles
 import styles from './TabsToolIcon.module.scss';
 
