@@ -6,19 +6,16 @@ import { useContainerWidth } from '../../libs/hooks/useContainerWidth';
 //libs
 import clsx from 'clsx';
 //ui
-import { TabToolIcon } from './TabToolIcon';
-import { TabList } from './TabList';
+import { TabsToolIcon } from '../TabsToolIcon/TabsToolIcon';
+import { TabsList } from '../TabsList/TabsList.tsx';
 import { Dropdown } from '../Selects/Dropdown';
 import { TabDropdownList } from './TabDropdownList';
 //styles
 import styles from './Tabs.module.scss';
 //data
-import { tabsData } from '../../model/tabsData';
-
-export interface TabsData {
-    label: string;
-    badgeCount?: number;
-}
+import { tabsData } from './tabsData.ts';
+//types
+import type { TabsData } from '../../model/types/TabsData.ts';
 
 interface TabProps {
     variant?: 'underline' | 'underlineFilled';
@@ -78,7 +75,7 @@ export const Tabs = ({
                         [styles.size40]: size === '40',
                     })}
                 >
-                    <TabToolIcon
+                    <TabsToolIcon
                         onClick={onControlClick}
                         position="left"
                         isDisabled={isDisabled}
@@ -86,7 +83,7 @@ export const Tabs = ({
                         behavior={behavior}
                         size={size}
                     />
-                    <TabList
+                    <TabsList
                         onClick={selectTab}
                         size={size}
                         variant={variant}
@@ -98,7 +95,7 @@ export const Tabs = ({
                         setDropdownTabs={setDropdownTabs}
                         scrollRef={containerRef}
                     />
-                    <TabToolIcon
+                    <TabsToolIcon
                         onClick={onControlClick}
                         position="right"
                         behavior={behavior}
