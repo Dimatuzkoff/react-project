@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import {getInitials} from "../../lib/initials/getInitials";
+import {getInitials} from "../../libs/helpers/getInitials";
 import styles from "./Avatar.module.scss";
 import clsx from "clsx";
 

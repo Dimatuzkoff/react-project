@@ -5,7 +5,7 @@ import { useRef } from "react";
 import styles from "./VerificationCodeInput.module.scss";
 // libs
 import clsx from "clsx";
-import { DIGIT_REGEX } from "../../lib/regex/digit";
+import { DIGIT_REGEX } from "../../libs/constants/digit";
 
 interface VerificationCodeInputProps {
     title?: string;

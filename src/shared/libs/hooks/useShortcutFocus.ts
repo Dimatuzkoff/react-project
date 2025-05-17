@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useShortcut } from '../shortcut/useShortcut';
+import { useShortcut } from '../../libs/hooks/useShortcut';
 
 /**
  * Хук для фокусировки на инпуте по нажатию Cmd+K / Ctrl+K

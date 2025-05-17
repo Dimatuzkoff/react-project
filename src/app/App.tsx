@@ -2,18 +2,18 @@
 import { useState } from 'react';
 // components
 import { Select } from '@/widgets/select';
-import { Input } from '@/shared/ui/input';
+import { Input } from '@/shared/ui/Input';
 import { Button } from '@/shared/ui/Button';
-import { Avatar } from '@/shared/ui/avatar';
-import { AvatarWithInfo } from '@/shared/ui/avatarWithInfo';
+import { Avatar } from '@/shared/ui/Avatar';
+import { AvatarWithInfo } from '@/shared/ui/AvatarWithInfo';
 import { Tabs } from '@/widgets/tabs';
 // assets
-import SearchIcon from '@/shared/assets/svg/icons/search.svg?react';
+import SearchIcon from '@/shared/libs/assets/svg/icons/search.svg?react';
 // styles
 import styles from './App.module.scss';
 // data
 import { optionsData } from '@/widgets/select/model/optionsData';
-import { VerificationCodeInput } from '@/shared/ui/verificationCodeInput';
+import { VerificationCodeInput } from '@/shared/ui/VerificationCodeInput';
 
 export const App = () => {
     const [selected1, setSelected1] = useState<typeof optionsData>([]);
@@ -33,7 +33,7 @@ export const App = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '40px',
-                    marginTop: '40px',
+                    padding: '40px',
                 }}
             >
                 <h2>Input</h2>
@@ -113,7 +113,7 @@ export const App = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '40px',
-                    marginTop: '40px',
+                    padding: '40px',
                 }}
             >
                 <h2>Select</h2>
@@ -197,7 +197,7 @@ export const App = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '40px',
-                    marginTop: '40px',
+                    padding: '40px',
                 }}
             >
                 <h2>Button</h2>
@@ -212,7 +212,7 @@ export const App = () => {
                 </Button>
             </div>
 
-            <div style={{ marginTop: '40px' }}>
+            <div style={{ padding: '40px' }}>
                 <h2>Avatar</h2>
                 <div
                     style={{ display: 'flex', gap: '40px', marginTop: '40px' }}
@@ -239,7 +239,7 @@ export const App = () => {
                 </div>
             </div>
 
-            <div style={{ marginTop: '40px' }}>
+            <div style={{ padding: '40px' }}>
                 <h2>AvatarWithInfo</h2>
                 <AvatarWithInfo
                     imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjN68kEfXRgeGWTS8I5S01p9GD5ljIDek91Q&s"
@@ -284,7 +284,7 @@ export const App = () => {
                     flexDirection: 'column',
                     alignItems: 'start',
                     gap: '20px',
-                    marginTop: '40px',
+                    padding: '40px',
                 }}
             >
                 <h2>VerificationCodeInput</h2>
@@ -351,7 +351,7 @@ export const App = () => {
             </div>
             <div
                 style={{
-                    marginTop: '40px',
+                    padding: '40px',
                 }}
             >
                 <h2 style={{ marginBottom: '50px' }}>Scrollable Tabs</h2>

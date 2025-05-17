@@ -2,11 +2,11 @@
 import type { ReactNode, FC } from 'react';
 import { memo } from 'react';
 // components
-import { InfoTooltip } from '../infoTooltip';
+import { InfoTooltip } from '../InfoTooltip';
 // lib
 import clsx from 'clsx';
-import { getOSBadge } from '../../lib/os/getOSBadge';
-import { useShortcutFocus } from '../../lib/shortcutFocus/useShortcutFocus';
+import { getOSBadge } from '../../libs/helpers/getOSBadge';
+import { useShortcutFocus } from '../../libs/hooks/useShortcutFocus';
 // styles
 import styles from './Input.module.scss';
 
