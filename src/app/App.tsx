@@ -3,7 +3,7 @@ import { useState } from 'react';
 // components
 import { Select } from '@/widgets/select';
 import { Input } from '@/shared/ui/input';
-import { Button } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/Button';
 import { Avatar } from '@/shared/ui/avatar';
 import { AvatarWithInfo } from '@/shared/ui/avatarWithInfo';
 import { Tabs } from '@/widgets/tabs';
@@ -13,7 +13,7 @@ import SearchIcon from '@/shared/libs/assets/svg/icons/search.svg?react';
 import styles from './App.module.scss';
 // data
 import { optionsData } from '@/widgets/select/model/optionsData';
-import { VerificationCodeInput } from '@/shared/ui/VerificationCodeInput';
+import { VerificationCodeInput } from '@/shared/ui/verificationCodeInput';
 
 export const App = () => {
     const [selected1, setSelected1] = useState<typeof optionsData>([]);
