@@ -1,11 +1,11 @@
 // react
 import type { FC } from 'react';
 // components
-import { Avatar } from '../Avatar';
+import { Avatar } from '../avatar';
 // libs
 import clsx from 'clsx';
 // styles
-import styles from './avatarWithInfo.module.scss';
+import styles from './AvatarWithInfo.module.scss';
 
 interface AvatarWithInfoProps {
     imageUrl?: string;
