@@ -2,10 +2,10 @@
 import { useState } from 'react';
 // components
 import { Select } from '@/widgets/select';
-import { Input } from '@/shared/ui/Input';
-import { Button } from '@/shared/ui/Button';
-import { Avatar } from '@/shared/ui/Avatar';
-import { AvatarWithInfo } from '@/shared/ui/AvatarWithInfo';
+import { Input } from '@/shared/ui/input';
+import { Button } from '@/shared/ui/button';
+import { Avatar } from '@/shared/ui/avatar';
+import { AvatarWithInfo } from '@/shared/ui/avatarWithInfo';
 import { Tabs } from '@/widgets/tabs';
 // assets
 import SearchIcon from '@/shared/libs/assets/svg/icons/search.svg?react';

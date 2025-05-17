@@ -5,7 +5,7 @@ import { Avatar } from '../Avatar';
 // libs
 import clsx from 'clsx';
 // styles
-import styles from './AvatarWithInfo.module.scss';
+import styles from './avatarWithInfo.module.scss';
 
 interface AvatarWithInfoProps {
     imageUrl?: string;
