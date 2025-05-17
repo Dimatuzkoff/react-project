@@ -4,7 +4,7 @@ import type { OptionType } from '../../model/types/OptionType';
 import styles from './SelectOption.module.scss';
 import clsx from 'clsx';
 // assets
-import checkmark from '@/shared/assets/svg/icons/checkmark.svg';
+import checkmark from '@/shared/libs/assets/svg/icons/checkmark.svg';
 
 interface SelectOptionProps {
     size?: '24' | '32' | '36' | '40' | '44' | '48';

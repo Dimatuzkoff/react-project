@@ -2,15 +2,15 @@
 import type { FC, ReactNode, Dispatch, SetStateAction } from 'react';
 import { useState, useRef } from 'react';
 //hooks
-import { useClickOutside } from '@/shared/lib/clickOutside/useClickOutside';
+import { useClickOutside } from '@/shared/libs/hooks/useClickOutside';
 //components
 import { Dropdown } from '@/shared/ui/dropdown';
 import { Input } from '@/shared/ui/input';
 import { SelectOptionList } from '../SelectOptionList/SelectOptionList';
 import { SelectPickedOption } from '../SelectPickedOption/SelectPickedOption';
 //assets
-import arrowDown from '@/shared/assets/svg/icons/arrowDown.svg';
-import clear from '@/shared/assets/svg/icons/clear.svg';
+import arrowDown from '@/shared/libs/assets/svg/icons/arrowDown.svg';
+import clear from '@/shared/libs/assets/svg/icons/clear.svg';
 //styles
 import styles from './Select.module.scss';
 //libs

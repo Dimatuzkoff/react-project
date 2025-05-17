@@ -1,5 +1,5 @@
 import { useEffect, type Dispatch, type SetStateAction } from 'react';
-import { getAmountElements } from '../helpers/getAmountElements.tsx';
+import { getAmountElements } from '../helpers/getAmountElements.ts';
 import type { TabsData } from '../../model/types/TabsData.ts';
 
 interface UseTabsVisibilityProps {

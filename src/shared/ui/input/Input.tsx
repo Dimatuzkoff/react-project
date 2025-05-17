@@ -5,8 +5,8 @@ import { memo } from 'react';
 import { InfoTooltip } from '../infoTooltip';
 // lib
 import clsx from 'clsx';
-import { getOSBadge } from '../../lib/os/getOSBadge';
-import { useShortcutFocus } from '../../lib/shortcutFocus/useShortcutFocus';
+import { getOSBadge } from '../../libs/helpers/getOSBadge';
+import { useShortcutFocus } from '../../libs/hooks/useShortcutFocus';
 // styles
 import styles from './Input.module.scss';
 
