@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import type { OptionType } from '../../model/types/OptionType';
+import type { OptionType } from '../../model/types/optionType';
 // styles
 import styles from './SelectOption.module.scss';
 import clsx from 'clsx';

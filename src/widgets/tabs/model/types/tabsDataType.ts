@@ -1,4 +1,4 @@
-export interface TabsData {
+export type TabsDataType = {
     label: string;
     badgeCount?: number;
-}
+};
