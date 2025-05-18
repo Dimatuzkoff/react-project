@@ -15,7 +15,7 @@ import { TabsDropdownList } from '../TabsDropdownList/TabsDropdownList.tsx';
 //styles
 import styles from './Tabs.module.scss';
 //types
-import type { ITabsData } from '../../model/types/tabsData.ts';
+import type { TabsDataType } from '../../model/types/tabsDataType.ts';
 
 interface TabProps {
     variant?: 'underline' | 'underlineFilled';
@@ -34,7 +34,7 @@ export const Tabs = ({
 
     const [activeTab, setActiveTab] = useState<string>(tabsData[0].label);
 
-    const [dropdownTabs, setDropdownTabs] = useState<ITabsData[]>([]);
+    const [dropdownTabs, setDropdownTabs] = useState<TabsDataType[]>([]);
 
     const divClickOutsideRef = useRef<HTMLDivElement | null>(null);
     useClickOutside(divClickOutsideRef, () => setIsOpenDropdown(false));

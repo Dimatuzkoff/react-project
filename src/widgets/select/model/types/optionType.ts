@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
-export interface OptionType {
+export type OptionType = {
     label: string;
     icon?: ReactNode;
     [key: string]: unknown;
-}
+};

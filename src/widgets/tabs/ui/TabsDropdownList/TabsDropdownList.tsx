@@ -5,14 +5,14 @@ import { TabsItem } from '../TabsItem/TabsItem.tsx';
 //styles
 import styles from './TabsDropdownList.module.scss';
 //types
-import type { ITabsData } from '../../model/types/tabsData.ts';
+import type { TabsDataType } from '../../model/types/tabsDataType.ts';
 
 interface TabsDropdownListProps {
     onClick?: (value: string) => void;
     size: string;
     variant?: string;
     activeTab?: string;
-    options: ITabsData[];
+    options: TabsDataType[];
 }
 
 export const TabsDropdownList = ({

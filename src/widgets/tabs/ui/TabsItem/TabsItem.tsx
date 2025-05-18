@@ -4,10 +4,10 @@ import clsx from 'clsx';
 //styles
 import styles from './TabsItem.module.scss';
 //types
-import type { ITabsData } from '../../model/types/tabsData';
+import type { TabsDataType } from '../../model/types/tabsDataType';
 interface TabsItemProps {
     onClick?: (label: string) => void;
-    option: ITabsData;
+    option: TabsDataType;
     size?: string;
     variant?: string;
     isActiveTab: boolean;
