@@ -14,12 +14,12 @@ import { TabsItem } from '../TabsItem/TabsItem.tsx';
 //styles
 import styles from './TabsList.module.scss';
 //types
-import type { TabsData } from '../../model/types/TabsData.ts';
+import type { ITabsData } from '../../model/types/tabsData.ts';
 
 interface TabsListProps {
     onClick: (label: string) => void;
-    setDropdownTabs: Dispatch<SetStateAction<TabsData[]>>;
-    options: TabsData[];
+    setDropdownTabs: Dispatch<SetStateAction<ITabsData[]>>;
+    options: ITabsData[];
     size?: string;
     variant?: string;
     behavior: string;
@@ -48,7 +48,7 @@ export const TabsList = ({
     isDisabled,
     scrollRef,
 }: TabsListProps) => {
-    const [visibleTabs, setVisibleTabs] = useState<TabsData[]>(options);
+    const [visibleTabs, setVisibleTabs] = useState<ITabsData[]>(options);
 
     useTabsVisibility({
         wrapperNavWidth,

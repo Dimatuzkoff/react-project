@@ -1,4 +1,4 @@
-export interface TabsData {
+export interface ITabsData {
     label: string;
     badgeCount?: number;
 }

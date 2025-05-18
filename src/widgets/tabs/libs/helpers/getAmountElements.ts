@@ -1,4 +1,4 @@
-import type { TabsData } from '../../model/types/TabsData.ts';
+import type { TabsData } from '../../model/types/tabsData.ts';
 
 interface Options {
     fontSize: number;

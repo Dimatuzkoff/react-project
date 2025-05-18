@@ -12,7 +12,7 @@ import SearchIcon from '@/shared/libs/assets/svg/icons/search.svg?react';
 // styles
 import styles from './App.module.scss';
 // data
-import { optionsData } from '@/widgets/select/model/optionsData';
+import { optionsData } from '@/widgets/select/libs/constants/optionsData';
 import { VerificationCodeInput } from '@/shared/ui/verificationCodeInput';
 
 export const App = () => {

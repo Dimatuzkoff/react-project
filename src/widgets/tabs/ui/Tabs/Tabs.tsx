@@ -5,6 +5,8 @@ import { useClickOutside } from '@/shared/libs/hooks/useClickOutside';
 import { useContainerWidth } from '../../libs/hooks/useContainerWidth';
 //libs
 import clsx from 'clsx';
+//constants
+import { tabsData } from '../../libs/constants/tabsData.ts';
 //ui
 import { TabsToolIcon } from '../TabsToolIcon/TabsToolIcon';
 import { TabsList } from '../TabsList/TabsList.tsx';
@@ -12,10 +14,8 @@ import { Dropdown } from '@/shared/ui/dropdown';
 import { TabsDropdownList } from '../TabsDropdownList/TabsDropdownList.tsx';
 //styles
 import styles from './Tabs.module.scss';
-//data
-import { tabsData } from './tabsData.ts';
 //types
-import type { TabsData } from '../../model/types/TabsData.ts';
+import type { ITabsData } from '../../model/types/tabsData.ts';
 
 interface TabProps {
     variant?: 'underline' | 'underlineFilled';
@@ -34,7 +34,7 @@ export const Tabs = ({
 
     const [activeTab, setActiveTab] = useState<string>(tabsData[0].label);
 
-    const [dropdownTabs, setDropdownTabs] = useState<TabsData[]>([]);
+    const [dropdownTabs, setDropdownTabs] = useState<ITabsData[]>([]);
 
     const divClickOutsideRef = useRef<HTMLDivElement | null>(null);
     useClickOutside(divClickOutsideRef, () => setIsOpenDropdown(false));

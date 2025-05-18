@@ -16,7 +16,7 @@ import styles from './Select.module.scss';
 //libs
 import clsx from 'clsx';
 //types
-import type { OptionType } from '../../model/types/OptionType';
+import type { OptionType } from '../../model/types/optionType';
 
 interface SelectProps {
     label: string;

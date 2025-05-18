@@ -2,7 +2,7 @@
 import type { FC } from 'react';
 import { useEffect, useRef } from 'react';
 // types
-import type { OptionType } from '../../model/types/OptionType';
+import type { OptionType } from '../../model/types/optionType';
 // styles
 import styles from './SelectPickedOption.module.scss';
 

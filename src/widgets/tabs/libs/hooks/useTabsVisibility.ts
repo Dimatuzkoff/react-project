@@ -1,6 +1,6 @@
 import { useEffect, type Dispatch, type SetStateAction } from 'react';
 import { getAmountElements } from '../helpers/getAmountElements.ts';
-import type { TabsData } from '../../model/types/TabsData.ts';
+import type { TabsData } from '../../model/types/tabsData.ts';
 
 interface UseTabsVisibilityProps {
     wrapperNavWidth?: number;
