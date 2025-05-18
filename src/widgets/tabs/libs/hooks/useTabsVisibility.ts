@@ -1,19 +1,19 @@
 import { useEffect, type Dispatch, type SetStateAction } from 'react';
 import { getAmountElements } from '../helpers/getAmountElements.ts';
-import type { TabsData } from '../../model/types/tabsDataType.ts';
+import type { TabsDataType } from '../../model/types/tabsDataType.ts';
 
 interface UseTabsVisibilityProps {
     wrapperNavWidth?: number;
     behavior: string;
-    options: TabsData[];
+    options: TabsDataType[];
     settings: {
         fontSize: number;
         paddingX: number;
         fontFamily?: string;
         fontWeight?: number;
     };
-    setVisibleTabs: Dispatch<SetStateAction<TabsData[]>>;
-    setDropdownTabs: Dispatch<SetStateAction<TabsData[]>>;
+    setVisibleTabs: Dispatch<SetStateAction<TabsDataType[]>>;
+    setDropdownTabs: Dispatch<SetStateAction<TabsDataType[]>>;
 }
 
 export const useTabsVisibility = ({

@@ -1,4 +1,4 @@
-import type { TabsData } from '../../model/types/tabsDataType.ts';
+import type { TabsDataType } from '../../model/types/tabsDataType.ts';
 
 interface Options {
     fontSize: number;
@@ -8,7 +8,7 @@ interface Options {
 }
 
 export const getAmountElements = (
-    tabs: TabsData[],
+    tabs: TabsDataType[],
     containerWidth: number,
     options: Options
 ): number => {
