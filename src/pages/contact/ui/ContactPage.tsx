@@ -1,7 +1,11 @@
+//styles
+import styles from './ContactPage.module.scss';
 export const ContactPage = () => {
     return (
-        <div>
-            <h1>ContactPage</h1>
-        </div>
+        <>
+            <section className={styles.wrapperContactPage}>
+                <h1>ContactPage</h1>
+            </section>
+        </>
     );
 };

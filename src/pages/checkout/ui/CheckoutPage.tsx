@@ -1,7 +1,11 @@
+//styles
+import styles from './CheckoutPage.module.scss';
 export const CheckoutPage = () => {
     return (
-        <div>
-            <h1>CheckoutPage</h1>
-        </div>
+        <>
+            <section className={styles.wrapperCheckoutPage}>
+                <h1>CheckoutPage</h1>
+            </section>
+        </>
     );
 };

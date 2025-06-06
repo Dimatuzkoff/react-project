@@ -1,7 +1,11 @@
+//styles
+import styles from './SingUpPage.module.scss';
 export const SingUpPage = () => {
     return (
-        <div>
-            <h1>SingUpPage</h1>
-        </div>
+        <>
+            <section className={styles.wrapperSingUpPage}>
+                <h1>SingUpPage</h1>
+            </section>
+        </>
     );
 };
