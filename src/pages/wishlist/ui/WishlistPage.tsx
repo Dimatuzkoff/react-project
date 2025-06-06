@@ -1,7 +1,11 @@
+//styles
+import styles from './WishlistPage.module.scss';
 export const WishlistPage = () => {
     return (
-        <div>
-            <h1>WishlistPage</h1>
-        </div>
+        <>
+            <section className={styles.wrapperWishlistPage}>
+                <h1>WishlistPage</h1>
+            </section>
+        </>
     );
 };

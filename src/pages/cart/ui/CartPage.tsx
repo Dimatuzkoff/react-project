@@ -1,7 +1,11 @@
+//styles
+import styles from './CartPage.module.scss';
 export const CartPage = () => {
     return (
-        <div>
-            <h1>CartPage</h1>
-        </div>
+        <>
+            <section className={styles.wrapperCartPage}>
+                <h1>CartPage</h1>
+            </section>
+        </>
     );
 };
