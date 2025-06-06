@@ -1,7 +1,11 @@
+//styles
+import styles from './AboutPage.module.scss';
 export const AboutPage = () => {
     return (
-        <div>
-            <h1>AboutPage</h1>
-        </div>
+        <>
+            <section className={styles.wrapperAboutPage}>
+                <h1>AboutPage</h1>
+            </section>
+        </>
     );
 };
