@@ -10,7 +10,7 @@
         @include mixins.flexContainer(row);
         justify-content: space-between;
         width: 100%;
-        border-bottom: 1px solid vars.$gray-300;
+        // border-bottom: 1px solid vars.$gray-300;
 
         &.size32 {
             height: 31px;
