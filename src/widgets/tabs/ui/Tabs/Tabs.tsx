@@ -5,8 +5,6 @@ import { useClickOutside } from '@/shared/libs/hooks/useClickOutside';
 import { useContainerWidth } from '../../libs/hooks/useContainerWidth';
 //libs
 import clsx from 'clsx';
-//constants
-import { tabsData } from '../../libs/constants/tabsData.ts';
 //ui
 import { TabsToolIcon } from '../TabsToolIcon/TabsToolIcon';
 import { TabsList } from '../TabsList/TabsList.tsx';
@@ -18,6 +16,7 @@ import styles from './Tabs.module.scss';
 import type { TabsDataType } from '../../model/types/tabsDataType.ts';
 
 interface TabProps {
+    tabsData: TabsDataType[];
     variant?: 'underline' | 'underlineFilled';
     isDisabled?: boolean;
     size?: '32' | '36' | '40';
@@ -25,6 +24,7 @@ interface TabProps {
 }
 
 export const Tabs = ({
+    tabsData,
     variant = 'underline',
     isDisabled,
     size = '40',
@@ -65,6 +65,8 @@ export const Tabs = ({
             });
         }
     };
+    console.log('render tabs');
+
     return (
         <>
             <div ref={wrapperNavRef} className={clsx(styles.container)}>
@@ -119,11 +121,6 @@ export const Tabs = ({
                             />
                         </Dropdown>
                     </span>
-                )}
-                {!isDisabled && (
-                    <div className={clsx(styles.content)}>
-                        activeTab {activeTab}
-                    </div>
                 )}
             </div>
         </>

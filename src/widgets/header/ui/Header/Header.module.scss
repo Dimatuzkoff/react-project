@@ -1,9 +1,64 @@
-.header {
-  height: 80px;
-  width: 100%;
-  gap: 20px;
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@use '@/app/styles/variables/global.scss' as *;
+@use '@/app/styles/mixins/index' as *;
+
+.wrapperHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 0.5px solid $text-primary;
+
+    .discountOffer {
+        @include flexCenter();
+        @include text14(400);
+        width: 100%;
+        background-color: $text-primary;
+        color: $text-primary_on-brand;
+        padding: 12px 20px;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 40px 135px 16px 135px;
+        @media screen and (max-width: 700px) {
+            padding: 20px;
+        }
+        @media screen and (max-width: 950px) {
+            padding: 40px 45px 16px 45px;
+        }
+        a {
+            text-decoration: none;
+            h1 {
+                @include text24(700);
+                color: $text-primary;
+                cursor: pointer;
+                transition:
+                    color 0.2s ease,
+                    transform 0.2s ease;
+
+                &:hover {
+                    transform: scale(1.05);
+                }
+
+                &:active {
+                    transform: scale(0.98);
+                }
+            }
+        }
+    }
+    .headerMenuDesktop {
+        @media screen and (max-width: 700px) {
+            display: none;
+        }
+    }
+
+    .headerMenuMobile {
+        padding: 0px 20px 20px 20px;
+        @media screen and (min-width: 700px) {
+            display: none;
+        }
+    }
 }

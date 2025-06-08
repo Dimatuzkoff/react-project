@@ -1,6 +1,7 @@
+//react
+import { NavLink } from 'react-router-dom';
 //libs
 import clsx from 'clsx';
-//assets
 //styles
 import styles from './TabsItem.module.scss';
 //types
@@ -26,7 +27,8 @@ export const TabsItem = ({
 }: TabsItemProps) => {
     return (
         <>
-            <div
+            <NavLink
+                to={option.path}
                 onClick={() => onClick?.(option.label)}
                 className={clsx(styles.tabItemWrapper, {
                     [styles.size32]: size === '32',
@@ -47,7 +49,7 @@ export const TabsItem = ({
                         {option.badgeCount}
                     </span>
                 )}
-            </div>
+            </NavLink>
         </>
     );
 };
