@@ -6,7 +6,7 @@ export const getContactRoute = () => routeConfig.contact;
 
 export const getAboutRoute = () => routeConfig.about;
 
-export const getSingUpRoute = () => routeConfig.singUp;
+export const getSignUpRoute = () => routeConfig.signUp;
 
 export const getWishlistRoute = () => routeConfig.wishlist;
 
@@ -16,6 +16,7 @@ export const getCheckoutRoute = () => routeConfig.checkout;
 
 export const getAccountRoute = () => routeConfig.account;
 
-export const getProductRoute = () => routeConfig.product;
+export const getProductRoute = (id: string) =>
+    routeConfig.productById.replace(':id', id);
 
 export const getNotFoundRoute = () => routeConfig.notFound;

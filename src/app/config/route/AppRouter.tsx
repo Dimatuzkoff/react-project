@@ -12,19 +12,18 @@ import { ContactPage } from '@/pages/contact';
 import { HomePage } from '@/pages/home';
 import { NotFound } from '@/pages/notFound';
 import { ProductPage } from '@/pages/product';
-import { SingUpPage } from '@/pages/singUp';
+import { SignUpPage } from '@/pages/signUp';
 import { WishlistPage } from '@/pages/wishlist';
 //constants
 import {
     getHomeRoute,
     getContactRoute,
     getAboutRoute,
-    getSingUpRoute,
+    getSignUpRoute,
     getWishlistRoute,
     getCartRoute,
     getCheckoutRoute,
     getAccountRoute,
-    getProductRoute,
     getNotFoundRoute,
 } from '@/shared/libs/constants/routes/routes';
 
@@ -38,12 +37,12 @@ export const AppRouter: FC<AppRouterProps> = ({}) => {
                 <Route path={getHomeRoute()} element={<HomePage />} />
                 <Route path={getContactRoute()} element={<ContactPage />} />
                 <Route path={getAboutRoute()} element={<AboutPage />} />
-                <Route path={getSingUpRoute()} element={<SingUpPage />} />
+                <Route path={getSignUpRoute()} element={<SignUpPage />} />
                 <Route path={getWishlistRoute()} element={<WishlistPage />} />
                 <Route path={getCartRoute()} element={<CartPage />} />
                 <Route path={getCheckoutRoute()} element={<CheckoutPage />} />
                 <Route path={getAccountRoute()} element={<AccountPage />} />
-                <Route path={getProductRoute()} element={<ProductPage />} />
+                <Route path="/product/:id" element={<ProductPage />} />
                 <Route path={getNotFoundRoute()} element={<NotFound />} />
             </Route>
         </Routes>
