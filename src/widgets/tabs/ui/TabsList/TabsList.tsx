@@ -23,6 +23,7 @@ interface TabsListProps {
     size?: string;
     variant?: string;
     behavior: string;
+    typeTabItems?: 'link' | 'button';
     activeTab?: string;
     wrapperNavWidth?: number;
     isDisabled?: boolean;
@@ -43,6 +44,7 @@ export const TabsList = ({
     size,
     variant,
     behavior,
+    typeTabItems,
     activeTab,
     wrapperNavWidth,
     isDisabled,
@@ -77,6 +79,7 @@ export const TabsList = ({
                         key={index}
                         variant={variant}
                         isActiveTab={activeTab === option.label}
+                        typeTabItems={typeTabItems}
                         onClick={onClick}
                         option={option}
                         size={size}
