@@ -22,13 +22,16 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        padding: 40px 135px 16px 135px;
-        @media screen and (max-width: 700px) {
+        padding: 10px;
+
+        @media screen and (min-width: 500px) {
             padding: 20px;
         }
-        @media screen and (max-width: 950px) {
-            padding: 40px 45px 16px 45px;
+
+        @media screen and (min-width: 1200px) {
+            padding: 40px 135px 16px 135px;
         }
+
         a {
             text-decoration: none;
             h1 {
@@ -50,15 +53,18 @@
         }
     }
     .headerMenuDesktop {
-        @media screen and (max-width: 700px) {
+        @media screen and (max-width: 1200px) {
             display: none;
         }
     }
 
     .headerMenuMobile {
+        margin: 0 auto;
+        max-width: 700px;
+        width: 100%;
         padding: 0px 20px 20px 20px;
-        max-width: 450px;
-        @media screen and (min-width: 700px) {
+
+        @media screen and (min-width: 1200px) {
             display: none;
         }
     }
