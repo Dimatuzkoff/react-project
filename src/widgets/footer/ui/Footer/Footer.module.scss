@@ -1,43 +1,64 @@
 @use '@/app/styles/variables/global.scss' as *;
 @use '@/app/styles/mixins/index' as *;
 
-.footer {
+.footerWrapper {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
+    flex-direction: column;
     background-color: $text-primary;
-    color: $text-primary_on-brand;
-    padding: 80px 135px 60px 135px;
-    overflow-x: scroll;
 
-    .brand,
-    .support,
-    .account,
-    .quickLink {
+    .footer {
         display: flex;
-        flex-direction: column;
-        max-width: 175px;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        color: $text-primary_on-brand;
+        padding: 80px 135px 60px 135px;
+        overflow-x: scroll;
 
-        span {
-            margin-top: 16px;
-            @include text16(400);
-            text-decoration: none;
-            cursor: pointer;
+        .brand,
+        .support,
+        .account,
+        .quickLink {
+            display: flex;
+            flex-direction: column;
+            max-width: 175px;
 
-            &:hover {
-                text-decoration: underline;
+            span {
+                margin-top: 16px;
+                @include text16(400);
+                text-decoration: none;
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
-    }
 
-    h4 {
-        @include text24(700);
-        margin-bottom: 24px;
-    }
+        h4 {
+            @include text24(700);
+            margin-bottom: 24px;
+        }
 
-    h5 {
-        @include text20(500);
-        margin-bottom: 8px;
+        h5 {
+            @include text20(500);
+            margin-bottom: 8px;
+        }
+    }
+    .copyRight {
+        color: rgba(255, 255, 255, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px 0px;
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
+        a {
+            text-decoration: none;
+            color: inherit;
+            &:hover {
+                text-decoration: underline;
+                scale: 1.1;
+            }
+        }
     }
 }
