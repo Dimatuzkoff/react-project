@@ -1,5 +1,6 @@
 //react
 import { useState, useRef } from 'react';
+import {useLocation} from 'react-router-dom';
 //hooks
 import { useClickOutside } from '@/shared/libs/hooks/useClickOutside';
 import { useContainerWidth } from '../../libs/hooks/useContainerWidth';
@@ -32,11 +33,23 @@ export const Tabs = ({
     size = '40',
     behavior = 'scrollable',
 }: TabProps) => {
+    const location = useLocation();
+
     const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
 
-    const [activeTab, setActiveTab] = useState<string>(tabsData[0].label);
-
     const [dropdownTabs, setDropdownTabs] = useState<TabsDataType[]>([]);
+
+    const [activeTabState, setActiveTabState] = useState(tabsData[0].label);
+
+    function getActiveTab() {
+        if (typeTabItems === 'link') {
+            const tab = tabsData.find(tab => tab.path === location.pathname);
+            return tab ? tab.label : tabsData[0].label;
+        }
+        return activeTabState;
+    }
+
+    const activeTab = getActiveTab();
 
     const divClickOutsideRef = useRef<HTMLDivElement | null>(null);
     useClickOutside(divClickOutsideRef, () => setIsOpenDropdown(false));
@@ -51,8 +64,10 @@ export const Tabs = ({
     };
 
     const selectTab = (tab: string) => {
-        setActiveTab(tab);
-        setIsOpenDropdown(false);
+        if (typeTabItems === 'button') {
+            setActiveTabState(tab);
+            setIsOpenDropdown(false);
+        }
     };
 
     const onControlClick = (position: string) => {
