@@ -1,6 +1,7 @@
 //react
 import { NavLink } from 'react-router-dom';
-import type { FC } from 'react';
+//helpers
+import { scrollToTop } from '@/shared/libs/helpers/scrollToTop';
 //styles
 import styles from './Footer.module.scss';
 //constants
@@ -13,14 +14,7 @@ import {
     getContactRoute,
 } from '@/shared/libs/constants/routes/routes';
 
-interface FooterProps {
-    [key: string]: unknown;
-}
-
-export const Footer: FC<FooterProps> = ({}) => {
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+export const Footer = ({}) => {
     return (
         <footer className={styles.footerWrapper}>
             <div className={styles.footer}>
@@ -95,10 +89,10 @@ export const Footer: FC<FooterProps> = ({}) => {
                     <h3>Швидкі посилання</h3>
                     <ul>
                         <li>
-                            <a href="#">Політика конфіденційності</a>
+                            <span>Політика конфіденційності</span>
                         </li>
                         <li>
-                            <a href="#">Умови використання</a>
+                            <span>Умови використання</span>
                         </li>
                         <li>
                             <NavLink
