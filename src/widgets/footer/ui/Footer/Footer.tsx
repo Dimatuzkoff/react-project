@@ -1,44 +1,117 @@
 //react
+import { NavLink } from 'react-router-dom';
 import type { FC } from 'react';
 //styles
 import styles from './Footer.module.scss';
+//constants
+import {
+    getHomeRoute,
+    getAccountRoute,
+    getSignUpRoute,
+    getCartRoute,
+    getWishlistRoute,
+    getContactRoute,
+} from '@/shared/libs/constants/routes/routes';
 
 interface FooterProps {
     [key: string]: unknown;
 }
 
 export const Footer: FC<FooterProps> = ({}) => {
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     return (
-        <section className={styles.footerWrapper}>
-            <article className={styles.footer}>
+        <footer className={styles.footerWrapper}>
+            <div className={styles.footer}>
                 <div className={styles.brand}>
                     <h4>Exclusive</h4>
-                    <h5>Subscribe</h5>
-                    <span>Get 10% off your first order</span>
+                    <span>Отримайте 10% знижки на ваше перше замовлення</span>
                 </div>
                 <div className={styles.support}>
-                    <h5>Support</h5>
-                    <span>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</span>
-                    <span>exclusive@gmail.com</span>
-                    <span>+88015-88888-9999</span>
+                    <h5>Підтримка</h5>
+
+                    <a
+                        href="https://maps.google.com/?q=111+Bijoy+sarani,+Dhaka,+DH+1515,+Bangladesh"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Відкрити карту з адресою 111 Bijoy sarani, Dhaka, DH 1515, Bangladesh"
+                    >
+                        111 Bijoy sarani, Dhaka, DH 1515, Bangladesh
+                    </a>
+                    <a
+                        href="mailto:exclusive@gmail.com"
+                        aria-label="Надіслати лист на exclusive@gmail.com"
+                    >
+                        exclusive@gmail.com
+                    </a>
+                    <a
+                        href="tel:+88015888889999"
+                        aria-label="Зателефонувати за номером +88015-88888-9999"
+                    >
+                        +88015-88888-9999
+                    </a>
                 </div>
-                <div className={styles.account}>
-                    <h5> Account</h5>
-                    <span>My Account</span>
-                    <span>Login / Register</span>
-                    <span>Cart</span>
-                    <span>Wishlist</span>
-                    <span>Shop</span>
-                </div>
-                <div className={styles.quickLink}>
-                    <h5>Quick Link</h5>
-                    <span>Privacy Policy</span>
-                    <span>Terms Of Use</span>
-                    <span>FAQ</span>
-                    <span>Contact</span>
-                </div>
-            </article>
-            <article className={styles.copyRight}>
+                <nav className={styles.account}>
+                    <h3>Обліковий запис</h3>
+                    <ul>
+                        <li>
+                            <NavLink
+                                to={getAccountRoute()}
+                                onClick={scrollToTop}
+                            >
+                                Мій обліковий запис
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to={getSignUpRoute()}
+                                onClick={scrollToTop}
+                            >
+                                Вхід / Реєстрація
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={getCartRoute()} onClick={scrollToTop}>
+                                Кошик
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to={getWishlistRoute()}
+                                onClick={scrollToTop}
+                            >
+                                Список бажань
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={getHomeRoute()} onClick={scrollToTop}>
+                                Магазин
+                            </NavLink>
+                        </li>
+                    </ul>
+                </nav>
+                <nav className={styles.quickLinks}>
+                    <h3>Швидкі посилання</h3>
+                    <ul>
+                        <li>
+                            <a href="#">Політика конфіденційності</a>
+                        </li>
+                        <li>
+                            <a href="#">Умови використання</a>
+                        </li>
+                        <li>
+                            <NavLink
+                                to={getContactRoute()}
+                                onClick={scrollToTop}
+                            >
+                                Контакти
+                            </NavLink>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div className={styles.copyRight}>
                 <p>
                     Copyright&nbsp;
                     <a
@@ -58,7 +131,7 @@ export const Footer: FC<FooterProps> = ({}) => {
                     </a>
                     &nbsp;2025. All rights reserved.
                 </p>
-            </article>
-        </section>
+            </div>
+        </footer>
     );
 };
