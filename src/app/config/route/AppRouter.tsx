@@ -24,6 +24,7 @@ import {
     getCartRoute,
     getCheckoutRoute,
     getAccountRoute,
+    getProductByIdRoute,
     getNotFoundRoute,
 } from '@/shared/libs/constants/routes/routes';
 
@@ -42,7 +43,7 @@ export const AppRouter: FC<AppRouterProps> = ({}) => {
                 <Route path={getCartRoute()} element={<CartPage />} />
                 <Route path={getCheckoutRoute()} element={<CheckoutPage />} />
                 <Route path={getAccountRoute()} element={<AccountPage />} />
-                <Route path="/product/:id" element={<ProductPage />} />
+                <Route path={getProductByIdRoute()} element={<ProductPage />} />
                 <Route path={getNotFoundRoute()} element={<NotFound />} />
             </Route>
         </Routes>
