@@ -1,0 +1,9 @@
+@use '@/app/styles/variables/global' as *;
+@use '@/app/styles/mixins/index' as *;
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+

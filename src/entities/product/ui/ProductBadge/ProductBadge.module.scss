@@ -1,0 +1,24 @@
+@use '@/app/styles/variables/global' as *;
+@use '@/app/styles/mixins/index' as *;
+
+.discountBadge {
+  @include text12(400, "Poppins");
+  background-color: $error-600;
+  color: $white;
+  border-radius: 4px;
+  width: 55px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.newBadge {
+  @extend .discountBadge;
+  background-color: $utility-success-500;
+  text-transform: uppercase;
+}
+

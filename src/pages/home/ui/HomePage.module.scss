@@ -1,6 +1,18 @@
 .wrapperHomePage {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.container {
+    padding: 10px;
+
+    @media screen and (min-width: 500px) {
+        padding: 20px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        padding: 40px 135px 16px 135px;
+    }
 }
