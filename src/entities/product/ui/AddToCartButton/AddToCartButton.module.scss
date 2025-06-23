@@ -1,0 +1,17 @@
+.buttonWrapper {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  &.visibleOnHover {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.iconCart {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
