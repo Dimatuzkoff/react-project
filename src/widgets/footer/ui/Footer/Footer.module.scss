@@ -18,19 +18,16 @@
         .brand,
         .support,
         .account,
-        .quickLinks {
+        .quickLink {
             display: flex;
             flex-direction: column;
             max-width: 175px;
 
-            span,
-            a,
-            li {
+            span {
                 margin-top: 16px;
                 @include text16(400);
                 text-decoration: none;
                 cursor: pointer;
-                color: inherit;
 
                 &:hover {
                     text-decoration: underline;
@@ -40,7 +37,7 @@
 
         h4 {
             @include text24(700);
-            margin-bottom: 8px;
+            margin-bottom: 24px;
         }
 
         h5 {
