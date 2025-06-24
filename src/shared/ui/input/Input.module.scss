@@ -1,9 +1,9 @@
 @use '@/app/styles/variables/global.scss' as *;
 
 .inputWrapper {
-    // min-width: 245px;
+    min-width: 245px;
     // max-width: 323px;
-    // width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -34,7 +34,7 @@
     flex-direction: column;
     gap: 4px;
     // width: 100%;
-    // min-width: 323px;
+    min-width: 323px;
     flex-wrap: wrap;
 }
 
