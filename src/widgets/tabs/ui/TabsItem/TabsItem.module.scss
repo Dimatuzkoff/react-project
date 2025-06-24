@@ -7,7 +7,7 @@
     padding: 0px 8px;
     border-bottom: 2px solid transparent;
     cursor: pointer;
-    text-decoration: none;
+
     &.size32 .tabItem {
         @include mixins.text12(600);
         height: 29px;
@@ -20,7 +20,7 @@
     }
 
     &.size40 .tabItem {
-        @include mixins.text14(400);
+        @include mixins.text14(600);
         height: 37px;
     }
 
@@ -49,10 +49,10 @@
     }
 
     &.active {
-        border-bottom: 2px solid vars.$gray-900;
+        border-bottom: 2px solid vars.$brand-600;
 
         & .tabItem {
-            // color: vars.$brand-600;
+            color: vars.$brand-600;
         }
 
         & .tabBadge {
