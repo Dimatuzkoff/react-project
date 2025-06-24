@@ -53,6 +53,7 @@ export const TabsItem = ({
                 )}
                 {option.badgeCount && (
                     <span className={clsx(styles.tabBadge)}>
+                        {' '}
                         {option.badgeCount}
                     </span>
                 )}
