@@ -11,7 +11,6 @@ interface TabsItemProps {
     option: TabsDataType;
     size?: string;
     variant?: string;
-    typeTabItems?: 'link' | 'button';
     isActiveTab: boolean;
     isDisabled?: boolean;
     isHover?: boolean;
@@ -25,11 +24,11 @@ export const TabsItem = ({
     isActiveTab,
     isDisabled,
     isHover,
-    typeTabItems,
 }: TabsItemProps) => {
     return (
         <>
-            <div
+            <NavLink
+                to={option.path}
                 onClick={() => onClick?.(option.label)}
                 className={clsx(styles.tabItemWrapper, {
                     [styles.size32]: size === '32',
@@ -41,23 +40,16 @@ export const TabsItem = ({
                     [styles.disabled]: isDisabled,
                 })}
             >
-                {typeTabItems === 'button' && (
-                    <button type="button" className={clsx(styles.tabItem)}>
-                        {option.label}
-                    </button>
-                )}
-                {typeTabItems === 'link' && (
-                    <NavLink to={option.path} className={clsx(styles.tabItem)}>
-                        {option.label}
-                    </NavLink>
-                )}
+                <button type="button" className={clsx(styles.tabItem)}>
+                    {option.label}
+                </button>
                 {option.badgeCount && (
                     <span className={clsx(styles.tabBadge)}>
                         {' '}
                         {option.badgeCount}
                     </span>
                 )}
-            </div>
+            </NavLink>
         </>
     );
 };
