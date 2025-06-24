@@ -16,7 +16,7 @@ export const getCheckoutRoute = () => routeConfig.checkout;
 
 export const getAccountRoute = () => routeConfig.account;
 
-export const getProductByIdRoute = (id: string | number = ':id') =>
-    routeConfig.productById.replace(':id', String(id));
+export const getProductRoute = (id: string) =>
+    routeConfig.productById.replace(':id', id);
 
 export const getNotFoundRoute = () => routeConfig.notFound;
