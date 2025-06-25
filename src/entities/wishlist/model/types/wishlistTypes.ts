@@ -1,4 +1,4 @@
-import { type Product } from '@/entities/product/model/types/types';
+import { type Product } from '@/entities/product/model/types';
 
 export type WishlistStateType = {
     wishlist: Product[];
