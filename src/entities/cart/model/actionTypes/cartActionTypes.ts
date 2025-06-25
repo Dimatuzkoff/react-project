@@ -1,0 +1,5 @@
+export enum CartActionTypes {
+    ADD_TO_CART = 'CART/ADD_TO_CART',
+    REMOVE_FROM_CART = 'CART/REMOVE_FROM_CART',
+    CLEAR_CART = 'CART/CLEAR_CART',
+}
