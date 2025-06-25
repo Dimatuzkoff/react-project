@@ -1,6 +1,6 @@
 import { products } from '@/mockData/products';
 // types
-import type { Product } from '@/entities/product/model/types';
+import type { Product } from '@/entities/product/model/types/types';
 // components
 import { ProductList } from '@/entities/product/ui/ProductList/ProductList';
 // styles
