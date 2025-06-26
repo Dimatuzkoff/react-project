@@ -19,7 +19,6 @@ interface TabProps {
     tabsData: TabsDataType[];
     variant?: 'underline' | 'underlineFilled';
     isDisabled?: boolean;
-    typeTabItems?: 'link' | 'button';
     size?: '32' | '36' | '40';
     behavior?: 'scrollable' | 'arrows' | 'dropdown';
 }
@@ -28,7 +27,6 @@ export const Tabs = ({
     tabsData,
     variant = 'underline',
     isDisabled,
-    typeTabItems = 'link',
     size = '40',
     behavior = 'scrollable',
 }: TabProps) => {
@@ -91,7 +89,6 @@ export const Tabs = ({
                         onClick={selectTab}
                         size={size}
                         variant={variant}
-                        typeTabItems={typeTabItems}
                         behavior={behavior}
                         isDisabled={isDisabled}
                         options={tabsData}
@@ -119,17 +116,11 @@ export const Tabs = ({
                                 onClick={selectTab}
                                 variant={variant}
                                 activeTab={activeTab}
-                                typeTabItems={typeTabItems}
                                 size={size}
                                 options={dropdownTabs}
                             />
                         </Dropdown>
                     </span>
-                )}
-                {typeTabItems !== 'link' && !isDisabled && (
-                    <div className={clsx(styles.content)}>
-                        activeTab {activeTab}
-                    </div>
                 )}
             </div>
         </>
