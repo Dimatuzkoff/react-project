@@ -1,0 +1,1 @@
+export { ProductRatingBlock } from './ProductRatingBlock';
