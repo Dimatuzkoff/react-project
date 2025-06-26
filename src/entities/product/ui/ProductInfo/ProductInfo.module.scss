@@ -18,3 +18,18 @@
   align-items: center;
   gap: 8px;
 }
+
+.priceBlock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .currentPrice {
+    color: $error-600;
+  }
+
+  .oldPrice {
+    color: $gray-400;
+    text-decoration: line-through;
+  }
+}
