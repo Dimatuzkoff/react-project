@@ -1,5 +1,5 @@
 import { WishlistActionTypes } from '../actionTypes/wishlistActionTypes';
-import { type Product } from '@/entities/product/model/types';
+import { type Product } from '@/entities/product/model/types/types';
 
 export type AddProductToWishlistType = {
     type: WishlistActionTypes.ADD_TO_WISHLIST;
