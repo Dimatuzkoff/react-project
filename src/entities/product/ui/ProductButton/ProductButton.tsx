@@ -6,14 +6,14 @@ import CartIcon from '@/shared/libs/assets/svg/icons/cart.svg';
 // libs
 import clsx from 'clsx';
 // styles
-import styles from './AddToCartButton.module.scss';
+import styles from './ProductButton.module.scss';
 
 interface Props {
     variant: string;
     className?: string;
 }
 
-export const AddToCartButton: FC<Props> = ({ variant, className }) => {
+export const ProductButton: FC<Props> = ({ variant, className }) => {
     const showHoverButton = variant === 'default' || variant === 'explore';
     const showCartIcon = variant === 'wishList' || variant === 'justForYou';
 

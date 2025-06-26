@@ -1,22 +1,30 @@
 // react
 import type { FC } from 'react';
 // types
-import type { Product } from '../../model/types';
-import type { ProductVariant } from '../../model/variant';
+import type { Product } from '../../model/types/product';
+import type { ProductVariant } from '../../model/types/productVariant';
 // components
-import { ImageWrapper } from '../ImageWrapper';
+import { ProductImage } from '../ProductImage';
 import { ProductInfo } from '../ProductInfo';
+// helpers
+import { getOldPrice } from '../../libs/helper/getOldPrice';
 // styles
 import styles from './ProductCard.module.scss';
 
 interface ProductCardProps {
     product: Product;
     variant?: ProductVariant;
+    isShowWishList?: boolean;
+    isShowView?: boolean;
+    isShowDelete?: boolean;
 }
 
 export const ProductCard: FC<ProductCardProps> = ({
     product,
     variant = 'default',
+    isShowWishList,
+    isShowView,
+    isShowDelete,
 }) => {
     const {
         title,
@@ -29,21 +37,21 @@ export const ProductCard: FC<ProductCardProps> = ({
         meta: { createdAt },
     } = product;
 
-    const oldPrice =
-        discountPercentage > 0
-            ? Math.round(price / (1 - discountPercentage / 100))
-            : null;
+    const oldPrice = getOldPrice(price, discountPercentage);
 
     const thumbnailUrl = thumbnail || images[0];
 
     return (
         <div className={styles.productCard}>
-            <ImageWrapper
+            <ProductImage
                 thumbnail={thumbnailUrl}
                 title={title}
                 discountPercentage={discountPercentage}
                 createdAt={createdAt}
                 variant={variant}
+                isShowWishList={isShowWishList}
+                isShowView={isShowView}
+                isShowDelete={isShowDelete}
             />
             <ProductInfo
                 title={title}

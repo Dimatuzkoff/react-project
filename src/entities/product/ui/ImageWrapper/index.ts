@@ -1,1 +1,0 @@
-export { ImageWrapper } from './ImageWrapper';
