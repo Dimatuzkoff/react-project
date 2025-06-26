@@ -1,8 +1,6 @@
 //react
 import type { FC } from 'react';
 import { Route, Routes } from 'react-router';
-//layout
-import { BaseLayout } from '@/app/layout/base';
 //pages
 import { AboutPage } from '@/pages/about';
 import { AccountPage } from '@/pages/account';
@@ -34,18 +32,16 @@ interface AppRouterProps {
 export const AppRouter: FC<AppRouterProps> = ({}) => {
     return (
         <Routes>
-            <Route element={<BaseLayout />}>
-                <Route path={getHomeRoute()} element={<HomePage />} />
-                <Route path={getContactRoute()} element={<ContactPage />} />
-                <Route path={getAboutRoute()} element={<AboutPage />} />
-                <Route path={getSingUpRoute()} element={<SingUpPage />} />
-                <Route path={getWishlistRoute()} element={<WishlistPage />} />
-                <Route path={getCartRoute()} element={<CartPage />} />
-                <Route path={getCheckoutRoute()} element={<CheckoutPage />} />
-                <Route path={getAccountRoute()} element={<AccountPage />} />
-                <Route path={getProductRoute()} element={<ProductPage />} />
-                <Route path={getNotFoundRoute()} element={<NotFound />} />
-            </Route>
+            <Route path={getHomeRoute()} element={<HomePage />} />
+            <Route path={getContactRoute()} element={<ContactPage />} />
+            <Route path={getAboutRoute()} element={<AboutPage />} />
+            <Route path={getSingUpRoute()} element={<SingUpPage />} />
+            <Route path={getWishlistRoute()} element={<WishlistPage />} />
+            <Route path={getCartRoute()} element={<CartPage />} />
+            <Route path={getCheckoutRoute()} element={<CheckoutPage />} />
+            <Route path={getAccountRoute()} element={<AccountPage />} />
+            <Route path={getProductRoute()} element={<ProductPage />} />
+            <Route path={getNotFoundRoute()} element={<NotFound />} />
         </Routes>
     );
 };
