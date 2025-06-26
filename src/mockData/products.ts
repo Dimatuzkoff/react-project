@@ -65,7 +65,7 @@ export const products = [
       "description": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
       "category": "beauty",
       "price": 19.99,
-      "discountPercentage": 0,
+      "discountPercentage": 18.19,
       "rating": 2.86,
       "stock": 34,
       "tags": [
@@ -125,7 +125,7 @@ export const products = [
       "description": "The Powder Canister is a finely milled setting powder designed to set makeup and control shine. With a lightweight and translucent formula, it provides a smooth and matte finish.",
       "category": "beauty",
       "price": 14.99,
-      "discountPercentage": 0,
+      "discountPercentage": 9.84,
       "rating": 4.64,
       "stock": 89,
       "tags": [
@@ -169,8 +169,8 @@ export const products = [
       "returnPolicy": "No return policy",
       "minimumOrderQuantity": 22,
       "meta": {
-        "createdAt": "2025-05-30T09:41:02.053Z",
-        "updatedAt": "2025-05-30T09:41:02.053Z",
+        "createdAt": "2025-04-30T09:41:02.053Z",
+        "updatedAt": "2025-04-30T09:41:02.053Z",
         "barcode": "8418883906837",
         "qrCode": "https://cdn.dummyjson.com/public/qr-code.png"
       },
