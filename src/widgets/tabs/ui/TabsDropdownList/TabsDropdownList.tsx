@@ -12,7 +12,6 @@ interface TabsDropdownListProps {
     size: string;
     variant?: string;
     activeTab?: string;
-    typeTabItems?: 'link' | 'button';
     options: TabsDataType[];
 }
 
@@ -21,7 +20,6 @@ export const TabsDropdownList = ({
     size,
     variant,
     activeTab,
-    typeTabItems,
     options,
 }: TabsDropdownListProps) => {
     return (
@@ -33,7 +31,6 @@ export const TabsDropdownList = ({
                             key={item.label}
                             isHover
                             variant={variant}
-                            typeTabItems={typeTabItems}
                             size={size}
                             option={item}
                             isActiveTab={activeTab === item.label}
