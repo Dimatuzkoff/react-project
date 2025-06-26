@@ -1,6 +1,6 @@
 import { products } from '@/mockData/products';
 // types
-import type { Product } from '@/entities/product/model/types';
+import type { Product } from '@/entities/product/model/types/product';
 // components
 import { ProductList } from '@/entities/product/ui/ProductList/ProductList';
 // styles
@@ -19,13 +19,23 @@ export const HomePage = () => {
                     <ProductList products={topProducts} variant="default" />
                     <br />
                     <h2>justForYou</h2>
-                    <ProductList products={topProducts} variant="justForYou" />
+                    <ProductList
+                        products={topProducts}
+                        variant="justForYou"
+                        isShowWishList={false}
+                    />
                     <br />
                     <h2>bestSeller</h2>
                     <ProductList products={topProducts} variant="bestSeller" />
                     <br />
                     <h2>wishList</h2>
-                    <ProductList products={topProducts} variant="wishList" />
+                    <ProductList
+                        products={topProducts}
+                        variant="wishList"
+                        isShowWishList={false}
+                        isShowView={false}
+                        isShowDelete
+                    />
                     <br />
                     <h2>explore</h2>
                     <ProductList products={topProducts} variant="explore" />

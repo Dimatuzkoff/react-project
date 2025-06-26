@@ -1,18 +1,21 @@
 // react
 import type { FC } from 'react';
 // styles
-import styles from './RatingBlock.module.scss';
+import styles from './ProductRatingBlock.module.scss';
 
-interface RatingBlockProps {
+interface ProductRatingBlockProps {
     rating: number;
     reviewCount: number;
 }
 
-export const RatingBlock: FC<RatingBlockProps> = ({ rating, reviewCount }) => {
+export const ProductRatingBlock: FC<ProductRatingBlockProps> = ({
+    rating,
+    reviewCount,
+}) => {
     return (
         <div className={styles.ratingBlock}>
             <span className={styles.stars}>
-                {[...Array(5)].map((_, index) => (
+                {Array.from({ length: 5 }, (_, index) => (
                     <span
                         key={index}
                         className={
