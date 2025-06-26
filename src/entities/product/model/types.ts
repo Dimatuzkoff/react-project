@@ -11,11 +11,11 @@ export interface Product {
     brand: string;
     sku: string;
     weight: number;
-    dimensions: ProductDimensions;
+    dimensions: Dimensions;
     warrantyInformation: string;
     shippingInformation: string;
     availabilityStatus: string;
-    reviews: ProductReview[];
+    reviews: Review[];
     returnPolicy: string;
     minimumOrderQuantity: number;
     meta: ProductMeta;
@@ -23,20 +23,20 @@ export interface Product {
     thumbnail: string;
 }
 
-interface ProductDimensions {
+export interface Dimensions {
     width: number;
     height: number;
     depth: number;
 }
 
-interface ProductMeta {
+export interface ProductMeta {
     createdAt: string;
     updatedAt: string;
     barcode: string;
     qrCode: string;
 }
 
-interface ProductReview {
+export interface Review {
     rating: number;
     comment: string;
     date: string;
