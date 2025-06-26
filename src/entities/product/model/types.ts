@@ -11,29 +11,25 @@ export interface Product {
     brand: string;
     sku: string;
     weight: number;
-    dimensions: Dimensions;
+    dimensions: {
+        width: number;
+        height: number;
+        depth: number;
+    };
     warrantyInformation: string;
     shippingInformation: string;
     availabilityStatus: string;
     reviews: Review[];
     returnPolicy: string;
     minimumOrderQuantity: number;
-    meta: ProductMeta;
+    meta: {
+        createdAt: string;
+        updatedAt: string;
+        barcode: string;
+        qrCode: string;
+    };
     images: string[];
     thumbnail: string;
-}
-
-export interface Dimensions {
-    width: number;
-    height: number;
-    depth: number;
-}
-
-export interface ProductMeta {
-    createdAt: string;
-    updatedAt: string;
-    barcode: string;
-    qrCode: string;
 }
 
 export interface Review {
