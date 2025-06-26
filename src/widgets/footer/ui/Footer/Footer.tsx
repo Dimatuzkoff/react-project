@@ -47,7 +47,7 @@ export const Footer = ({}) => {
                     </a>
                 </div>
                 <nav className={styles.account}>
-                    <h5>Обліковий запис</h5>
+                    <h3>Обліковий запис</h3>
                     <ul>
                         <li>
                             <NavLink
@@ -86,7 +86,7 @@ export const Footer = ({}) => {
                     </ul>
                 </nav>
                 <nav className={styles.quickLinks}>
-                    <h5>Швидкі посилання</h5>
+                    <h3>Швидкі посилання</h3>
                     <ul>
                         <li>
                             <span>Політика конфіденційності</span>
