@@ -5,7 +5,7 @@ export const routeConfig = {
     singUp: '/singUp',
     wishlist: '/wishlist',
     cart: '/cart',
-    checkout: '/checkout',
+    checkOut: '/checkout',
     account: '/account',
     product: '/product/:id',
     notFound: '*',
