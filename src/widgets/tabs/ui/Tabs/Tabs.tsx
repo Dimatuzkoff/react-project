@@ -1,11 +1,9 @@
 //react
 import { useState, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 //hooks
 import { useClickOutside } from '@/shared/libs/hooks/useClickOutside';
 import { useContainerWidth } from '../../libs/hooks/useContainerWidth';
-//helpers
-import { getActiveTab } from '../../libs/helpers/getActiveTab.ts';
 //libs
 import clsx from 'clsx';
 //ui
@@ -43,12 +41,15 @@ export const Tabs = ({
 
     const [activeTabState, setActiveTabState] = useState(tabsData[0].label);
 
-    const activeTab = getActiveTab(
-        typeTabItems,
-        tabsData,
-        location,
-        activeTabState
-    );
+    function getActiveTab() {
+        if (typeTabItems === 'link') {
+            const tab = tabsData.find(tab => tab.path === location.pathname);
+            return tab ? tab.label : tabsData[0].label;
+        }
+        return activeTabState;
+    }
+
+    const activeTab = getActiveTab();
 
     const divClickOutsideRef = useRef<HTMLDivElement | null>(null);
     useClickOutside(divClickOutsideRef, () => setIsOpenDropdown(false));
