@@ -13,11 +13,10 @@ import {
 } from '@/shared/libs/constants/routes/routes';
 //ui
 // import { Input } from '@/shared/ui/input';
-
 export const HeaderTools = () => {
     return (
         <>
-            <div className={styles.headerTools}>
+            <div className={styles.hederTools}>
                 {/* <div className={styles.inputWrapper}>
                     <Input
                         type="search"
