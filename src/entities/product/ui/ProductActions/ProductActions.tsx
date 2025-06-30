@@ -9,13 +9,13 @@ import styles from './ProductActions.module.scss';
 
 interface ProductActionsProps {
     isShowWishlist?: boolean;
-    isShowView?: boolean;
+    isShowPreview?: boolean;
     isShowDelete?: boolean;
 }
 
 export const ProductActions: FC<ProductActionsProps> = ({
     isShowWishlist,
-    isShowView,
+    isShowPreview,
     isShowDelete,
 }) => {
     return (
@@ -26,7 +26,7 @@ export const ProductActions: FC<ProductActionsProps> = ({
                         <img src={WishlistIcon} alt="wishlist" />
                     </span>
                 )}
-                {isShowView && (
+                {isShowPreview && (
                     <span className={styles.icon}>
                         <img src={ViewIcon} alt="view" />
                     </span>

@@ -13,7 +13,7 @@ interface ProductListProps {
     products: Product[];
     variant: ProductVariant;
     isShowWishList?: boolean;
-    isShowView?: boolean;
+    isShowPreview?: boolean;
     isShowDelete?: boolean;
 }
 
@@ -21,7 +21,7 @@ export const ProductList: FC<ProductListProps> = ({
     products,
     variant = 'default',
     isShowWishList = true,
-    isShowView = true,
+    isShowPreview = true,
     isShowDelete = false,
 }) => {
     return (
@@ -33,7 +33,7 @@ export const ProductList: FC<ProductListProps> = ({
                         product={product}
                         variant={variant}
                         isShowWishList={isShowWishList}
-                        isShowView={isShowView}
+                        isShowPreview={isShowPreview}
                         isShowDelete={isShowDelete}
                     />
                 ))}

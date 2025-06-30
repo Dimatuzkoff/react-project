@@ -4,7 +4,7 @@ import type { FC } from 'react';
 import type { Product } from '../../model/types/product';
 import type { ProductVariant } from '../../model/types/productVariant';
 // components
-import { ProductImage } from '../ProductImage';
+import { ProductImageBlock } from '../ProductImageBlock';
 import { ProductInfo } from '../ProductInfo';
 // helpers
 import { getOldPrice } from '../../libs/helper/getOldPrice';
@@ -15,7 +15,7 @@ interface ProductCardProps {
     product: Product;
     variant?: ProductVariant;
     isShowWishList?: boolean;
-    isShowView?: boolean;
+    isShowPreview?: boolean;
     isShowDelete?: boolean;
 }
 
@@ -23,7 +23,7 @@ export const ProductCard: FC<ProductCardProps> = ({
     product,
     variant = 'default',
     isShowWishList,
-    isShowView,
+    isShowPreview,
     isShowDelete,
 }) => {
     const {
@@ -43,14 +43,14 @@ export const ProductCard: FC<ProductCardProps> = ({
 
     return (
         <div className={styles.productCard}>
-            <ProductImage
+            <ProductImageBlock
                 thumbnail={thumbnailUrl}
                 title={title}
                 discountPercentage={discountPercentage}
                 createdAt={createdAt}
                 variant={variant}
                 isShowWishList={isShowWishList}
-                isShowView={isShowView}
+                isShowPreview={isShowPreview}
                 isShowDelete={isShowDelete}
             />
             <ProductInfo

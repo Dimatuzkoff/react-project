@@ -33,7 +33,7 @@ export const HomePage = () => {
                         products={topProducts}
                         variant="wishList"
                         isShowWishList={false}
-                        isShowView={false}
+                        isShowPreview={false}
                         isShowDelete
                     />
                     <br />
