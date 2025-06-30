@@ -8,27 +8,27 @@ import { isNewProduct } from '@/entities/product/libs/utils/isNewProduct';
 import { ProductActions } from '../ProductActions';
 import { ProductButton } from '../ProductButton';
 // styles
-import styles from './ProductImage.module.scss';
+import styles from './ProductImageBlock.module.scss';
 
-interface ProductImageProps {
+interface ProductImageBlockProps {
     thumbnail: string;
     title: string;
     discountPercentage: number;
     createdAt: string;
     variant?: ProductVariant;
     isShowWishList?: boolean;
-    isShowView?: boolean;
+    isShowPreview?: boolean;
     isShowDelete?: boolean;
 }
 
-export const ProductImage: FC<ProductImageProps> = ({
+export const ProductImageBlock: FC<ProductImageBlockProps> = ({
     thumbnail,
     title,
     discountPercentage,
     createdAt,
     variant = 'default',
     isShowWishList,
-    isShowView,
+    isShowPreview,
     isShowDelete,
 }) => {
     const showBadge = variant !== 'bestSeller';
@@ -52,7 +52,7 @@ export const ProductImage: FC<ProductImageProps> = ({
 
             <ProductActions
                 isShowWishlist={isShowWishList}
-                isShowView={isShowView}
+                isShowPreview={isShowPreview}
                 isShowDelete={isShowDelete}
             />
 
