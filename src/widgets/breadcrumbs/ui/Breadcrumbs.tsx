@@ -1,32 +1,32 @@
 // react
 import type { FC } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-// helpers
-import { getBreadcrumbs } from '../libs/helpers/getBreadcrumbs';
+import { NavLink } from 'react-router-dom';
+// redux
+import { useSelector } from 'react-redux';
+// types
+import type { Breadcrumb } from '../model/types/breadcrumbTypes';
+// selectors
+import { getBreadcrumbs } from '../model/selectors/breadrumbSelectors';
 // styles
 import styles from './Breadcrumbs.module.scss';
-// libs
-import clsx from 'clsx';
 
 export const Breadcrumbs: FC = () => {
-    const { pathname } = useLocation();
-    const crumbs = getBreadcrumbs(pathname);
+    const breadcrumbs: Breadcrumb[] = useSelector(getBreadcrumbs);
 
-    if (pathname === '/') return null;
+    if (!breadcrumbs.length) return null;
 
     return (
         <nav className={styles.breadcrumbs}>
-            {crumbs.map((crumb, i) => (
-                <span key={crumb.path}>
-                    <NavLink
-                        to={crumb.path}
-                        className={({ isActive }) =>
-                            clsx(styles.link, { [styles.active]: isActive })
-                        }
-                    >
-                        {crumb.label}
-                    </NavLink>
-                    {i < crumbs.length - 1 && (
+            {breadcrumbs.map((crumb, index) => (
+                <span key={crumb.path ?? index}>
+                    {crumb.path ? (
+                        <NavLink to={crumb.path} className={styles.link}>
+                            {crumb.label}
+                        </NavLink>
+                    ) : (
+                        <span className={styles.link}>{crumb.label}</span>
+                    )}
+                    {index < breadcrumbs.length - 1 && (
                         <span className={styles.separator}> / </span>
                     )}
                 </span>
