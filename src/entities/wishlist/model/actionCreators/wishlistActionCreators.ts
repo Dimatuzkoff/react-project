@@ -29,7 +29,7 @@ const clearWishlist = (): ClearWishlistType => {
     };
 };
 
-export const cartActionCreators = {
+export const wishlistActionCreators = {
     addProductToWishlist,
     deleteProductFromWishlist,
     clearWishlist,
