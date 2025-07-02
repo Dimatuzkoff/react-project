@@ -1,20 +1,18 @@
 // react
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-// reduser
-import { setBreadcrumbs } from '@/widgets/breadcrumbs/model/actionCreators/breadcrumbsActionCreators';
+// constants
+import { routeConfig } from '@/app/config/route/routeConfig';
+// reducer
+import { setBreadcrumbs } from '@/widgets/breadcrumbs/model/actionCreators/breadcrumbActionCreators';
 //styles
 import styles from './WishlistPage.module.scss';
 export const WishlistPage = () => {
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(
-            setBreadcrumbs([
-                { label: 'Wishlist', path: '/wishlist' },
-            ])
-        );
-    })
+    dispatch(
+        setBreadcrumbs([{ label: 'Закладки', path: routeConfig.wishlist }])
+    );
+
     return (
         <>
             <section className={styles.wrapperWishlistPage}>

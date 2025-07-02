@@ -1,20 +1,16 @@
 // react
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-// reduser
-import { setBreadcrumbs } from '@/widgets/breadcrumbs/model/actionCreators/breadcrumbsActionCreators';
+// constants
+import { routeConfig } from '@/app/config/route/routeConfig';
+// reduсer
+import { setBreadcrumbs } from '@/widgets/breadcrumbs/model/actionCreators/breadcrumbActionCreators';
 //styles
 import styles from './AboutPage.module.scss';
 export const AboutPage = () => {
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(
-            setBreadcrumbs([
-                { label: 'About', path: '/about' },
-            ])
-        );
-    })
+    dispatch(setBreadcrumbs([{ label: 'Про нас', path: routeConfig.about }]));
+
     return (
         <>
             <section className={styles.wrapperAboutPage}>

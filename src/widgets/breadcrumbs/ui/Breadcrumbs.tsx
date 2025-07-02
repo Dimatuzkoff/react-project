@@ -1,34 +1,17 @@
 // react
 import type { FC } from 'react';
-import { useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // redux
-import { useDispatch, useSelector } from 'react-redux';
-// reduser
-import { setBreadcrumbs } from '../model/actionCreators/breadcrumbsActionCreators';
+import { useSelector } from 'react-redux';
 // types
-import type { Breadcrumb } from '../model/types/Breadcrumb';
-import type { StateSchema } from '@/app/config/store/stateSchema';
+import type { Breadcrumb } from '../model/types/breadcrumbTypes';
+// selectors
+import { getBreadcrumbs } from '../model/selectors/breadrumbSelectors';
 // styles
 import styles from './Breadcrumbs.module.scss';
 
 export const Breadcrumbs: FC = () => {
-    const location = useLocation();
-    const dispatch = useDispatch();
-    const breadcrumbs: Breadcrumb[] = useSelector(
-        (state: StateSchema) => state.breadcrumbs
-    );
-
-    useEffect(() => {
-        const segments = location.pathname.split('/').filter(Boolean);
-
-        const crumbs = segments.map((segment, index) => ({
-            label: decodeURIComponent(segment),
-            path: '/' + segments.slice(0, index + 1).join('/'),
-        }));
-
-        dispatch(setBreadcrumbs(location.pathname === '/' ? [] : crumbs));
-    }, [location.pathname, dispatch]);
+    const breadcrumbs: Breadcrumb[] = useSelector(getBreadcrumbs);
 
     if (!breadcrumbs.length) return null;
 

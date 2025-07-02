@@ -1,0 +1,5 @@
+export enum BreadcrumbActionTypes {
+    SET_BREADCRUMBS = 'BREADCRUMB/SET',
+    CLEAR_BREADCRUMBS = 'BREADCRUMB/CLEAR',
+    ADD_BREADCRUMB = 'BREADCRUMB/ADD',
+}
