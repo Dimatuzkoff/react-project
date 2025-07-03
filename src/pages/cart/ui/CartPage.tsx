@@ -1,3 +1,5 @@
+// react
+import { useState } from 'react';
 // types
 import { products } from '@/mockData/products';
 // components
@@ -18,6 +20,15 @@ const mockItems = products
         thumbnail,
     }));
 export const CartPage = () => {
+    const [couponCode, setCouponCode] = useState('');
+
+    const handleCouponChange = (value: string) => {
+        setCouponCode(value);
+    };
+
+    const handleApplyCoupon = () => {
+        console.log('Coupon applied:', couponCode);
+    };
     const handleQuantityChange = (id: number, qty: number) => {
         console.log('Quantity changed:', id, qty);
     };
@@ -35,7 +46,11 @@ export const CartPage = () => {
                         onRemove={handleRemove}
                     />
                     <div className={styles.cartFooter}>
-                        <CartCoupon />  
+                        <CartCoupon
+                            couponCode={couponCode}
+                            onCouponCodeChange={handleCouponChange}
+                            onApplyCoupon={handleApplyCoupon}
+                        />
                         <CartTotal subtotal={0} shipping={0} total={0} />
                     </div>
                 </div>
