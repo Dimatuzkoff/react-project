@@ -1,6 +1,31 @@
 .wrapperCartPage {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // height: 100vh;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
 }
+
+.cartPage {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.container {
+    padding: 10px;
+
+    @media screen and (min-width: 500px) {
+        padding: 20px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        padding: 110px 135px 110px 135px;
+    }
+}
+
+.cartFooter {
+    display: flex;
+    justify-content: space-between;
+}
+
