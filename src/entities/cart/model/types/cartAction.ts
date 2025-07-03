@@ -1,5 +1,5 @@
 import { CartActionTypes } from '../actionTypes/cartActionTypes';
-import { type Product } from '@/entities/product/model/types';
+import { type Product } from '@/entities/product/model/types/product';
 
 export type AddProductToCartType = {
     type: CartActionTypes.ADD_TO_CART;
