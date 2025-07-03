@@ -5,8 +5,7 @@ import type {
     ClearBreadcrumbsAction,
 } from '../types/breadcrumbAction';
 import type { Breadcrumb } from '../types/breadcrumbTypes';
-
-const HOME_BREADCRUMB: Breadcrumb = { label: 'Головна', path: '/' };
+import {HOME_BREADCRUMB } from '../../libs/constants/breadcrumbConstants';
 
 export const setBreadcrumbs = (
     breadcrumbs: Breadcrumb[],
