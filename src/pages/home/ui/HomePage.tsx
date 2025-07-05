@@ -1,4 +1,8 @@
+// mock
 import { products } from '@/mockData/products';
+// redux
+import { breadcrumbActionCreators } from '@/widgets/breadcrumbs/model/actionCreators/breadcrumbActionCreators';
+import { useDispatch } from 'react-redux';
 // types
 import type { Product } from '@/entities/product/model/types/product';
 // components
@@ -8,6 +12,11 @@ import styles from './HomePage.module.scss';
 
 export const HomePage = () => {
     const topProducts: Product[] = products.slice(0, 5);
+
+    const dispatch = useDispatch();
+    const { clearBreadcrumbs } = breadcrumbActionCreators;
+
+    dispatch(clearBreadcrumbs());
 
     return (
         <section className={styles.wrapperHomePage}>
@@ -44,3 +53,4 @@ export const HomePage = () => {
         </section>
     );
 };
+
