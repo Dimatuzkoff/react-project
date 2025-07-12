@@ -2,10 +2,8 @@ import type { Reducer } from 'redux';
 import type { CartStateType } from '../types/cartTypes';
 import type { CartActions } from '../types/cartAction';
 import { CartActionTypes } from '../actionTypes/cartActionTypes';
-import {loadCartState} from '@/entities/cart/libs/helpers/loadCartState ';
-import {saveCartState} from '@/entities/cart/libs/helpers/saveCartState';
 const initialState: CartStateType = {
-    cart: loadCartState() || [],
+    cart: [],
 };
 
 export const cartReducer: Reducer<CartStateType, CartActions> = (
@@ -13,28 +11,24 @@ export const cartReducer: Reducer<CartStateType, CartActions> = (
     action
 ) => {
     switch (action.type) {
-       
         case CartActionTypes.ADD_TO_CART: {
-            const updatedCart = [...state.cart, { ...action.payload }];
-            saveCartState(updatedCart);
             return {
                 ...state,
-                cart: updatedCart,
+                cart: [...state.cart, { ...action.payload }],
             };
         }
         case CartActionTypes.REMOVE_FROM_CART: {
-            const updatedCart = state.cart.filter(product => product.id !== action.payload);
-            saveCartState(updatedCart);
             return {
                 ...state,
-                cart: updatedCart,
+                cart: state.cart.filter(
+                    product => product.id !== action.payload
+                ),
             };
         }
         case CartActionTypes.CLEAR_CART: {
-             saveCartState([]);
             return {
                 ...state,
-                cart: [],
+                cart: initialState.cart,
             };
         }
         default: {
