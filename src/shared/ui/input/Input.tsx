@@ -12,6 +12,7 @@ import styles from './Input.module.scss';
 
 interface InputProps {
     children?: React.ReactNode;
+    isFullWidth?: boolean;
     label?: string;
     helperText?: string;
     iconBefore?: ReactNode;
@@ -39,6 +40,7 @@ interface InputProps {
 export const Input: FC<InputProps> = memo(
     ({
         children,
+        isFullWidth = false,
         label,
         helperText,
         iconBefore,
@@ -74,7 +76,9 @@ export const Input: FC<InputProps> = memo(
                         labelPosition === 'right' && !isShowBadge,
                 })}
             >
-                <div className={styles.inputBox}>
+                <div className={clsx(styles.inputBox, {
+                    [styles.fullWidth]: isFullWidth
+                })}>
                     {label && (
                         <div className={styles.labelContainer}>
                             <span className={styles.label}>{label}</span>
