@@ -30,11 +30,12 @@ interface InputProps {
     isRequired?: boolean;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onFocus?: () => void;
-    onBlur?: () => void;
+    onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onKeyDown?: (e: React.KeyboardEvent) => void;
     onClick?: (e: React.MouseEvent) => void;
     value?: string;
     readOnly?: boolean;
+    ref?: React.Ref<HTMLInputElement>;
 }
 
 export const Input: FC<InputProps> = memo(
@@ -56,6 +57,13 @@ export const Input: FC<InputProps> = memo(
         disabled = false,
         isQuiet = false,
         isRequired = false,
+        onChange,
+        onFocus,
+        onBlur,
+        onKeyDown,
+        onClick,
+        value,
+        ref,
         ...rest
     }) => {
         const osBadge = getOSBadge();
@@ -119,10 +127,13 @@ export const Input: FC<InputProps> = memo(
                         {children}
                         <input
                             {...rest}
-                            ref={isShowBadge ? inputRef : undefined}
+                            ref={isShowBadge ? inputRef : ref}
                             type={type}
                             className={clsx(styles.input, {})}
-                            placeholder={placeholder}
+                            placeholder={placeholder} 
+                            onChange={onChange}
+                            onBlur={onBlur}
+                            value={value}  
                             // disabled={!isShowBadge || disabled}
                         />
 
