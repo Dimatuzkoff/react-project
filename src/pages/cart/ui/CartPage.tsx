@@ -21,7 +21,7 @@ const mockItems = products
         id,
         title,
         price,
-        quantity: 1, 
+        quantity: 1,
         thumbnail,
     }));
 export const CartPage = () => {
