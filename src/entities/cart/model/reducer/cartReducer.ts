@@ -2,6 +2,7 @@ import type { Reducer } from 'redux';
 import type { CartStateType } from '../types/cartTypes';
 import type { CartActions } from '../types/cartAction';
 import { CartActionTypes } from '../actionTypes/cartActionTypes';
+
 const initialState: CartStateType = {
     cart: [],
 };
