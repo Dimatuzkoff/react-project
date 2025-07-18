@@ -19,7 +19,7 @@ export const createReduxStore = () => {
     };
 
     const rootReducer  = combineReducers(reducers);
-    //@ts-expect-error
+    //@ts-expect-error TS(2349)
     const persistedReducer = persistReducer(persistConfig, rootReducer);
 
     const store = createStore(persistedReducer);
