@@ -2,6 +2,7 @@ import type { Reducer } from 'redux';
 import type { WishlistStateType } from '../types/wishlistTypes';
 import type { WishlistActions } from '../types/wishlistAction';
 import { WishlistActionTypes } from '../actionTypes/wishlistActionTypes';
+
 const initialState: WishlistStateType = {
     wishlist: [],
 };

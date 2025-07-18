@@ -12,6 +12,7 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx,json,scss,sass,md}\""
   },
   "dependencies": {
+    "@types/redux-persist": "^4.3.1",
     "clsx": "^2.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -19,6 +20,7 @@
     "react-router": "^7.6.2",
     "react-router-dom": "^7.6.2",
     "redux": "^5.0.1",
+    "redux-persist": "^6.0.0",
     "sass": "^1.88.0",
     "vite-plugin-svgr": "^4.3.0"
   },
