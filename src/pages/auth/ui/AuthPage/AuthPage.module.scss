@@ -1,10 +1,10 @@
-.wrapperSignUpPage {
+.wrapperAuthPage {
     height: 780px;
     padding: 30px 0px 70px 0px;
     .wrapperSignUpImg {
         display: none;
     }
-    .wrapperSignUpForm {
+    .wrapperAuthForm {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -26,10 +26,10 @@
 }
 
 @media (min-width: 1024px) {
-    .wrapperSignUpPage {
+    .wrapperAuthPage {
     display: flex;
     padding: 30px 0px 140px 0px;
-        .wrapperSignUpImg {
+        .wrapperAuthImg {
             display: block;
             width: 50%;
             img {
@@ -38,7 +38,7 @@
                 object-fit: cover;
             }
         }
-        .wrapperSignUpForm {
+        .wrapperAuthForm {
             background-image: none;
             width: 50%;
             &::before {
@@ -50,8 +50,8 @@
 }
 
 @media (min-width: 1440px) {
-    .wrapperSignUpPage {
-        .wrapperSignUpImg {
+    .wrapperAuthPage {
+        .wrapperAuthImg {
             display: block;
             width: 55%;
             img {
@@ -60,7 +60,7 @@
                 object-fit: cover;
             }
         }
-        .wrapperSignUpForm {
+        .wrapperAuthForm {
             width: 45%;
         }
     }

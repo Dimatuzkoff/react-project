@@ -1,16 +1,14 @@
 //react
-import { useState } from 'react';
 import { useForm, type FieldValues } from 'react-hook-form';
 //styles
-import styles from './SignUpPageForm.module.scss';
+import styles from './SignUpForm.module.scss';
 //ui
 import { Input } from '@/shared/ui/input';
 import { Button } from '@/shared/ui/Button';
 //constants
 import {EMAIL_REGEX} from '@/shared/libs/constants/digit'
 
-export const SignUpPageForm = () => {
-    const [isSignUp, setIsSignUp] = useState<boolean>(true);
+export const SignUpForm = () => {
 
     const {
         register,
@@ -20,20 +18,16 @@ export const SignUpPageForm = () => {
     } = useForm({
         mode: "onBlur",});
 
-    const toggleAuthMode = () => {
-        setIsSignUp(!isSignUp);
-    };
-
     const onSubmit = async (data: FieldValues) => {
-    isSignUp ? alert("SignUp: " + JSON.stringify(data)) : alert("SignIn: " + JSON.stringify(data));
+  alert("SignUp: " + JSON.stringify(data));
     reset();
     }
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapperSignUpPageForm}>
-                <h1>{isSignUp ? 'Зареєструватися' : 'Увійти' }</h1>
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapperSignUp}>
+                <h1>Зареєструватися</h1>
                 <p>Введіть свої дані нижче</p>
-                { isSignUp && <div className={styles.inputWrapper}>
+                <div className={styles.inputWrapper}>
                     <Input { ...register("firstName", { 
                         required: "Це поле обов'язкове",
                         minLength: {
@@ -42,7 +36,7 @@ export const SignUpPageForm = () => {
                         },
                         setValueAs: (value: string) => value.trim(),
                         })} isError={!!errors.firstName} helperText={ errors.firstName && String(errors.firstName.message)} isFullWidth type='text' size='32' placeholder="Ваше ім'я"/>
-                </div>}
+                </div>
                 <div className={styles.inputWrapper}>
                     <Input { ...register("email", { 
                         required: "Це поле обов'язкове",
@@ -63,11 +57,7 @@ export const SignUpPageForm = () => {
                         setValueAs: (value: string) => value.trim(), 
                         })} isError={!!errors.password} helperText={ errors.password && String(errors.password.message)} isFullWidth type='password' size='32' placeholder='Пароль'/>
                 </div>
-                <Button type="submit" uiColor='warning'>{isSignUp ? 'Зареєструватися' : 'Увійти' }</Button>
-                <div className={styles.authSwitch}>
-                    <span className={styles.authSwitchText}>{isSignUp ? 'Вже маєте акаунт?' : 'Немає акаунту?' }</span>
-                    <span className={styles.authSwitchAction} onClick={toggleAuthMode}>{isSignUp ? 'Увійти' : 'Зареєструватися' }</span>
-                </div>
+                <Button type="submit" uiColor='warning'>Зареєструватися</Button>
             </form>
         </>
     );

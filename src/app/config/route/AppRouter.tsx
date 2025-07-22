@@ -12,14 +12,14 @@ import { ContactPage } from '@/pages/contact';
 import { HomePage } from '@/pages/home';
 import { NotFound } from '@/pages/notFound';
 import { ProductPage } from '@/pages/product';
-import { SignUpPage } from '@/pages/signUp';
+import { AuthPage } from '@/pages/auth';
 import { WishlistPage } from '@/pages/wishlist';
 //constants
 import {
     getHomeRoute,
     getContactRoute,
     getAboutRoute,
-    getSignUpRoute,
+    getAuthRoute,
     getWishlistRoute,
     getCartRoute,
     getCheckoutRoute,
@@ -38,7 +38,7 @@ export const AppRouter: FC<AppRouterProps> = ({}) => {
                 <Route path={getHomeRoute()} element={<HomePage />} />
                 <Route path={getContactRoute()} element={<ContactPage />} />
                 <Route path={getAboutRoute()} element={<AboutPage />} />
-                <Route path={getSignUpRoute()} element={<SignUpPage />} />
+                <Route path={getAuthRoute()} element={<AuthPage />} />
                 <Route path={getWishlistRoute()} element={<WishlistPage />} />
                 <Route path={getCartRoute()} element={<CartPage />} />
                 <Route path={getCheckoutRoute()} element={<CheckoutPage />} />

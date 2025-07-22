@@ -8,7 +8,7 @@ import styles from './Footer.module.scss';
 import {
     getHomeRoute,
     getAccountRoute,
-    getSignUpRoute,
+    getAuthRoute,
     getCartRoute,
     getWishlistRoute,
     getContactRoute,
@@ -59,7 +59,7 @@ export const Footer = ({}) => {
                         </li>
                         <li>
                             <NavLink
-                                to={getSignUpRoute()}
+                                to={getAuthRoute()}
                                 onClick={scrollToTop}
                             >
                                 Вхід / Реєстрація
