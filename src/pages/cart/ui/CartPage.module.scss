@@ -1,11 +1,3 @@
-.wrapperCartPage {
-    // height: 100vh;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
-}
-
 .cartPage {
     display: flex;
     flex-direction: column;
@@ -20,7 +12,7 @@
     }
 
     @media screen and (min-width: 1200px) {
-        padding: 110px 135px 110px 135px;
+        padding: 40px 135px 110px 135px;
     }
 }
 
