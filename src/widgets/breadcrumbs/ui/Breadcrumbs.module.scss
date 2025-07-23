@@ -3,19 +3,18 @@
 
 .breadcrumbs {
     padding: 10px;
-    position: fixed;
-    top: 124px;
-    left: 0;
+    position: sticky;
+    top: 184px;
     width: 100%;
-    z-index: 1000; 
-    background-color: #fff; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 998; 
+    background-color: $bg-secondary; 
 
     @media screen and (min-width: 500px) {
         padding: 20px;
     }
 
     @media screen and (min-width: 1200px) {
+        top: 124px;
         padding: 40px 135px 16px 135px;
     }
 
