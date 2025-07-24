@@ -57,12 +57,6 @@ export const Input: FC<InputProps> = memo(
         disabled = false,
         isQuiet = false,
         isRequired = false,
-        onChange,
-        onFocus,
-        onBlur,
-        onKeyDown,
-        onClick,
-        value,
         ref,
         ...rest
     }) => {
@@ -130,10 +124,6 @@ export const Input: FC<InputProps> = memo(
                             ref={isShowBadge ? inputRef : ref}
                             type={type}
                             className={clsx(styles.input, {})}
-                            placeholder={placeholder} 
-                            onChange={onChange}
-                            onBlur={onBlur}
-                            value={value}  
                             // disabled={!isShowBadge || disabled}
                         />
 
