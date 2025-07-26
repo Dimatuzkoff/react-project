@@ -8,8 +8,8 @@ import { signUpSchema, type SignUpSchemaType } from "@/widgets/auth/libs/model/t
 //styles
 import styles from './AuthForm.module.scss';
 //ui
-import { AuthSignUpForm } from '@/widgets/auth/ui/AuthSignUpForm/AuthSignUpForm'
-import { AuthSignInForm } from '@/widgets/auth/ui/AuthSignInForm/AuthSignInForm'
+import { AuthFormSignUp } from '@/widgets/auth/ui/AuthFormSignUp/AuthFormSignUp'
+import { AuthFormSignIn } from '@/widgets/auth/ui/AuthFormSignIn/AuthFormSignIn'
 import { AuthFormToggleMode } from '@/widgets/auth/ui/AuthFormToggleMode/AuthFormToggleMode'
 
 
@@ -30,7 +30,7 @@ export const AuthForm = () => {
         <div className={styles.wrapperForm}>
             <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit(onSubmit)}>
-                    {authMode === 'signUp' ? <AuthSignUpForm /> : <AuthSignInForm />}
+                    {authMode === 'signUp' ? <AuthFormSignUp /> : <AuthFormSignIn />}
                 </form>
             </FormProvider>
             <AuthFormToggleMode setAuthMode={setAuthMode} authMode={authMode} />

@@ -1,13 +1,13 @@
 import { useFormContext } from 'react-hook-form';
 //styles
-import styles from './AuthSignInForm.module.scss';
+import styles from './AuthFormSignIn.module.scss';
 //ui
 import { Input } from '@/shared/ui/input';
 import { Button } from '@/shared/ui/Button';
 //constants
 import { EMAIL_REGEX } from '@/shared/libs/constants/digit';
 
-export const AuthSignInForm = () => {
+export const AuthFormSignIn = () => {
     const {
         register,
         formState: { errors },

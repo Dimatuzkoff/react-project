@@ -1,50 +1,38 @@
-import { useFormContext } from 'react-hook-form';
 //styles
-import styles from './AuthSignUpForm.module.scss';
+import styles from './AuthFormSignUp.module.scss';
 //ui
-import { Input } from '@/shared/ui/input';
+import { AuthFormInput } from '@/widgets/auth/ui/AuthFormInput/AuthFormInput';
 import { Button } from '@/shared/ui/Button';
-export const AuthSignUpForm = () => {
-    const {
-        register,
-        formState: { errors },
-    } = useFormContext();
-
+export const AuthFormSignUp= () => {
     return (
         <div className={styles.wrapperSignUp}>
             <h1>Зареєструватися</h1>
             <p>Введіть свої дані нижче</p>
             <div className={styles.inputWrapper}>
-                <Input
-                    {...register('firstName')}
-                    isError={!!errors.firstName}
-                    helperText={errors.firstName?.message?.toString()}
+                <AuthFormInput
                     isFullWidth
                     type="text"
                     size="32"
                     placeholder="Ваше ім'я"
+                    name='firstName'
                 />
             </div>
             <div className={styles.inputWrapper}>
-                <Input
-                    {...register('email')}
-                    isError={!!errors.email}
-                    helperText={errors.email?.message?.toString()}
+                <AuthFormInput
                     isFullWidth
                     type="text"
                     size="32"
                     placeholder="Email або телефон"
+                    name='email'
                 />
             </div>
             <div className={styles.inputWrapper}>
-                <Input
-                    {...register('password')}
-                    isError={!!errors.password}
-                    helperText={errors.password?.message?.toString()}
+                <AuthFormInput
                     isFullWidth
                     type="password"
                     size="32"
                     placeholder="Пароль"
+                    name='password'
                 />
             </div>
             <Button type="submit" uiColor="warning">
