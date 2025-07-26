@@ -1,10 +1,10 @@
 import { useFormContext } from 'react-hook-form';
 //styles
-import styles from './SignUpForm.module.scss';
+import styles from './AuthSignUpForm.module.scss';
 //ui
 import { Input } from '@/shared/ui/input';
 import { Button } from '@/shared/ui/Button';
-export const SignUpForm = () => {
+export const AuthSignUpForm = () => {
     const {
         register,
         formState: { errors },

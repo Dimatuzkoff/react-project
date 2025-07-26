@@ -1,16 +1,16 @@
 //react
 import { type Dispatch, type SetStateAction } from 'react';
 //styles
-import styles from './AuthPageFormToggleMode.module.scss';
+import styles from './AuthFormToggleMode.module.scss';
 
-interface AuthPageFormToggleModeProps {
-    authMode: string;
-    setAuthMode: Dispatch<SetStateAction<string>>;
+interface AuthFormToggleModeProps {
+    authMode: 'signUp' | 'signIn';
+    setAuthMode: Dispatch<SetStateAction<'signUp' | 'signIn'>>;
 }
-export const AuthPageFormToggleMode = ({
+export const AuthFormToggleMode = ({
     authMode,
     setAuthMode
-}: AuthPageFormToggleModeProps) => {
+}: AuthFormToggleModeProps) => {
     const toggleAuthMode = () => {
         setAuthMode(authMode === 'signUp' ? 'signIn' : 'signUp');
     };

@@ -1,7 +1,7 @@
 //styles
 import styles from './AuthPage.module.scss';
 //ui
-import {AuthPageForm} from '../AuthPageForm/AuthPageForm';
+import {AuthForm} from '@/widgets/auth';
 //assets
 import AuthImg from "@/shared/libs/assets/svg/authImg.svg"
 export const AuthPage = () => {
@@ -12,7 +12,7 @@ export const AuthPage = () => {
                     <img src={AuthImg} alt="authImg" />
                 </div>
                 <div className={styles.wrapperAuthForm}>
-                    <AuthPageForm /> 
+                    <AuthForm /> 
                 </div>
             </section>
         </>
