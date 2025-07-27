@@ -3,6 +3,7 @@ import styles from './AuthFormSignUp.module.scss';
 //ui
 import { AuthFormInput } from '@/widgets/auth/ui/AuthFormInput/AuthFormInput';
 import { Button } from '@/shared/ui/Button';
+
 export const AuthFormSignUp= () => {
     return (
         <div className={styles.wrapperSignUp}>
@@ -22,7 +23,7 @@ export const AuthFormSignUp= () => {
                     isFullWidth
                     type="text"
                     size="32"
-                    placeholder="Email або телефон"
+                    placeholder="Email"
                     name='email'
                 />
             </div>
@@ -33,6 +34,15 @@ export const AuthFormSignUp= () => {
                     size="32"
                     placeholder="Пароль"
                     name='password'
+                />
+            </div>
+            <div className={styles.inputWrapper}>
+                <AuthFormInput
+                    isFullWidth
+                    type="password"
+                    size="32"
+                    placeholder="Підтвердіть пароль"
+                    name='confirmPassword'
                 />
             </div>
             <Button type="submit" uiColor="warning">

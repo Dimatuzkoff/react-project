@@ -121,6 +121,7 @@ export const Input: FC<InputProps> = memo(
                         {children}
                         <input
                             {...rest}
+                            placeholder={placeholder}
                             ref={isShowBadge ? inputRef : ref}
                             type={type}
                             className={clsx(styles.input, {})}

@@ -7,6 +7,7 @@ interface AuthFormToggleModeProps {
     authMode: 'signUp' | 'signIn';
     setAuthMode: Dispatch<SetStateAction<'signUp' | 'signIn'>>;
 }
+
 export const AuthFormToggleMode = ({
     authMode,
     setAuthMode
@@ -14,11 +15,13 @@ export const AuthFormToggleMode = ({
     const toggleAuthMode = () => {
         setAuthMode(authMode === 'signUp' ? 'signIn' : 'signUp');
     };
+    const greetingText = authMode === 'signUp' ? 'Вже маєте акаунт?' : 'Немає акаунту?';
+    const actionText = authMode === 'signUp' ? 'Увійти' : 'Зареєструватися';
     return (
         <>
             <div className={styles.authSwitch}>
-                <span className={styles.authSwitchText}>{authMode === 'signUp' ? 'Вже маєте акаунт?' : 'Немає акаунту?' }</span>
-                <span className={styles.authSwitchAction} onClick={toggleAuthMode}>{authMode === 'signUp' ? 'Увійти' : 'Зареєструватися' }</span>
+                <span className={styles.authSwitchText}>{greetingText}</span>
+                <span className={styles.authSwitchAction} onClick={toggleAuthMode}>{actionText}</span>
             </div> 
         </>
     );

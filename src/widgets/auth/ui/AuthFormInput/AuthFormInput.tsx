@@ -15,23 +15,27 @@ interface AuthFormInputProps {
 }
 
 export const AuthFormInput: FC<AuthFormInputProps> = ({ 
-    name, 
-    placeholder, 
+    name,
+    isFullWidth,
+    placeholder,
+    helperText,
+    isError,
     type, 
-    size  }) => {
+    size  
+}) => {
     const {
         register,
         formState: { errors },
     } = useFormContext();
     return (
         <Input
-            isFullWidth
+            isFullWidth={isFullWidth}
+            size={size}
             {...register(name)}
-            isError={!!errors[name]}
-            helperText={errors[name]?.message?.toString()}
+            isError={isError || !!errors[name]}
+            helperText={helperText || errors[name]?.message?.toString()}
             placeholder={placeholder}
             type={type}
-            size={size}
         />
     );
 };
