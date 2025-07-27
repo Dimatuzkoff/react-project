@@ -2,7 +2,7 @@ import {
     getHomeRoute,
     getContactRoute,
     getAboutRoute,
-    getSignUpRoute,
+    getAuthRoute,
 } from '@/shared/libs/constants/routes/routes';
 
 export const headerNavigationItems = [
@@ -20,6 +20,6 @@ export const headerNavigationItems = [
     },
     {
         label: 'Зареєструватися',
-        path: getSignUpRoute(),
+        path: getAuthRoute(),
     },
 ];
