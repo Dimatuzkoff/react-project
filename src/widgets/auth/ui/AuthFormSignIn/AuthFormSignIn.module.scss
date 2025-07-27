@@ -1,0 +1,37 @@
+.wrapperSignIn {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    margin: 0 12px;
+    z-index: 1;
+    h1 {
+        font-size: 24px;
+        letter-spacing: 2px;
+        white-space: nowrap;
+    }
+    p {
+        font-size: 14px;
+        margin: 18px 0 40px 0;
+        font-weight: 400;
+    }
+    .inputWrapper {
+        width: 100%;
+        margin-bottom: 30px;
+        height: 32px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .wrapperSignIn {
+        h1 {
+            font-size: 36px;
+            letter-spacing: 4px;
+        }
+        p {
+            font-size: 16px;     
+            margin: 24px 0 48px 0;
+        }
+        .inputWrapper {
+            margin-bottom: 40px;
+        }
+    }
+}
