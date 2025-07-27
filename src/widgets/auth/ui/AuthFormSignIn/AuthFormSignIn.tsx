@@ -12,18 +12,14 @@ export const AuthFormSignIn = () => {
             <div className={styles.inputWrapper}>
                 <AuthFormInput
                    name='email'
-                    isFullWidth
                     type="text"
-                    size="32"
                     placeholder="Email"
                 />
             </div>
             <div className={styles.inputWrapper}>
                 <AuthFormInput
                     name='password'
-                    isFullWidth
                     type="password"
-                    size="32"
                     placeholder="Пароль"
                 />
             </div>

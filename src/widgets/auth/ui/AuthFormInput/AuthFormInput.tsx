@@ -1,13 +1,12 @@
+//react
 import { useFormContext } from 'react-hook-form';
+import type { FC } from 'react';
 //ui
 import { Input } from '@/shared/ui/input';
-import type { FC } from 'react';
 
 interface AuthFormInputProps {
-    isFullWidth?: boolean;
     helperText?: string;
     name: string;
-    size?: '24' | '32' | '36' | '40' | '44' | '48';
     placeholder?: string;
     tooltipText?: string;
     type: React.InputHTMLAttributes<HTMLInputElement>['type'];
@@ -16,12 +15,10 @@ interface AuthFormInputProps {
 
 export const AuthFormInput: FC<AuthFormInputProps> = ({ 
     name,
-    isFullWidth,
     placeholder,
     helperText,
     isError,
-    type, 
-    size  
+    type,  
 }) => {
     const {
         register,
@@ -29,8 +26,8 @@ export const AuthFormInput: FC<AuthFormInputProps> = ({
     } = useFormContext();
     return (
         <Input
-            isFullWidth={isFullWidth}
-            size={size}
+            isFullWidth
+            size="32"
             {...register(name)}
             isError={isError || !!errors[name]}
             helperText={helperText || errors[name]?.message?.toString()}

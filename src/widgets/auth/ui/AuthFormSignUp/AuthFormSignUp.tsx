@@ -11,36 +11,28 @@ export const AuthFormSignUp= () => {
             <p>Введіть свої дані нижче</p>
             <div className={styles.inputWrapper}>
                 <AuthFormInput
-                    isFullWidth
                     type="text"
-                    size="32"
                     placeholder="Ваше ім'я"
                     name='firstName'
                 />
             </div>
             <div className={styles.inputWrapper}>
                 <AuthFormInput
-                    isFullWidth
                     type="text"
-                    size="32"
                     placeholder="Email"
                     name='email'
                 />
             </div>
             <div className={styles.inputWrapper}>
                 <AuthFormInput
-                    isFullWidth
                     type="password"
-                    size="32"
                     placeholder="Пароль"
                     name='password'
                 />
             </div>
             <div className={styles.inputWrapper}>
                 <AuthFormInput
-                    isFullWidth
                     type="password"
-                    size="32"
                     placeholder="Підтвердіть пароль"
                     name='confirmPassword'
                 />
