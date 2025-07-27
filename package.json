@@ -12,17 +12,20 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx,json,scss,sass,md}\""
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.0",
     "@types/redux-persist": "^4.3.1",
     "clsx": "^2.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hook-form": "^7.61.1",
     "react-redux": "^9.2.0",
     "react-router": "^7.6.2",
     "react-router-dom": "^7.6.2",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "sass": "^1.88.0",
-    "vite-plugin-svgr": "^4.3.0"
+    "vite-plugin-svgr": "^4.3.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

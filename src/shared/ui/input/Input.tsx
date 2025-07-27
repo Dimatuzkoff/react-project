@@ -12,6 +12,7 @@ import styles from './Input.module.scss';
 
 interface InputProps {
     children?: React.ReactNode;
+    isFullWidth?: boolean;
     label?: string;
     helperText?: string;
     iconBefore?: ReactNode;
@@ -29,16 +30,18 @@ interface InputProps {
     isRequired?: boolean;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onFocus?: () => void;
-    onBlur?: () => void;
+    onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onKeyDown?: (e: React.KeyboardEvent) => void;
     onClick?: (e: React.MouseEvent) => void;
     value?: string;
     readOnly?: boolean;
+    ref?: React.Ref<HTMLInputElement>;
 }
 
 export const Input: FC<InputProps> = memo(
     ({
         children,
+        isFullWidth = false,
         label,
         helperText,
         iconBefore,
@@ -54,6 +57,7 @@ export const Input: FC<InputProps> = memo(
         disabled = false,
         isQuiet = false,
         isRequired = false,
+        ref,
         ...rest
     }) => {
         const osBadge = getOSBadge();
@@ -74,7 +78,9 @@ export const Input: FC<InputProps> = memo(
                         labelPosition === 'right' && !isShowBadge,
                 })}
             >
-                <div className={styles.inputBox}>
+                <div className={clsx(styles.inputBox, {
+                    [styles.fullWidth]: isFullWidth
+                })}>
                     {label && (
                         <div className={styles.labelContainer}>
                             <span className={styles.label}>{label}</span>
@@ -115,10 +121,10 @@ export const Input: FC<InputProps> = memo(
                         {children}
                         <input
                             {...rest}
-                            ref={isShowBadge ? inputRef : undefined}
+                            placeholder={placeholder}
+                            ref={isShowBadge ? inputRef : ref}
                             type={type}
                             className={clsx(styles.input, {})}
-                            placeholder={placeholder}
                             // disabled={!isShowBadge || disabled}
                         />
 
