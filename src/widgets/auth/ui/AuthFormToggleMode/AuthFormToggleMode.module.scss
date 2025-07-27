@@ -1,0 +1,27 @@
+.authSwitch{
+    text-align: center;
+    margin-top: 28px;
+    .authSwitchText {
+        font-size: 14px;     
+        margin-right: 8px;
+        font-weight: 400;
+    }
+    .authSwitchAction {
+        cursor: pointer;
+        font-weight: 600;
+        &:hover {
+            text-decoration: underline;
+            opacity: 0.5;
+        }
+    }
+}
+@media (min-width: 1024px) {
+    .authSwitch{
+        text-align: center;
+        margin-top: 32px;
+        .authSwitchText {
+            font-size: 16px;     
+            margin-right: 8px;
+        }
+    }
+}
