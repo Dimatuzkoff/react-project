@@ -1,11 +1,13 @@
 //react
 import { useState, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 //hooks
 import { useClickOutside } from '@/shared/libs/hooks/useClickOutside';
 import { useContainerWidth } from '../../libs/hooks/useContainerWidth';
 //helpers
 import { getActiveTab } from '../../libs/helpers/getActiveTab.ts';
+import { scrollToTop } from '@/shared/libs/helpers/scrollToTop';
+
 //libs
 import clsx from 'clsx';
 //ui
@@ -66,6 +68,9 @@ export const Tabs = ({
         if (typeTabItems === 'button') {
             setActiveTabState(tab);
             setIsOpenDropdown(false);
+        }
+        if (typeTabItems === 'link') {
+            scrollToTop();
         }
     };
 
