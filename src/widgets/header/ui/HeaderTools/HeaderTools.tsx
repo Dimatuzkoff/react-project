@@ -23,7 +23,6 @@ export const HeaderTools = () => {
                         type="search"
                         placeholder="Що ви шукаєте?"
                         iconAfter={<img src={Search} alt="cart" />}
-                        isQuiet
                     />
                 </div>
 
