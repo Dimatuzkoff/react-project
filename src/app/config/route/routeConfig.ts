@@ -2,7 +2,7 @@ export const routeConfig = {
     home: '/',
     contact: '/contact',
     about: '/about',
-    signUp: '/sign-up',
+    auth: '/auth',
     wishlist: '/wishlist',
     cart: '/cart',
     checkout: '/checkout',

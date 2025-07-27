@@ -6,7 +6,7 @@ export const getContactRoute = () => routeConfig.contact;
 
 export const getAboutRoute = () => routeConfig.about;
 
-export const getSignUpRoute = () => routeConfig.signUp;
+export const getAuthRoute = () => routeConfig.auth;
 
 export const getWishlistRoute = () => routeConfig.wishlist;
 
