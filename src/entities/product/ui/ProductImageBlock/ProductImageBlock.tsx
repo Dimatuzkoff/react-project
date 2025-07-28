@@ -19,6 +19,7 @@ interface ProductImageBlockProps {
     isShowWishList?: boolean;
     isShowPreview?: boolean;
     isShowDelete?: boolean;
+    productId: string;
 }
 
 export const ProductImageBlock: FC<ProductImageBlockProps> = ({
@@ -30,6 +31,7 @@ export const ProductImageBlock: FC<ProductImageBlockProps> = ({
     isShowWishList,
     isShowPreview,
     isShowDelete,
+    productId,
 }) => {
     const showBadge = variant !== 'bestSeller';
     const isNew = isNewProduct(createdAt);
@@ -54,6 +56,7 @@ export const ProductImageBlock: FC<ProductImageBlockProps> = ({
                 isShowWishlist={isShowWishList}
                 isShowPreview={isShowPreview}
                 isShowDelete={isShowDelete}
+                productId={productId}
             />
 
             <img src={thumbnail} alt={title} className={styles.thumbnail} />

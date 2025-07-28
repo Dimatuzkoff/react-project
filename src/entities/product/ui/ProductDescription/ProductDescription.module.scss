@@ -1,0 +1,91 @@
+@use '@/app/styles/variables/global' as *;
+@use '@/app/styles/mixins/index' as *;
+
+.productDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.price {
+  font-size: 24px;
+}
+
+.divider {
+  height: 1px;
+  background-color: gray;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.quantity {
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // border: 1px solid gray;
+  border-radius: 4px;
+  padding: 4px
+}
+
+.increment, .decrement {
+  width: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.decrement {
+  background-color: white;
+  border-right: 1px solid gray;
+  border-radius: 4px 0 0 4px;
+}
+
+.increment {
+  background-color: $error-600;
+  color: white;
+  border-left: 1px solid gray;
+  border-radius: 0 4px 4px 0;
+}
+
+.wishlistBtn {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  img {
+    width: 24px;
+    height: 24px;
+    filter: grayscale(100%);
+    transition: filter 0.2s ease;
+  }
+
+  &.active img {
+    filter: invert(22%) sepia(94%) saturate(4300%) hue-rotate(-10deg) brightness(90%) contrast(90%);
+  }
+}
