@@ -1,0 +1,20 @@
+@use '@/app/styles/variables/global.scss' as *;
+@use '@/app/styles/mixins/index' as *;
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: $error-600;
+
+  .title {
+    @include text16(600, "Poppins");
+  }
+}
+
+.line {
+  width: 20px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: $error-600;
+}

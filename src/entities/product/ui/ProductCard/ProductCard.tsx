@@ -27,6 +27,7 @@ export const ProductCard: FC<ProductCardProps> = ({
     isShowDelete,
 }) => {
     const {
+        id,
         title,
         price,
         discountPercentage,
@@ -41,6 +42,8 @@ export const ProductCard: FC<ProductCardProps> = ({
 
     const thumbnailUrl = thumbnail || images[0];
 
+    const productId = String(id);
+
     return (
         <div className={styles.productCard}>
             <ProductImageBlock
@@ -52,6 +55,7 @@ export const ProductCard: FC<ProductCardProps> = ({
                 isShowWishList={isShowWishList}
                 isShowPreview={isShowPreview}
                 isShowDelete={isShowDelete}
+                productId={productId}
             />
             <ProductInfo
                 title={title}
