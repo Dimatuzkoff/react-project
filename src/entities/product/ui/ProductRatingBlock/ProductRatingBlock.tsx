@@ -6,11 +6,13 @@ import styles from './ProductRatingBlock.module.scss';
 interface ProductRatingBlockProps {
     rating: number;
     reviewCount: number;
+    text: string;
 }
 
 export const ProductRatingBlock: FC<ProductRatingBlockProps> = ({
     rating,
     reviewCount,
+    text="",
 }) => {
     return (
         <div className={styles.ratingBlock}>
@@ -28,7 +30,7 @@ export const ProductRatingBlock: FC<ProductRatingBlockProps> = ({
                     </span>
                 ))}
             </span>
-            <span className={styles.reviewCount}>({reviewCount})</span>
+            <span className={styles.reviewCount}>({reviewCount} {text})</span>
         </div>
     );
 };

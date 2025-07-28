@@ -11,7 +11,7 @@ import styles from './ProductList.module.scss';
 
 interface ProductListProps {
     products: Product[];
-    variant: ProductVariant;
+    variant?: ProductVariant;
     isShowWishList?: boolean;
     isShowPreview?: boolean;
     isShowDelete?: boolean;
