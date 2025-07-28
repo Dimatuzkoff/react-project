@@ -6,7 +6,7 @@ import styles from './ProductRatingBlock.module.scss';
 interface ProductRatingBlockProps {
     rating: number;
     reviewCount: number;
-    text: string;
+    text?: string;
 }
 
 export const ProductRatingBlock: FC<ProductRatingBlockProps> = ({
