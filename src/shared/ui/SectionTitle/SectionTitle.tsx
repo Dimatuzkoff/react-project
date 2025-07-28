@@ -4,7 +4,7 @@ import type {FC} from 'react'
 import styles from './SectionTitle.module.scss'
 
 interface SectionTitleProps {
-  title: string
+  title?: string
 }
 
 export const SectionTitle:FC<SectionTitleProps> = ({title}) => {
