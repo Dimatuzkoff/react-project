@@ -5,7 +5,7 @@ import { ProductRatingBlock } from '../ProductRatingBlock';
 import { ProductDeliveryInfo } from '../ProductDeliveryInfo';
 import { Button } from '@/shared/ui/Button';
 // assets
-import  Wishlist  from '@/shared/libs/assets/svg/icons/wishlist.svg';
+import  WishlistIcon  from '@/shared/libs/assets/svg/icons/wishlist.svg?react';
 // styles
 import styles from './ProductDescription.module.scss';
 
@@ -32,7 +32,7 @@ export const ProductDescription: FC<ProductDescriptionProps> = ({
 
     const handleWishlistToggle = () => {
         setIsInWishlist(prev => !prev);
-        //  dispatch в Redux
+      //  dispatch в Redux
     };
 
     const handleBuy = () => {
@@ -63,7 +63,7 @@ export const ProductDescription: FC<ProductDescriptionProps> = ({
                         +
                     </button>
                 </div>
-                <Button onClick={handleBuy} uiColor="danger">
+                <Button onClick={handleBuy} uiColor="danger" size='44'>
                     Buy now
                 </Button>
                 <button
@@ -72,7 +72,8 @@ export const ProductDescription: FC<ProductDescriptionProps> = ({
                     }`}
                     onClick={handleWishlistToggle}
                 >
-                    <img src={Wishlist} alt="Wishlist" />
+                    <WishlistIcon
+                    />
                 </button>
             </div>
             <ProductDeliveryInfo />
