@@ -4,6 +4,7 @@ import styles from './AuthPage.module.scss';
 import {AuthForm} from '@/widgets/auth';
 //assets
 import AuthImg from "@/shared/libs/assets/svg/authImg.svg"
+
 export const AuthPage = () => {
     return (
         <>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 //type
-import { signUpSchema, signInSchema, type AuthSchemaType } from "@/widgets/auth/libs/validation/authType"
+import { signUpSchema, signInSchema, type AuthSchemaType } from "@/widgets/auth/libs/validation/authValidation"
 //styles
 import styles from './AuthForm.module.scss';
 //ui
@@ -14,23 +14,20 @@ import { AuthFormToggleMode } from '@/widgets/auth/ui/AuthFormToggleMode/AuthFor
 
 export const AuthForm = () => {
     const [authMode, setAuthMode] = useState<'signUp' | 'signIn'>('signUp');
-
     const methods = useForm<AuthSchemaType>({
-    resolver: zodResolver(authMode === 'signUp' ? signUpSchema : signInSchema),
-    mode: 'onBlur',
-    defaultValues: {
-        firstName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-    },
-});
-
+        resolver: zodResolver(authMode === 'signUp' ? signUpSchema : signInSchema),
+        mode: 'onBlur',
+        defaultValues: {
+            firstName: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+        },
+    });
     const onSubmit = async (data: AuthSchemaType) => {
         alert(`${authMode === 'signUp' ? 'signUp' : 'signIn'}: ${JSON.stringify(data)}`);
         methods.reset();
     };
-
     return (
         <div className={styles.wrapperForm}>
             <FormProvider {...methods}>
