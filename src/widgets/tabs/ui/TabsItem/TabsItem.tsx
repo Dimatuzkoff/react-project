@@ -1,5 +1,5 @@
 //react
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 //libs
 import clsx from 'clsx';
 //styles
