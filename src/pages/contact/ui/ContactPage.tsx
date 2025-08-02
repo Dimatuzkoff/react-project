@@ -1,5 +1,6 @@
 // react
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 // constants
 import { routeConfig } from '@/app/config/route/routeConfig';
 // reducer
@@ -9,9 +10,9 @@ import styles from './ContactPage.module.scss';
 export const ContactPage = () => {
     const dispatch = useDispatch();
 
-    dispatch(
-        setBreadcrumbs([{ label: 'Контакти', path: routeConfig.contact }])
-    );
+    useEffect(() => {
+            dispatch(setBreadcrumbs([{ label: 'Контакти', path: routeConfig.contact }]));
+    }, [dispatch]);
 
     return (
         <>
