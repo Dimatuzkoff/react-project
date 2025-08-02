@@ -18,6 +18,11 @@
         background-color: $text-primary;
         color: $text-primary_on-brand;
         padding: 12px 20px;
+        p {
+            max-width: 1440px;
+            width: 100%;
+            text-align: center;
+        }
     }
 
     .header {
@@ -26,6 +31,8 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
         padding: 10px;
 
         @media screen and (min-width: 500px) {
