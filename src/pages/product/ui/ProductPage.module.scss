@@ -19,27 +19,3 @@
       padding: 40px 135px 110px 135px;
   }
 }
-
-.productInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-
-  @media screen and (min-width: 768px){
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 32px;
-  
-
-    > * {
-      flex: 1 1 60%;
-      min-width: 300px; 
-    }
-  }
-}
-
-.relatedItems {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-}
