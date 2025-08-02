@@ -106,25 +106,27 @@ export const Footer = ({}) => {
                 </nav>
             </div>
             <div className={styles.copyRight}>
-                <p>
-                    Copyright&nbsp;
-                    <a
-                        href="https://t.me/dariazhuravleva"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        @dariazhuravleva
-                    </a>
-                    <span> & </span>
-                    <a
-                        href="https://t.me/DmitryTuzkoff"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        @DmitryTuzkoff
-                    </a>
-                    &nbsp;2025. All rights reserved.
-                </p>
+                <div className={styles.copyRightWrapper}>
+                    <p>
+                        Copyright&nbsp;
+                        <a
+                            href="https://t.me/dariazhuravleva"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            @dariazhuravleva
+                        </a>
+                        <span> & </span>
+                        <a
+                            href="https://t.me/DmitryTuzkoff"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            @DmitryTuzkoff
+                        </a>
+                        &nbsp;2025. All rights reserved.
+                    </p>
+                </div>
             </div>
         </footer>
     );

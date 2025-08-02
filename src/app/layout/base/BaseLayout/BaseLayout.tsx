@@ -5,6 +5,8 @@ import { Outlet } from 'react-router-dom';
 import { Header } from '@/widgets/header';
 import { Footer } from '@/widgets/footer';
 import { Breadcrumbs } from '@/widgets/breadcrumbs';
+//styles
+import styles from './BaseLayout.module.scss';
 
 interface HeaderLayoutProps {
     [key: string]: unknown;
@@ -14,9 +16,11 @@ export const BaseLayout: FC<HeaderLayoutProps> = ({}) => {
     return (
         <>
             <Header />
-            <Breadcrumbs />
-            <Outlet />
+            <div className={styles.pageWrapper}>
+                <Breadcrumbs />
+                <Outlet />
+            </div>
             <Footer />
-        </>
+       </>
     );
 };
