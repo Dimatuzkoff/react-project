@@ -1,5 +1,6 @@
 // react
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 // constants
 import { routeConfig } from '@/app/config/route/routeConfig';
 // reducer
@@ -7,13 +8,11 @@ import { setBreadcrumbs } from '@/widgets/breadcrumbs/model/actionCreators/bread
 //styles
 import styles from './CheckoutPage.module.scss';
 export const CheckoutPage = () => {
-    const dispatch = useDispatch();
 
-    dispatch(
-        setBreadcrumbs([
-            { label: 'Оформлення замовлення', path: routeConfig.checkout },
-        ])
-    );
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(setBreadcrumbs([{ label: 'Оформлення замовлення', path: routeConfig.checkout }]));
+    }, [dispatch]);
 
     return (
         <>

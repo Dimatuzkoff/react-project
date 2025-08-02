@@ -1,3 +1,5 @@
+// react
+import { useEffect } from 'react';
 // mock
 import { products } from '@/mockData/products';
 // redux
@@ -11,12 +13,14 @@ import { ProductList } from '@/entities/product/ui/ProductList/ProductList';
 import styles from './HomePage.module.scss';
 
 export const HomePage = () => {
+    
     const topProducts: Product[] = products.slice(0, 5);
 
     const dispatch = useDispatch();
     const { clearBreadcrumbs } = breadcrumbActionCreators;
-
-    dispatch(clearBreadcrumbs());
+    useEffect(() => {
+        dispatch(clearBreadcrumbs());
+    }, [dispatch, clearBreadcrumbs]); 
 
     return (
         <section className={styles.wrapperHomePage}>

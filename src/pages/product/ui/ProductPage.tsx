@@ -1,6 +1,7 @@
 // react
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 // types
 import type { Product } from '@/entities/product/model/types/product';
 // constants
@@ -18,17 +19,17 @@ import styles from './ProductPage.module.scss';
 import clsx from 'clsx';
 
 export const ProductPage = () => {
+
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(setBreadcrumbs([{ label: 'Продукт', path: routeConfig.productById }]));
+    }, [dispatch]);
 
     const { id } = useParams<{ id: string }>();
 
     const product: Product | undefined = id
         ? getProductById(products, id)
         : undefined;
-
-    dispatch(
-        setBreadcrumbs([{ label: 'Продукт', path: routeConfig.productById }])
-    );
 
     return (
         <div className={clsx(styles.productPage, styles.container)}>

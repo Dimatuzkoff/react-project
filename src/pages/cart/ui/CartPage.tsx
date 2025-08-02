@@ -1,5 +1,5 @@
 // react
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 // constants
 import { routeConfig } from '@/app/config/route/routeConfig';
@@ -25,6 +25,7 @@ const mockItems = products
         thumbnail,
     }));
 export const CartPage = () => {
+
     const dispatch = useDispatch();
 
     const [couponCode, setCouponCode] = useState('');
@@ -36,8 +37,10 @@ export const CartPage = () => {
     const handleApplyCoupon = () => {
         console.log('Coupon applied:', couponCode);
     };
-
-    dispatch(setBreadcrumbs([{ label: 'Кошик', path: routeConfig.cart }]));
+    
+    useEffect(() => {
+        dispatch(setBreadcrumbs([{ label: 'Кошик', path: routeConfig.cart }]));
+    }, [dispatch]);
 
     const handleQuantityChange = (id: number, qty: number) => {
         console.log('Quantity changed:', id, qty);

@@ -1,5 +1,6 @@
 // react
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 // constants
 import { routeConfig } from '@/app/config/route/routeConfig';
 // reduсer
@@ -7,9 +8,11 @@ import { setBreadcrumbs } from '@/widgets/breadcrumbs/model/actionCreators/bread
 //styles
 import styles from './AboutPage.module.scss';
 export const AboutPage = () => {
-    const dispatch = useDispatch();
 
-    dispatch(setBreadcrumbs([{ label: 'Про нас', path: routeConfig.about }]));
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(setBreadcrumbs([{ label: 'Про нас', path: routeConfig.about }]));
+    }, [dispatch]);
 
     return (
         <>

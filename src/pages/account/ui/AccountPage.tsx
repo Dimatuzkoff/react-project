@@ -1,5 +1,6 @@
 // react
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 // constants
 import { routeConfig } from '@/app/config/route/routeConfig';
 // reducer
@@ -7,9 +8,11 @@ import { setBreadcrumbs } from '@/widgets/breadcrumbs/model/actionCreators/bread
 //styles
 import styles from './AccountPage.module.scss';
 export const AccountPage = () => {
-    const dispatch = useDispatch();
 
-    dispatch(setBreadcrumbs([{ label: 'Account', path: routeConfig.account }]));
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(setBreadcrumbs([{ label: 'Account', path: routeConfig.account }]));
+    }, [dispatch]);
 
     return (
         <>
