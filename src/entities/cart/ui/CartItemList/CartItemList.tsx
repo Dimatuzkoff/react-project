@@ -33,9 +33,9 @@ export const CartItemList: FC<CartItemListProps> = ({
                     <div className={styles.subtotal}>SubTotal</div>
                 </div>
 
-                {items.map(item => (
+                {items.map((item, index) => (
                     <CartItem
-                        key={item.id}
+                        key={`${item.id}-${index}`}
                         item={item}
                         onQuantityChange={onQuantityChange}
                         onRemove={onRemove}

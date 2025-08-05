@@ -1,43 +1,55 @@
 // react
 import { useState, type FC } from 'react';
+// redux
+import { useDispatch } from 'react-redux';
+import { cartActionCreators } from '@/entities/cart/model/actionCreators/cartActionCreators';
 // components
 import { ProductRatingBlock } from '../ProductRatingBlock';
 import { ProductDeliveryInfo } from '../ProductDeliveryInfo';
 import { Button } from '@/shared/ui/Button';
 // assets
-import  WishlistIcon  from '@/shared/libs/assets/svg/icons/wishlist.svg?react';
+import WishlistIcon from '@/shared/libs/assets/svg/icons/wishlist.svg?react';
+// types
+import type { Product } from '../../model/types/product';
 // styles
 import styles from './ProductDescription.module.scss';
 
 interface ProductDescriptionProps {
-    title: string;
-    description: string;
-    rating: number;
-    reviewCount: number;
-    price: number;
+    product: Product
 }
 
 export const ProductDescription: FC<ProductDescriptionProps> = ({
-    title,
-    description,
-    rating,
-    reviewCount,
-    price,
+   product,
 }) => {
-  const [quantity, setQuantity] = useState(1);
-  const [isInWishlist, setIsInWishlist] = useState(false);
+    const dispatch = useDispatch();
+    const [quantity, setQuantity] = useState(1);
+    const [isInWishlist, setIsInWishlist] = useState(false);
+
+    const { title, description, rating, price } =
+        product;
+    
+    const reviewCount = product.reviews.length;
 
     const increment = () => setQuantity(q => q + 1);
     const decrement = () => setQuantity(q => (q > 1 ? q - 1 : 1));
 
-    const handleWishlistToggle = () => {
+    const wishlistToggle = () => {
         setIsInWishlist(prev => !prev);
-      //  dispatch в Redux
+        //  dispatch в Redux
     };
 
-    const handleBuy = () => {
-        // логика добавления в корзину
-        console.log(`Купить ${quantity} шт.`);
+    const buy = () => {
+        const { id, title, price, thumbnail } = product;
+
+        dispatch(
+            cartActionCreators.addProductToCart({
+                id,
+                title,
+                price,
+                thumbnail,
+                quantity,
+            })
+        );
     };
 
     return (
@@ -63,17 +75,16 @@ export const ProductDescription: FC<ProductDescriptionProps> = ({
                         +
                     </button>
                 </div>
-                <Button onClick={handleBuy} uiColor="danger" size='44'>
+                <Button onClick={buy} uiColor="danger" size="44">
                     Buy now
                 </Button>
                 <button
                     className={`${styles.wishlistBtn} ${
                         isInWishlist ? styles.active : ''
                     }`}
-                    onClick={handleWishlistToggle}
+                    onClick={wishlistToggle}
                 >
-                    <WishlistIcon
-                    />
+                    <WishlistIcon />
                 </button>
             </div>
             <ProductDeliveryInfo />

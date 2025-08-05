@@ -2,6 +2,7 @@
 import type { FC } from 'react';
 // types
 import type { ProductVariant } from '../../model/types/productVariant';
+import type { Product } from '../../model/types/product';
 // utils
 import { isNewProduct } from '@/entities/product/libs/utils/isNewProduct';
 // components
@@ -11,28 +12,29 @@ import { ProductButton } from '../ProductButton';
 import styles from './ProductImageBlock.module.scss';
 
 interface ProductImageBlockProps {
-    thumbnail: string;
-    title: string;
-    discountPercentage: number;
-    createdAt: string;
+    product: Product;
     variant?: ProductVariant;
     isShowWishList?: boolean;
     isShowPreview?: boolean;
     isShowDelete?: boolean;
-    productId: string;
 }
 
 export const ProductImageBlock: FC<ProductImageBlockProps> = ({
-    thumbnail,
-    title,
-    discountPercentage,
-    createdAt,
+    product,
     variant = 'default',
     isShowWishList,
     isShowPreview,
     isShowDelete,
-    productId,
 }) => {
+    const {
+        thumbnail,
+        title,
+        discountPercentage,
+        id,
+        meta: { createdAt },
+    } = product;
+
+
     const showBadge = variant !== 'bestSeller';
     const isNew = isNewProduct(createdAt);
     const hasDiscount = discountPercentage > 0;
@@ -56,12 +58,13 @@ export const ProductImageBlock: FC<ProductImageBlockProps> = ({
                 isShowWishlist={isShowWishList}
                 isShowPreview={isShowPreview}
                 isShowDelete={isShowDelete}
-                productId={productId}
+                productId={id.toString()}
             />
 
             <img src={thumbnail} alt={title} className={styles.thumbnail} />
 
             <ProductButton
+                product={product}
                 variant={variant}
                 className={
                     variant === 'default' || variant === 'explore'

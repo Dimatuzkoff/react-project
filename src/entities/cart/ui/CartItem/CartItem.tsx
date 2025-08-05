@@ -2,6 +2,8 @@
 import type { FC } from 'react';
 // types
 import type { CartProduct } from '../../model/types/cartProduct';
+// utils 
+import { formatPrice } from '../../libs/utils/formatPrice';
 // styles
 import styles from './CartItem.module.scss';
 // component
@@ -18,13 +20,15 @@ export const CartItem: FC<CartItemProps> = ({
     onQuantityChange,
     onRemove,
 }) => {
-    const subtotal = (item.price * item.quantity).toFixed(2);
+    const price = typeof item.price === 'number' ? item.price : 0;
+    const priceFormatted = formatPrice(price);
+    const subtotal = formatPrice(price * item.quantity);
 
-    const handleQuantityChange = (qty: number) => {
+    const quantityChange = (qty: number) => {
         onQuantityChange?.(item.id, qty);
     };
 
-    const handleRemove = () => {
+    const remove = () => {
         onRemove?.(item.id);
     };
 
@@ -36,18 +40,18 @@ export const CartItem: FC<CartItemProps> = ({
                     alt={item.title}
                     className={styles.image}
                 />
-                <button onClick={handleRemove} className={styles.removeBtn}>
+                <button onClick={remove} className={styles.removeBtn}>
                     х
                 </button>
             </div>
 
             <div className={styles.title}>{item.title}</div>
-            <div className={styles.price}>${item.price.toFixed(2)}</div>
+            <div className={styles.price}>${priceFormatted}</div>
 
             <div className={styles.quantity}>
                 <CartQuantity
                     quantity={item.quantity}
-                    onChange={handleQuantityChange}
+                    onChange={quantityChange}
                 />
             </div>
 

@@ -1,5 +1,5 @@
-import { type Product } from '@/entities/product/model/types/product';
+import { type CartProduct } from './cartProduct';
 
 export type CartStateType = {
-    cart: Product[];
+    cart: CartProduct[];
 };
