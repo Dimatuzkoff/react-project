@@ -1,9 +1,9 @@
 import { CartActionTypes } from '../actionTypes/cartActionTypes';
-import { type Product } from '@/entities/product/model/types/product';
+import { type CartProduct } from '@/entities/cart/model/types/cartProduct';
 
 export type AddProductToCartType = {
     type: CartActionTypes.ADD_TO_CART;
-    payload: Product;
+    payload: CartProduct;
 };
 
 export type DeleteProductFromCartByIdType = {
@@ -15,7 +15,16 @@ export type ClearCartType = {
     type: CartActionTypes.CLEAR_CART;
 };
 
+export type UpdateQuantityType = {
+    type: CartActionTypes.UPDATE_QUANTITY;
+    payload: {
+        id: number | string;
+        quantity: number;
+    };
+};
+
 export type CartActions =
     | AddProductToCartType
     | DeleteProductFromCartByIdType
-    | ClearCartType;
+    | ClearCartType
+    | UpdateQuantityType;

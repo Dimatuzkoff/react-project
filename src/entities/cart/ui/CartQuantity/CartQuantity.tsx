@@ -1,5 +1,7 @@
 // react
 import type { FC } from 'react';
+// styles
+import styles from './CartQuantity.module.scss';
 
 interface CartQuantityProps {
     quantity: number;
@@ -8,12 +10,19 @@ interface CartQuantityProps {
 
 export const CartQuantity: FC<CartQuantityProps> = ({ quantity, onChange }) => {
     return (
-        <select value={quantity} onChange={e => onChange?.(+e.target.value)}>
-            {[1, 2, 3, 4, 5].map(n => (
-                <option key={n} value={n}>
-                    {n < 10 ? `0${n}` : n}
-                </option>
-            ))}
+        <select
+            className={styles.customSelect}
+            value={quantity}
+            onChange={e => onChange?.(+e.target.value)}
+        >
+            {[...Array(10)].map((_, i) => {
+                const n = i + 1;
+                return (
+                    <option key={n} value={n}>
+                        {n < 10 ? `0${n}` : n}
+                    </option>
+                );
+            })}
         </select>
     );
 };

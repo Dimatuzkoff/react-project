@@ -1,4 +1,11 @@
+// react
 import type { FC } from 'react';
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { cartActionCreators } from '@/entities/cart/model/actionCreators/cartActionCreators';
+import { getCartState } from '@/entities/cart/model/selectors/cartSelectors';
+// types
+import type { Product } from '@/entities/product/model/types/product';
 // components
 import { Button } from '@/shared/ui/Button';
 // assets
@@ -11,15 +18,29 @@ import styles from './ProductButton.module.scss';
 interface Props {
     variant: string;
     className?: string;
+    product: Product;
 }
 
-export const ProductButton: FC<Props> = ({ variant, className }) => {
+export const ProductButton: FC<Props> = ({ variant, className, product }) => {
+    const dispatch = useDispatch();
+    const { cart } = useSelector(getCartState);
+    const isInCart = cart.some(p => p.id === product.id);
+
     const showHoverButton = variant === 'default' || variant === 'explore';
     const showCartIcon = variant === 'wishList' || variant === 'justForYou';
 
     if (variant === 'bestSeller') {
         return null;
     }
+
+    const addToCart = () => {
+        dispatch(
+            cartActionCreators.addProductToCart({
+                ...product,
+                quantity: 1,
+            })
+        );
+    };
 
     return (
         <div
@@ -30,7 +51,7 @@ export const ProductButton: FC<Props> = ({ variant, className }) => {
             )}
         >
             <Button
-                children="Add to cart"
+                children={isInCart ? 'In cart' : 'Add to cart'}
                 uiColor="primary"
                 leftIcon={
                     showCartIcon ? (
@@ -41,6 +62,7 @@ export const ProductButton: FC<Props> = ({ variant, className }) => {
                         />
                     ) : undefined
                 }
+                onClick={addToCart}
             />
         </div>
     );

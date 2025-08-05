@@ -13,8 +13,13 @@ import {
 } from '@/shared/libs/constants/routes/routes';
 //ui
 import { Input } from '@/shared/ui/input';
+// redux
+import { getCartItemCount } from '@/entities/cart/model/selectors/cartSelectors';
+import { useSelector } from 'react-redux';
 
 export const HeaderTools = () => {
+    const cartCount = useSelector(getCartItemCount);
+
     return (
         <>
             <div className={styles.headerTools}>
@@ -23,15 +28,18 @@ export const HeaderTools = () => {
                         type="search"
                         placeholder="Що ви шукаєте?"
                         iconAfter={<img src={Search} alt="cart" />}
-                        isQuiet
+                        uiType="outline"
                     />
                 </div>
 
                 <NavLink to={getWishlistRoute()}>
                     <img src={Wishlist} alt="wishlist" />
                 </NavLink>
-                <NavLink to={getCartRoute()}>
+                <NavLink to={getCartRoute()} className={styles.cartIcon}>
                     <img src={Cart} alt="cart" />
+                    {cartCount > 0 && (
+                        <span className={styles.cartCount}>{cartCount}</span>
+                    )}
                 </NavLink>
             </div>
         </>

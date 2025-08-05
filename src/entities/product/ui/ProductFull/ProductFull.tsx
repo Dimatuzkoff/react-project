@@ -24,11 +24,7 @@ export const ProductFull: FC<ProductFullProps> = ({ product }) => {
             <section className={styles.productInfo}>
                 <ProductGallery images={product.images} />
                 <ProductDescription
-                    title={product.title}
-                    description={product.description}
-                    rating={product.rating}
-                    reviewCount={product.reviews.length}
-                    price={product.price}
+                    product={product}
                 />
             </section>
             <section className={styles.relatedItems}>

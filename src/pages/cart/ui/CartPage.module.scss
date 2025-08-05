@@ -1,9 +1,3 @@
-.cartPage {
-    display: flex;
-    flex-direction: column;
-    gap: 80px;
-}
-
 .container {
     padding: 10px;
 
@@ -14,17 +8,5 @@
     @media screen and (min-width: 1200px) {
         padding: 40px 135px 110px 135px;
     }
-}
-
-.cartFooter {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-
-    @media screen and (min-width: 768px){
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    
 }
 
