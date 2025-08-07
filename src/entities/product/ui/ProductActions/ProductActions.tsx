@@ -8,26 +8,26 @@ import ViewIcon from '@/shared/libs/assets/svg/icons/view.svg';
 // styles
 import styles from './ProductActions.module.scss';
 // constants
-import { getProductByIdRoute } from '@/shared/libs/constants/routes/routes';
+import { getProductBySlugRoute } from '@/shared/libs/constants/routes/routes';
 
 interface ProductActionsProps {
     isShowWishlist?: boolean;
     isShowPreview?: boolean;
     isShowDelete?: boolean;
-    productId: string
+    slug?: string
 }
 
 export const ProductActions: FC<ProductActionsProps> = ({
     isShowWishlist,
     isShowPreview,
     isShowDelete,
-    productId
+    slug
 }) => {
     const navigate = useNavigate();
 
     const handlePreviewClick = () => {
-        if (productId) {
-            navigate(getProductByIdRoute(productId));
+        if (slug) {
+            navigate(getProductBySlugRoute(slug));
         }
     }
     return (

@@ -41,6 +41,7 @@ export const cartReducer: Reducer<CartStateType, CartActions> = (
               thumbnail: action.payload.thumbnail,
               quantity: action.payload.quantity || 1,
               stock: action.payload.stock,
+              slug: action.payload.slug,
             },
           ],
         };

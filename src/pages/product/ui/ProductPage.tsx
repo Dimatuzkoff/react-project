@@ -5,9 +5,9 @@ import { useEffect } from 'react';
 // types
 import type { Product } from '@/entities/product/model/types/product';
 // constants
-import { routeConfig } from '@/app/config/route/routeConfig';
+import { getProductBySlugRoute } from '@/shared/libs/constants/routes/routes';
 // helpers
-import { getProductById } from '@/entities/product/libs/helper/getProductById';
+import { getProductBySlug } from '@/entities/product/libs/helper/getProductBySlug';
 // mock
 import { products } from '@/mockData/products';
 // components
@@ -19,17 +19,25 @@ import styles from './ProductPage.module.scss';
 import clsx from 'clsx';
 
 export const ProductPage = () => {
+    const { slug } = useParams<{ slug: string }>();
+
+    const product: Product | undefined = slug
+      ? getProductBySlug(products, slug)
+      : undefined;
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(setBreadcrumbs([{ label: 'Продукт', path: routeConfig.productById }]));
-    }, [dispatch]);
-
-    const { id } = useParams<{ id: string }>();
-
-    const product: Product | undefined = id
-        ? getProductById(products, id)
-        : undefined;
+        if (product) {
+            dispatch(
+              setBreadcrumbs([
+                {
+                  label: product.title,
+                  path: getProductBySlugRoute(product.slug),
+                },
+              ])
+            );
+        }
+    }, [dispatch, product]);
 
     return (
         <div className={clsx(styles.productPage, styles.container)}>

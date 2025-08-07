@@ -30,7 +30,7 @@ export const ProductImageBlock: FC<ProductImageBlockProps> = ({
         thumbnail,
         title,
         discountPercentage,
-        id,
+        slug,
         meta: { createdAt },
     } = product;
 
@@ -58,7 +58,7 @@ export const ProductImageBlock: FC<ProductImageBlockProps> = ({
                 isShowWishlist={isShowWishList}
                 isShowPreview={isShowPreview}
                 isShowDelete={isShowDelete}
-                productId={id.toString()}
+                slug={slug}
             />
 
             <img src={thumbnail} alt={title} className={styles.thumbnail} />
