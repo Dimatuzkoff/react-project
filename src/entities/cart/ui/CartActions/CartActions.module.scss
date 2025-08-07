@@ -1,0 +1,12 @@
+.cartActions {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.btnWrapper {
+  display: inline-block;
+  width: auto;
+  max-width: max-content;
+}

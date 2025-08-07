@@ -1,6 +1,6 @@
 import type { Product } from '@/entities/product/model/types/product';
 
 export interface CartProduct
-    extends Pick<Product, 'id' | 'title' | 'price' | 'thumbnail'> {
+    extends Pick<Product, 'id' | 'title' | 'price' | 'thumbnail' | 'stock'> {
     quantity: number;
 }

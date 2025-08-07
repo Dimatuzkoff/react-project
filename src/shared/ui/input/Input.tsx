@@ -33,7 +33,7 @@ interface InputProps {
     onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onKeyDown?: (e: React.KeyboardEvent) => void;
     onClick?: (e: React.MouseEvent) => void;
-    value?: string;
+    value?: string | number;
     readOnly?: boolean;
     ref?: React.Ref<HTMLInputElement>;
 }

@@ -1,63 +1,29 @@
 // react
-import type { FC } from 'react';
-// types
-import type { CartProduct } from '../../model/types/cartProduct';
-// components
-import { CartItem } from '../CartItem/CartItem';
-import { Button } from '@/shared/ui/Button';
+import type { FC, ReactNode } from 'react';
 // styles
 import styles from './CartItemList.module.scss';
 
 interface CartItemListProps {
-    items: CartProduct[];
-    onQuantityChange?: (id: number, qty: number) => void;
-    onRemove?: (id: number) => void;
+  children: ReactNode;
+  isEmpty?: boolean;
 }
 
-export const CartItemList: FC<CartItemListProps> = ({
-    items,
-    onQuantityChange,
-    onRemove,
-}) => {
-    if (items.length === 0) {
-        return <div>Ваша корзина порожня</div>;
-    }
+export const CartItemList: FC<CartItemListProps> = ({ children, isEmpty }) => {
+  if (isEmpty) {
+    return <div>Ваша корзина порожня</div>;
+  }
 
-    return (
-        <div className={styles.cartItemList}>
-            <div className={styles.tables}>
-                <div className={styles.header}>
-                    <div className={styles.product}>Product</div>
-                    <div className={styles.price}>Price</div>
-                    <div className={styles.quantity}>Quantity</div>
-                    <div className={styles.subtotal}>SubTotal</div>
-                </div>
-
-                {items.map((item, index) => (
-                    <CartItem
-                        key={`${item.id}-${index}`}
-                        item={item}
-                        onQuantityChange={onQuantityChange}
-                        onRemove={onRemove}
-                    />
-                ))}
-            </div>
-            <div className={styles.actions}>
-                <div className={styles.btnWrapper}>
-                    <Button
-                        children="Return To Shop"
-                        uiColor="primary"
-                        uiType="outline"
-                    />
-                </div>
-                <div className={styles.btnWrapper}>
-                    <Button
-                        children="Update Cart"
-                        uiColor="primary"
-                        uiType="outline"
-                    />
-                </div>
-            </div>
-        </div>
-    );
+  return (
+    <table className={styles.cartItemList}>
+      <thead>
+        <tr className={styles.header}>
+          <th className={styles.product}>Product</th>
+          <th className={styles.price}>Price</th>
+          <th className={styles.quantity}>Quantity</th>
+          <th className={styles.subtotal}>SubTotal</th>
+        </tr>
+      </thead>
+      <tbody>{children}</tbody>
+    </table>
+  );
 };

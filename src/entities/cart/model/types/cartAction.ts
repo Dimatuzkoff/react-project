@@ -18,8 +18,8 @@ export type ClearCartType = {
 export type UpdateQuantityType = {
     type: CartActionTypes.UPDATE_QUANTITY;
     payload: {
-        id: number | string;
-        quantity: number;
+        id: CartProduct['id'];
+        quantity: CartProduct['quantity'];
     };
 };
 
