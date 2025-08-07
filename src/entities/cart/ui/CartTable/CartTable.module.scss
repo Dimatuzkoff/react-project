@@ -4,6 +4,12 @@
   gap: 80px;
 }
 
+.cartBody {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .cartFooter {
   display: flex;
   flex-direction: column;

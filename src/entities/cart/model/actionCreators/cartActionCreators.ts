@@ -5,6 +5,7 @@ import type {
     ClearCartType,
     UpdateQuantityType,
 } from '../types/cartAction';
+import type { CartProduct } from '../types/cartProduct';
 
 const addProductToCart = (
     payload: AddProductToCartType['payload']
@@ -31,8 +32,8 @@ const clearCart = (): ClearCartType => {
 };
 
 const updateQuantity = (
-    id: number | string,
-    quantity: number
+    id: CartProduct['id'],
+    quantity: CartProduct['quantity']
 ): UpdateQuantityType => ({
     type: CartActionTypes.UPDATE_QUANTITY,
     payload: { id, quantity },
