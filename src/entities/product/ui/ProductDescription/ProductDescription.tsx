@@ -69,7 +69,7 @@ export const ProductDescription: FC<ProductDescriptionProps> = ({
   };
 
   const buy = () => {
-    const { id, title, price, thumbnail, stock } = product;
+    const { id, title, price, thumbnail, stock, slug } = product;
 
     dispatch(
       cartActionCreators.addProductToCart({
@@ -79,6 +79,7 @@ export const ProductDescription: FC<ProductDescriptionProps> = ({
         thumbnail,
         quantity: Number(quantity),
         stock,
+        slug,
       })
     );
   };

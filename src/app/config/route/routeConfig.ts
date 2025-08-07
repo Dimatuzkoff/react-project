@@ -7,6 +7,7 @@ export const routeConfig = {
     cart: '/cart',
     checkout: '/checkout',
     account: '/account',
-    productById: '/product/:id',
+    // productById: '/product/:id',
+    productBySlug: '/product/:slug',
     notFound: '*',
 };

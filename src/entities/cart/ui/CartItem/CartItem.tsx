@@ -10,7 +10,7 @@ import styles from './CartItem.module.scss';
 // component
 import { CartQuantity } from '../CartQuantity';
 // constants
-import { getProductByIdRoute } from '@/shared/libs/constants/routes/routes';
+import { getProductBySlugRoute } from '@/shared/libs/constants/routes/routes';
 
 interface CartItemProps {
     item: CartProduct;
@@ -41,7 +41,7 @@ export const CartItem: FC<CartItemProps> = ({
       <tr className={styles.cartItem}>
         <td className={styles.product}>
           <div className={styles.cartItemImage}>
-            <Link to={getProductByIdRoute(item.id)}>
+            <Link to={getProductBySlugRoute(item.slug)}>
               <img
                 src={item.thumbnail}
                 alt={item.title}
@@ -52,7 +52,7 @@ export const CartItem: FC<CartItemProps> = ({
               ×
             </button>
           </div>
-          <Link to={getProductByIdRoute(item.id)} className={styles.titleLink}>
+          <Link to={getProductBySlugRoute(item.slug)} className={styles.titleLink}>
             {item.title}
           </Link>
         </td>

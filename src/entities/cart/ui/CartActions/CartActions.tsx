@@ -1,13 +1,9 @@
-// react
-import type { FC } from 'react';
 // components
 import { Button } from '@/shared/ui/Button';
 // styles
 import styles from './CartActions.module.scss';
 
-interface CartActionsProps {}
-
-export const CartActions: FC<CartActionsProps> = ({}) => {
+export const CartActions = () => {
   return (
     <div className={styles.cartActions}>
       <div className={styles.btnWrapper}>

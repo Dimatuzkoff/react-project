@@ -1,3 +1,13 @@
+.productFull {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  @media screen and (min-width: 768px){
+    gap: 100px;
+  }
+}
+
 .productInfo {
   display: flex;
   flex-direction: column;
