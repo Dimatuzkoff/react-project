@@ -1,16 +1,18 @@
 // redux
 import { useSelector } from "react-redux";
 import { getWishlistState } from '@/entities/wishlist/model/selectors/wishlistSelectors'
+// types
+import { type Product } from '@/entities/product/model/types/product';
+// ui
+import { WishlistListExtraTools } from '../WishlistListExtraTools/WishlistListExtraTools'
 
 export const WishlistList = () => {
 
-    const list = useSelector(getWishlistState)
-    console.log(list);
-    
+const wishlist: { wishlist: Product[] } = useSelector(getWishlistState);
 
     return(
         <>
-            <h1>WishlistList</h1>
+            <WishlistListExtraTools wishlistLength={ wishlist.wishlist.length } />
         </>
     )
 }

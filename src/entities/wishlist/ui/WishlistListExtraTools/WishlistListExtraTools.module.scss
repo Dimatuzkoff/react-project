@@ -1,0 +1,20 @@
+@use '@/app/styles/variables/global' as *;
+.extraTools {
+    width: 100%;
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $text-primary;
+    .amountItems {
+        font-size: 20px;
+        line-height: 26px;
+        font-weight: 400;
+    }
+    button {
+        max-width: fit-content;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 500;
+    }
+}
