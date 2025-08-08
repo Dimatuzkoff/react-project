@@ -5,11 +5,14 @@ import { useEffect } from 'react';
 import { routeConfig } from '@/app/config/route/routeConfig';
 // reducer
 import { setBreadcrumbs } from '@/widgets/breadcrumbs/model/actionCreators/breadcrumbActionCreators';
-//styles
+// styles
 import styles from './WishlistPage.module.scss';
-export const WishlistPage = () => {
+// ui
+import { WishlistList } from '@/entities/wishlist'
 
+export const WishlistPage = () => {
     const dispatch = useDispatch();
+    
     useEffect(() => {
         dispatch(setBreadcrumbs([{ label: 'Закладки', path: routeConfig.wishlist }]));
     }, [dispatch]);
@@ -17,7 +20,7 @@ export const WishlistPage = () => {
     return (
         <>
             <section className={styles.wrapperWishlistPage}>
-                <h1>WishlistPage</h1>
+                <WishlistList />
             </section>
         </>
     );
