@@ -59,6 +59,7 @@ export const ProductImageBlock: FC<ProductImageBlockProps> = ({
                 isShowPreview={isShowPreview}
                 isShowDelete={isShowDelete}
                 slug={slug}
+                product={product}
             />
 
             <img src={thumbnail} alt={title} className={styles.thumbnail} />
