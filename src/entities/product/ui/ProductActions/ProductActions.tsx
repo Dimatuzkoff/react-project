@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 // hooks
 import { useAddToWishlist, useRemoveFromWishlist } from '@/entities/wishlist/libs/hooks/wishlistActions'
+import { useAddToProductStory } from '@/entities/smartPick/libs/hooks/smartPickActions'
 // assets
 import WishlistIcon from '@/shared/libs/assets/svg/icons/wishlist.svg?react';
 import DeleteIcon from '@/shared/libs/assets/svg/icons/delete.svg';
@@ -32,13 +33,21 @@ export const ProductActions: FC<ProductActionsProps> = ({
     product
 }) => {
     const navigate = useNavigate();
+    const addToProductStory = useAddToProductStory(product);
+    const addToWishlist = useAddToWishlist(product);
+
 
     const handlePreviewClick = () => {
         if (slug) {
             navigate(getProductBySlugRoute(slug));
+            addToProductStory();
         }
     }
-    const addToWishlist = useAddToWishlist(product)
+    const saveToWishlist = () => {
+        addToWishlist();
+        addToProductStory();
+
+    }
     const removeFromWishlist = useRemoveFromWishlist(product);
     const wishlistIds: String[] | Number[] = useSelector(getWishlistStateItemsIds);
     const isInWishlist = wishlistIds.includes(product.id);
@@ -48,7 +57,7 @@ export const ProductActions: FC<ProductActionsProps> = ({
             <div className={styles.icons}>
                 {isShowWishlist && (
                     <span className={styles.icon}>
-                        {isInWishlist ? <WishlistIcon className={styles.activeWishlist} onClick={removeFromWishlist}/> : <WishlistIcon onClick={addToWishlist}/>}
+                        {isInWishlist ? <WishlistIcon className={styles.activeWishlist} onClick={removeFromWishlist}/> : <WishlistIcon onClick={saveToWishlist}/>}
                     </span>
                 )}
                 {isShowPreview && (
