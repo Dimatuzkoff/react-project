@@ -4,6 +4,8 @@ import type { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActionCreators } from '@/entities/cart/model/actionCreators/cartActionCreators';
 import { getCartState } from '@/entities/cart/model/selectors/cartSelectors';
+// hooks
+import { useAddToProductStory } from '@/entities/smartPick/libs/hooks/smartPickActions'
 // types
 import type { Product } from '@/entities/product/model/types/product';
 // components
@@ -23,6 +25,7 @@ interface Props {
 
 export const ProductButton: FC<Props> = ({ variant, className, product }) => {
     const dispatch = useDispatch();
+    const addToProductStory = useAddToProductStory(product);
     const { cart } = useSelector(getCartState);
     const isInCart = cart.some(p => p.id === product.id);
 
@@ -40,6 +43,7 @@ export const ProductButton: FC<Props> = ({ variant, className, product }) => {
                 quantity: 1,
             })
         );
+        addToProductStory();
     };
 
     return (

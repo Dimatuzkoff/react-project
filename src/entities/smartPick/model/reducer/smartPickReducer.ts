@@ -8,6 +8,8 @@ const initialState: SmartPickStateType = {
     viewedProducts: [],
 };
 
+const MAX_VIEWED_PRODUCTS = 10;
+
 export const smartPickReducer: Reducer<SmartPickStateType, SmartPickActions> = (
     state = initialState,
     action
@@ -20,9 +22,11 @@ export const smartPickReducer: Reducer<SmartPickStateType, SmartPickActions> = (
             };
         }
         case SmartPickActionTypes.ADD_TO_VIEWED_PRODUCTS: {
+            const exists = state.viewedProducts.some((product) => product.id === action.payload.id);
+            if (exists) return state;
             return {
                 ...state,
-                viewedProducts: [...state.viewedProducts, { ...action.payload }],
+                viewedProducts: [ { ...action.payload }, ...state.viewedProducts].slice(0, MAX_VIEWED_PRODUCTS),
             };
         }
         default: {
