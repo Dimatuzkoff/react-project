@@ -2,13 +2,12 @@ import type { Reducer } from 'redux';
 import type { SmartPickStateType } from '../types/smartPickTypes';
 import type { SmartPickActions } from '../types/smartPickAction';
 import { SmartPickActionTypes } from '../actionTypes/smartPickActionTypes';
+import {MAX_VIEWED_PRODUCTS } from '@/entities/smartPick/libs/constants/smartPick'
 
 const initialState: SmartPickStateType = {
     smartPick: [],
     viewedProducts: [],
 };
-
-const MAX_VIEWED_PRODUCTS = 10;
 
 export const smartPickReducer: Reducer<SmartPickStateType, SmartPickActions> = (
     state = initialState,
