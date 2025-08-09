@@ -9,6 +9,7 @@ import { setBreadcrumbs } from '@/widgets/breadcrumbs/model/actionCreators/bread
 import styles from './WishlistPage.module.scss';
 // ui
 import { WishlistList } from '@/entities/wishlist'
+import { SmartPick } from '@/entities/smartPick'
 
 export const WishlistPage = () => {
     const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export const WishlistPage = () => {
         <>
             <section className={styles.wrapperWishlistPage}>
                 <WishlistList />
+                <SmartPick />
             </section>
         </>
     );
