@@ -12,3 +12,11 @@ export const useAddToWishlist = (product: Product) => {
     };
   return addToWishlist;
 };
+
+export const useRemoveFromWishlist = (product: Product) => {
+    const dispatch = useDispatch();
+    const removeFromWishlist = () => {
+        dispatch(wishlistActionCreators.deleteProductFromWishlist(product.id));
+    };
+    return removeFromWishlist;
+};

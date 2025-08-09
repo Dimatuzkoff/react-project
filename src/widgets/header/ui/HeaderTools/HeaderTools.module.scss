@@ -23,14 +23,16 @@
     }
 }
 
+.wishlistIcon,
 .cartIcon {
     position: relative;
     display: inline-block;
 }
 
+.wishlistCount,
 .cartCount {
     position: absolute;
-    top: -4px;
+    top: -3px;
     right: -6px;
     background-color: #e63946;
     color: white;

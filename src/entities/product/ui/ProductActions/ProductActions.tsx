@@ -1,8 +1,8 @@
 // react
 import type { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-// hook
-import { useAddToWishlist } from '@/entities/wishlist/libs/hooks/wishlistActions'
+// hooks
+import { useAddToWishlist, useRemoveFromWishlist } from '@/entities/wishlist/libs/hooks/wishlistActions'
 // assets
 import WishlistIcon from '@/shared/libs/assets/svg/icons/wishlist.svg';
 import DeleteIcon from '@/shared/libs/assets/svg/icons/delete.svg';
@@ -37,6 +37,7 @@ export const ProductActions: FC<ProductActionsProps> = ({
         }
     }
      const addToWishlist = useAddToWishlist(product)
+    const removeFromWishlist = useRemoveFromWishlist(product);
     return (
         <div className={styles.imageActions}>
             <div className={styles.icons}>
@@ -51,8 +52,8 @@ export const ProductActions: FC<ProductActionsProps> = ({
                     </span>
                 )}
                 {isShowDelete && (
-                    <span className={styles.icon}>
-                        <img src={DeleteIcon} alt="delete" />
+                    <span className={styles.icon} onClick={removeFromWishlist}>
+                        <img className={styles.deleteIcon} src={DeleteIcon} alt="delete" />
                     </span>
                 )}
             </div>
