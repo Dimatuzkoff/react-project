@@ -16,9 +16,11 @@ import { Input } from '@/shared/ui/input';
 // redux
 import { getCartItemCount } from '@/entities/cart/model/selectors/cartSelectors';
 import { useSelector } from 'react-redux';
+import { getWishlistState } from '@/entities/wishlist/model/selectors/wishlistSelectors'
 
 export const HeaderTools = () => {
     const cartCount = useSelector(getCartItemCount);
+    const wishlistCount = useSelector(getWishlistState).wishlist.length;
 
     return (
         <>
@@ -32,8 +34,11 @@ export const HeaderTools = () => {
                     />
                 </div>
 
-                <NavLink to={getWishlistRoute()}>
+                <NavLink to={getWishlistRoute()} className={styles.wishlistIcon}>
                     <img src={Wishlist} alt="wishlist" />
+                    {wishlistCount > 0 && (
+                        <span className={styles.wishlistCount}>{wishlistCount}</span>
+                    )}
                 </NavLink>
                 <NavLink to={getCartRoute()} className={styles.cartIcon}>
                     <img src={Cart} alt="cart" />

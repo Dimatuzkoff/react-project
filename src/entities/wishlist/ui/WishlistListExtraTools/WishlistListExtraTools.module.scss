@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: center;
     color: $text-primary;
+    margin-bottom: 40px;
     .amountItems {
         font-size: 20px;
         line-height: 26px;
@@ -16,5 +17,11 @@
         font-size: 16px;
         line-height: 24px;
         font-weight: 500;
+    }
+}
+
+@media (min-width: 1200px) {
+    .extraTools {
+        margin-bottom: 60px;
     }
 }
