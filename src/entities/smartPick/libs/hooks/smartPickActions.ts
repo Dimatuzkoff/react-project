@@ -12,3 +12,11 @@ export const useAddToProductStory = (product: Product) => {
     };
   return addToViewedProducts;
 };
+
+export const useAddToSmartPick = (product: Product) => {
+    const dispatch = useDispatch();
+    const addToSmartPick = () => {
+        dispatch(smartPickActionCreators.addProductToSmartPick(product));
+    };
+  return addToSmartPick;
+};
