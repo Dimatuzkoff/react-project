@@ -10,6 +10,6 @@ export const getAmountPreferProducts = (total: number) => {
     return Object.keys(viewedProductsCategories).map((category) => ({
         name: category,
         amount: viewedProductsCategories[category],
-        products: (viewedProductsCategories[category] / total) * MAX_SMART_PICK_PRODUCTS
+        products: Math.round((viewedProductsCategories[category] / total) * MAX_SMART_PICK_PRODUCTS)
     }));
 };

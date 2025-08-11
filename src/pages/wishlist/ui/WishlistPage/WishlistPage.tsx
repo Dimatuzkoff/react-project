@@ -17,6 +17,8 @@ export const WishlistPage = () => {
     useEffect(() => {
         dispatch(setBreadcrumbs([{ label: 'Закладки', path: routeConfig.wishlist }]));
     }, [dispatch]);
+    console.log('WishlistPage rendered');
+    
 
     return (
         <>
