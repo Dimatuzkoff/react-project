@@ -1,6 +1,28 @@
 .wrapperNotFound {
-    height: 100vh;
+    min-height: calc(100vh - 590px);
+    padding: 140px 16px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.title {
+    font-size: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+
+    @media screen and (min-width: 1024px) {
+        font-size: 110px;
+    }
+}
+
+.text {
+    font-size: 16px;
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.btnWrapper {
+    width: 254px;
 }
