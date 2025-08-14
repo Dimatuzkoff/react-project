@@ -8,7 +8,7 @@ export type AddProductToCartType = {
 
 export type DeleteProductFromCartByIdType = {
     type: CartActionTypes.REMOVE_FROM_CART;
-    payload: number;
+    payload: CartProduct['id'];
 };
 
 export type ClearCartType = {

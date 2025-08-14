@@ -1,0 +1,1 @@
+export { CategoriesSidebarMobile } from './CategoriesSidebarMobile';

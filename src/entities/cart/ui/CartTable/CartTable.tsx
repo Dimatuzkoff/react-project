@@ -1,3 +1,5 @@
+// react
+import { useNavigate } from 'react-router-dom';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { cartActionCreators } from '../../model/actionCreators/cartActionCreators';
@@ -7,24 +9,30 @@ import { CartItemList } from '../CartItemList';
 import { CartCoupon } from '../CartCoupon';
 import { CartTotal } from '../CartTotal';
 import { CartActions } from '../CartActions';
+import { CartItem } from '../CartItem';
+import { Button } from '@/shared/ui/Button';
+// assets
+import EmptyCart from '@/shared/libs/assets/svg/authImg.svg';
 // types
 import type { CartProduct } from '../../model/types/cartProduct';
+// helpers
+import { cartSubtotal } from '../../libs/helpers/cartSubtotal';
+// constants 
+import { getHomeRoute } from '@/shared/libs/constants/routes/routes';
 // styles
 import styles from './CartTable.module.scss';
-import { CartItem } from '../CartItem';
 
 export const CartTable = () => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const cart = useSelector(getCartState);
 
   const items = cart.cart;
 
-  const subtotal = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
-    
+  const subtotal = cartSubtotal(items);
+
   const shipping = 0;
 
   const total = subtotal + shipping;
@@ -42,28 +50,43 @@ export const CartTable = () => {
 
   const applyCoupon = (code: string) => {
     console.log('Coupon applied:', code);
-    // dispatch для купона
+  };
+
+  const goHome = () => {
+    navigate(getHomeRoute());
   };
 
   return (
     <div className={styles.cartTable}>
-      <div className={styles.cartBody}>
-        <CartItemList isEmpty={items.length === 0}>
-          {items.map(item => (
-            <CartItem
-              key={item.id}
-              item={item}
-              onQuantityChange={changeQuantity}
-              onRemove={removeItem}
-            />
-          ))}
-        </CartItemList>
-        <CartActions />
-      </div>
-      <div className={styles.cartFooter}>
-        <CartCoupon onApplyCoupon={applyCoupon} />
-        <CartTotal subtotal={subtotal} shipping={shipping} total={total} />
-      </div>
+      {items.length === 0 ? (
+        <div className={styles.emptyWrapper}>
+          <p className={styles.emptyText}>Ваш кошик порожній</p>
+          <img src={EmptyCart} alt="Empty cart" />
+          <div className={styles.btnWrapper}>
+            <Button children="За покупками" uiColor="danger" onClick={goHome} />
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className={styles.cartBody}>
+            <CartItemList>
+              {items.map(item => (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  onQuantityChange={changeQuantity}
+                  onRemove={removeItem}
+                />
+              ))}
+            </CartItemList>
+            <CartActions />
+          </div>
+          <div className={styles.cartFooter}>
+            <CartCoupon onApplyCoupon={applyCoupon} />
+            <CartTotal subtotal={subtotal} shipping={shipping} total={total} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

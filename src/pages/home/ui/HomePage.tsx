@@ -1,22 +1,23 @@
 // react
 import { useEffect } from 'react';
 // mock
-// import { products } from '@/mockData/products';
+import { products } from '@/mockData/products';
 // redux
 import { breadcrumbActionCreators } from '@/widgets/breadcrumbs/model/actionCreators/breadcrumbActionCreators';
 import { useDispatch } from 'react-redux';
 // types
-// import type { Product } from '@/entities/product/model/types/product';
+import type { Product } from '@/entities/product/model/types/product';
 // components
-// import { ProductList } from '@/entities/product/ui/ProductList/ProductList';
-import { CategoriesSidebar } from '@/widgets/categoriesSidebar';
+import { ProductList } from '@/entities/product/ui/ProductList/ProductList';
+import { CategoriesSidebar } from '@/widgets/categoriesSidebar/ui/CategoriesSidebar';
 import { MainBanner } from '@/widgets/mainBanner/ui/MainBanner';
 // styles
 import styles from './HomePage.module.scss';
 import clsx from 'clsx';
+import { SectionTitle } from '@/shared/ui/SectionTitle';
 
 export const HomePage = () => {
-//   const topProducts: Product[] = products.slice(0, 5);
+    const topProducts: Product[] = products.slice(0, 5);
 
   const dispatch = useDispatch();
   const { clearBreadcrumbs } = breadcrumbActionCreators;
@@ -25,17 +26,18 @@ export const HomePage = () => {
   }, [dispatch, clearBreadcrumbs]);
 
   return (
-    <section className={clsx(styles.container, styles.homePage)}>
-      <div className={styles.heroSection}>
-        <CategoriesSidebar />
+    <main className={clsx(styles.container, styles.homePage)}>
+      <section className={styles.heroSection}>
+        <div className={styles.categoriesSidebarDesktop}>
+          <CategoriesSidebar />
+        </div>
         <MainBanner />
-      </div>
-      <br />
-      {/* <div>
-        <h2>default</h2>
+      </section>
+      <section className={styles.productSection}>
+        <SectionTitle title="Today’s" />
         <ProductList products={topProducts} variant="default" />
         <br />
-        <h2>justForYou</h2>
+        {/* <h2>justForYou</h2>
         <ProductList
           products={topProducts}
           variant="justForYou"
@@ -55,8 +57,8 @@ export const HomePage = () => {
         />
         <br />
         <h2>explore</h2>
-        <ProductList products={topProducts} variant="explore" />
-      </div> */}
-    </section>
+        <ProductList products={topProducts} variant="explore" /> */}
+      </section>
+    </main>
   );
 };
