@@ -8,10 +8,7 @@ interface CartItemListProps {
   isEmpty?: boolean;
 }
 
-export const CartItemList: FC<CartItemListProps> = ({ children, isEmpty }) => {
-  if (isEmpty) {
-    return <div>Ваша корзина порожня</div>;
-  }
+export const CartItemList: FC<CartItemListProps> = ({ children }) => {
 
   return (
     <table className={styles.cartItemList}>

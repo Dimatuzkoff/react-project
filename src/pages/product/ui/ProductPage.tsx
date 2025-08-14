@@ -7,7 +7,7 @@ import type { Product } from '@/entities/product/model/types/product';
 // constants
 import { getProductBySlugRoute } from '@/shared/libs/constants/routes/routes';
 // helpers
-import { getProductBySlug } from '@/entities/product/libs/helper/getProductBySlug';
+import { getProductBySlug } from '@/entities/product/libs/helpers/getProductBySlug';
 // mock
 import { products } from '@/mockData/products';
 // components
@@ -19,35 +19,35 @@ import styles from './ProductPage.module.scss';
 import clsx from 'clsx';
 
 export const ProductPage = () => {
-    const { slug } = useParams<{ slug: string }>();
+  const { slug } = useParams<{ slug: string }>();
 
-    const product: Product | undefined = slug
-      ? getProductBySlug(products, slug)
-      : undefined;
+  const product: Product | undefined = slug
+    ? getProductBySlug(products, slug)
+    : undefined;
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (product) {
-            dispatch(
-              setBreadcrumbs([
-                {
-                  label: product.title,
-                  path: getProductBySlugRoute(product.slug),
-                },
-              ])
-            );
-        }
-    }, [dispatch, product]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (product) {
+      dispatch(
+        setBreadcrumbs([
+          {
+            label: product.title,
+            path: getProductBySlugRoute(product.slug),
+          },
+        ])
+      );
+    }
+  }, [dispatch, product]);
 
-    return (
-        <div className={clsx(styles.productPage, styles.container)}>
-            {!product ? (
-                <p>Товар не знайдено</p>
-            ) : (
-                <>
-                    <ProductFull product={product} />
-                </>
-            )}
-        </div>
-    );
+  return (
+    <div className={clsx(styles.productPage, styles.container)}>
+      {!product ? (
+        <p>Товар не знайдено</p>
+      ) : (
+        <>
+          <ProductFull product={product} />
+        </>
+      )}
+    </div>
+  );
 };
