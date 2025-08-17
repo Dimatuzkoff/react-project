@@ -17,7 +17,7 @@ export const smartPickReducer: Reducer<SmartPickStateType, SmartPickActions> = (
         case SmartPickActionTypes.ADD_TO_SMART_PICK: {
             return {
                 ...state,
-                smartPick: [...state.smartPick, { ...action.payload }],
+                smartPick: [ ...action.payload ],
             };
         }
         case SmartPickActionTypes.ADD_TO_VIEWED_PRODUCTS: {

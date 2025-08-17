@@ -8,7 +8,7 @@ export type AddToViewedProductsType = {
 
 export type AddToSmartPickType = {
     type: SmartPickActionTypes.ADD_TO_SMART_PICK;
-    payload: Product;
+    payload: Product [];
 };
 
 export type SmartPickActions =
