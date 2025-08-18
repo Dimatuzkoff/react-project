@@ -1,0 +1,1 @@
+export { HomePageMainBanner } from "./HomePageMainBanner";
