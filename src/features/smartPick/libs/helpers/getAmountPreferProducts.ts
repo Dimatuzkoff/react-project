@@ -4,9 +4,7 @@ import { MAX_SMART_PICK_PRODUCTS } from '@/features/smartPick/libs/constants/sma
 
 export const getAmountPreferProducts = (total: number) => {
     const viewedProductsCategories = useSelector(getViewedProductsCategories);
-
     if (!total) return
-
     return Object.keys(viewedProductsCategories).map((category) => ({
         name: category,
         amount: viewedProductsCategories[category],

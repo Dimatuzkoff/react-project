@@ -5,6 +5,5 @@ import { getCartStateItemsIds } from '@/entities/cart/model/selectors/cartSelect
 export const useUserProductsId = () => {
     const wishlistItemsIds = useSelector(getWishlistStateItemsIds);
     const cartItemsIds = useSelector(getCartStateItemsIds);
-
     return [...new Set([...wishlistItemsIds, ...cartItemsIds])];
 }

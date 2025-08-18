@@ -5,7 +5,6 @@ import { SmartPickActionTypes } from '../actionTypes/smartPickActionTypes';
 import {MAX_VIEWED_PRODUCTS } from '@/features/smartPick/libs/constants/smartPick'
 
 const initialState: SmartPickStateType = {
-    smartPick: [],
     viewedProducts: [],
 };
 
@@ -14,12 +13,6 @@ export const smartPickReducer: Reducer<SmartPickStateType, SmartPickActions> = (
     action
 ) => {
     switch (action.type) {
-        case SmartPickActionTypes.ADD_TO_SMART_PICK: {
-            return {
-                ...state,
-                smartPick: [ ...action.payload ],
-            };
-        }
         case SmartPickActionTypes.ADD_TO_VIEWED_PRODUCTS: {
             const exists = state.viewedProducts.some((product) => product.id === action.payload.id);
             if (exists) return state;
