@@ -3,11 +3,11 @@
   width: 200px;
   height: 364px;
   overflow-y: auto;
-  scroll-behavior: smooth; 
+  scroll-behavior: smooth;
 
-  @media (min-width: 768px) {
-    width: 250px;
-  }
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 
   /* Chrome, Safari, Edge */
   &::-webkit-scrollbar {
@@ -23,9 +23,9 @@
     border-radius: 2px;
   }
 
-  /* Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  @media (min-width: 768px) {
+    width: 250px;
+  }
 
   ul {
     list-style: none;
