@@ -4,9 +4,9 @@ import type { FC } from 'react';
 import { type Product } from '@/entities/product/model/types/product';
 // ui
 import { ProductList } from "@/entities/product/ui/ProductList/ProductList";
+import { SectionTitle } from '@/shared/ui/SectionTitle';
 // styles
-// import styles from './WishlistSmartPickList.module.scss';
-
+import styles from './WishlistSmartPickList.module.scss';
 
 interface WishlistSmartPickListProps {
     products: Product[];
@@ -15,12 +15,12 @@ interface WishlistSmartPickListProps {
 export const WishlistSmartPickList: FC<WishlistSmartPickListProps> = ({products}) =>{
     return(
         <>
-            {products.length > 0 && (
-                <>
-                    <h1>SMART PICK</h1>
+            <div className={styles.smartPick}>
+                    <div className={styles.label}>
+                        <SectionTitle title= "Для тебе"/>
+                    </div>
                     <ProductList products={products} isShowWishList={false} />
-                </>
-            )}
+            </div>  
         </>
     )
 }

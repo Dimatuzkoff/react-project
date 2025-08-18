@@ -72,7 +72,7 @@ export const WishlistPage = () => {
   return (
     <section className={styles.wrapperWishlistPage}>
       <WishlistList />
-      <WishlistSmartPickList products={products} />
+      { products.length > 0 && <WishlistSmartPickList products={products} /> }
     </section>
   );
 };
