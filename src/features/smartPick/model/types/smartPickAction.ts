@@ -6,11 +6,5 @@ export type AddToViewedProductsType = {
     payload: Product;
 };
 
-export type AddToSmartPickType = {
-    type: SmartPickActionTypes.ADD_TO_SMART_PICK;
-    payload: Product [];
-};
-
 export type SmartPickActions =
     | AddToViewedProductsType
-    | AddToSmartPickType

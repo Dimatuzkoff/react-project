@@ -10,13 +10,5 @@ export const useAddToProductStory = (product: Product) => {
     const addToViewedProducts = () => {
         dispatch(smartPickActionCreators.addProductToViewedProducts(product));
     };
-  return addToViewedProducts;
-};
-
-export const useAddToSmartPick = (product: Product) => {
-    const dispatch = useDispatch();
-    const addToSmartPick = () => {
-        dispatch(smartPickActionCreators.addProductToSmartPick(product));
-    };
-  return addToSmartPick;
+    return addToViewedProducts;
 };
