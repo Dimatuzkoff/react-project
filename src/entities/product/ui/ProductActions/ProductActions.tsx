@@ -41,15 +41,11 @@ export const ProductActions: FC<ProductActionsProps> = ({
         if (slug) {
             navigate(getProductBySlugRoute(slug));
             addToProductStory();
-            console.log('render handlePreviewClick');
-
         }
     }
     const saveToWishlist = () => {
         addToWishlist();
         addToProductStory();
-console.log('render saveToWishlist');
-
     }
     const removeFromWishlist = useRemoveFromWishlist(product);
     const isInWishlist = useSelector(makeIsProductInWishlist(product.id));
