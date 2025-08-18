@@ -2,7 +2,7 @@ import { combineReducers, createStore } from 'redux';
 import { cartReducer } from '@/entities/cart/model/reducer/cartReducer';
 import { wishlistReducer } from '@/entities/wishlist/model/reducer/wishlistReducer';
 import { breadcrumbReducer } from '@/widgets/breadcrumbs/model/reducer/breadcrumbReducer';
-import { smartPickReducer } from '@/entities/smartPick/model/reducer/smartPickReducer';
+import { smartPickReducer } from '@/features/smartPick/model/reducer/smartPickReducer';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
