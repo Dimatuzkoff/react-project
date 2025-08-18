@@ -15,7 +15,7 @@ import styles from './ProductActions.module.scss';
 import { getProductBySlugRoute } from '@/shared/libs/constants/routes/routes';
 // type
 import type { Product } from '@/entities/product/model/types/product'
-import { getWishlistStateItemsIds } from '@/entities/wishlist/model/selectors/wishlistSelectors'
+import { makeIsProductInWishlist } from '@/entities/wishlist/model/selectors/wishlistSelectors'
 
 interface ProductActionsProps {
     isShowWishlist?: boolean;
@@ -41,16 +41,18 @@ export const ProductActions: FC<ProductActionsProps> = ({
         if (slug) {
             navigate(getProductBySlugRoute(slug));
             addToProductStory();
+            console.log('render handlePreviewClick');
+
         }
     }
     const saveToWishlist = () => {
         addToWishlist();
         addToProductStory();
+console.log('render saveToWishlist');
 
     }
     const removeFromWishlist = useRemoveFromWishlist(product);
-    const wishlistIds: String[] | Number[] = useSelector(getWishlistStateItemsIds);
-    const isInWishlist = wishlistIds.includes(product.id);
+    const isInWishlist = useSelector(makeIsProductInWishlist(product.id));
     
     return (
         <div className={styles.imageActions}>

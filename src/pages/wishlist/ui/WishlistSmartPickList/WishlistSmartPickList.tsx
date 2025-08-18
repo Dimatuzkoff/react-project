@@ -19,7 +19,7 @@ export const WishlistSmartPickList: FC<WishlistSmartPickListProps> = ({products}
                     <div className={styles.label}>
                         <SectionTitle title= "Для тебе"/>
                     </div>
-                    <ProductList products={products} isShowWishList={false} />
+                    <ProductList products={products} isShowWishList/>
             </div>  
         </>
     )
