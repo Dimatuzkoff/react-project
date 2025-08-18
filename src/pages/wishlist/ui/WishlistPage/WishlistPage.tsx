@@ -2,12 +2,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState, useCallback } from 'react';
 // redux
-import { getViewedProductsState } from '@/entities/smartPick/model/selectors/smartPickSelectors';
+import { getViewedProductsState } from '@/features/smartPick/model/selectors/smartPickSelectors';
 import { setBreadcrumbs } from '@/widgets/breadcrumbs/model/actionCreators/breadcrumbActionCreators';
 // hooks
-import { useProductsByCategory } from '@/entities/smartPick/libs/hooks/useProductsByCategory';
+import { useProductsByCategory } from '@/features/smartPick/libs/hooks/useProductsByCategory';
 // helpers
-import { getAmountPreferProducts } from '@/entities/smartPick/libs/helpers/getAmountPreferProducts';
+import { getAmountPreferProducts } from '@/features/smartPick/libs/helpers/getAmountPreferProducts';
 // constants
 import { routeConfig } from '@/app/config/route/routeConfig';
 // type

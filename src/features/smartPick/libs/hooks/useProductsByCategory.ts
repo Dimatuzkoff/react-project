@@ -1,7 +1,7 @@
 // hook
-import { useUserProductsId } from '@/entities/smartPick/libs/hooks/useUserProductsId'
+import { useUserProductsId } from '@/features/smartPick/libs/hooks/useUserProductsId'
 // helpers
-import { randIndex } from '@/entities/smartPick/libs/helpers/randomIndex'
+import { randIndex } from '@/features/smartPick/libs/helpers/randomIndex'
 // data
 import { products } from '@/mockData/products'
 interface ICategory {
