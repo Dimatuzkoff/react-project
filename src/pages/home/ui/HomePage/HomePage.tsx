@@ -10,20 +10,20 @@ import type { Product } from '@/entities/product/model/types/product';
 // components
 import { ProductList } from '@/entities/product/ui/ProductList/ProductList';
 import { CategoriesSidebar } from '@/widgets/categoriesSidebar/ui/CategoriesSidebar';
-import { MainBanner } from '@/widgets/mainBanner/ui/MainBanner';
+import { HomePageMainBanner } from '@/pages/home/ui/HomePageMainBanner';
+import { SectionTitle } from '@/shared/ui/SectionTitle';
 // styles
 import styles from './HomePage.module.scss';
 import clsx from 'clsx';
-import { SectionTitle } from '@/shared/ui/SectionTitle';
 
 export const HomePage = () => {
-    const topProducts: Product[] = products.slice(0, 5);
-
   const dispatch = useDispatch();
-  const { clearBreadcrumbs } = breadcrumbActionCreators;
+
   useEffect(() => {
-    dispatch(clearBreadcrumbs());
-  }, [dispatch, clearBreadcrumbs]);
+    dispatch(breadcrumbActionCreators.clearBreadcrumbs());
+  }, [dispatch]);
+
+  const topProducts: Product[] = products.slice(0, 5);
 
   return (
     <main className={clsx(styles.container, styles.homePage)}>
@@ -31,7 +31,7 @@ export const HomePage = () => {
         <div className={styles.categoriesSidebarDesktop}>
           <CategoriesSidebar />
         </div>
-        <MainBanner />
+        <HomePageMainBanner />
       </section>
       <section className={styles.productSection}>
         <SectionTitle title="Today’s" />

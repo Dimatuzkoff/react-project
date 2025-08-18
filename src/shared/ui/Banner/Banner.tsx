@@ -1,33 +1,44 @@
+// react
 import React, { useState, useEffect } from 'react';
-// data
-import { slides } from '@/mockData/slides';
-// assets
-import arrowRightBanner from '@/shared/libs/assets/svg/icons/arrowRightBanner.svg';
+// types
+import type { IBannerSlide } from '@/shared/model/types/IBannerSlide';
 // styles
-import styles from './MainBanner.module.scss';
+import styles from './Banner.module.scss';
 import clsx from 'clsx';
 
-export const MainBanner: React.FC = () => {
+
+interface BannerProps {
+  slides: IBannerSlide[];
+  interval?: number;
+  arrowIcon?: string;
+  className?: string;
+}
+
+export const Banner: React.FC<BannerProps> = ({
+  slides,
+  interval = 5000,
+  arrowIcon,
+  className,
+}) => {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const id = setInterval(() => {
       setCurrent(prev => (prev + 1 >= slides.length ? 0 : prev + 1));
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
+    }, interval);
+    return () => clearInterval(id);
+  }, [interval, slides.length]);
 
   return (
-    <div className={styles.banner}>
-      <div className={styles.imageWrapper}>
+    <div className={clsx(styles.banner, className)}>
+      <div className={styles.slider}>
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`${styles.slide} ${index === current ? styles.active : ''}`}
+            className={clsx(styles.slide, {
+              [styles.active]: index === current,
+            })}
           >
-            <img src={slide.img} alt={slide.title} />
             <div className={styles.textBlock}>
               <h2 className={styles.title}>
                 {slide.brand && (
@@ -42,15 +53,18 @@ export const MainBanner: React.FC = () => {
               <p>{slide.text}</p>
               <a href={slide.link} className={styles.link}>
                 <span className={styles.textLink}>{slide.linkText}</span>
-                <img src={arrowRightBanner} alt="arrowRight" />
+                {arrowIcon && <img src={arrowIcon} alt="arrowRight" />}
               </a>
+            </div>
+            <div className={styles.imageBlock}>
+              <img src={slide.img} alt={slide.title} />
             </div>
           </div>
         ))}
       </div>
 
       <div className={styles.pagination}>
-        {slides.map((_, index) => (
+        {Array.from({ length: slides.length }, (_, index) => (
           <button
             key={index}
             className={clsx(styles.dot, {
