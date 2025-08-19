@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cartActionCreators } from '@/entities/cart/model/actionCreators/cartActionCreators';
 import { getCartState } from '@/entities/cart/model/selectors/cartSelectors';
 // hooks
-import { useAddToProductStory } from '@/features/smartPick/libs/hooks/smartPickActions'
+import { useAddToProductStory } from '@/features/smartPick/libs/hooks/smartPickActionsHooks'
 // types
 import type { Product } from '@/entities/product/model/types/product';
 // components

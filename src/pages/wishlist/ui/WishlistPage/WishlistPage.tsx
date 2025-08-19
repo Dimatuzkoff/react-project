@@ -7,7 +7,7 @@ import { setBreadcrumbs } from '@/widgets/breadcrumbs/model/actionCreators/bread
 // hooks
 import { useProductsByCategory } from '@/features/smartPick/libs/hooks/useProductsByCategory';
 // helpers
-import { getAmountPreferProducts } from '@/features/smartPick/libs/helpers/getAmountPreferProducts';
+import { useGetAmountPreferProducts } from '@/features/smartPick/libs/hooks/useGetAmountPreferProducts';
 // constants
 import { routeConfig } from '@/app/config/route/routeConfig';
 // type
@@ -24,7 +24,7 @@ export const WishlistPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const viewedProducts: Product[] = useSelector(getViewedProductsState);
-  const amountPreferProducts = getAmountPreferProducts(viewedProducts.length);
+  const amountPreferProducts = useGetAmountPreferProducts(viewedProducts.length);
   const productsByCategoryBase = useProductsByCategory();
   
   const productsByCategory = useCallback(productsByCategoryBase, []);

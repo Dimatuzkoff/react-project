@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 // hooks
 import { useAddToWishlist, useRemoveFromWishlist } from '@/entities/wishlist/libs/hooks/wishlistActions'
-import { useAddToProductStory } from '@/features/smartPick/libs/hooks/smartPickActions'
+import { useAddToProductStory } from '@/features/smartPick/libs/hooks/smartPickActionsHooks'
 // assets
 import WishlistIcon from '@/shared/libs/assets/svg/icons/wishlist.svg?react';
 import DeleteIcon from '@/shared/libs/assets/svg/icons/delete.svg';
