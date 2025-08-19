@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { ProductList } from '@/entities/product/ui/ProductList';
 import { Filters } from '@/features/filters';
-import { Sort } from '@/features/sort';
+import { Sort, type SortOption } from '@/features/sort';
 import { products as mockProducts } from '@/mockData/products';
 import { productActionCreators } from '@/entities/product/model/actionCreators/productActionCreators';
 import type { StateSchema } from '@/app/config/store/stateSchema';
@@ -13,7 +13,6 @@ export const ProductsPage: React.FC = () => {
   const dispatch = useDispatch();
   const { setProducts, setFilters, setSort } = productActionCreators;
 
-  // --- Селекторы
   const allProducts = useSelector(
     (state: StateSchema) => state.products.products
   );
@@ -36,15 +35,15 @@ export const ProductsPage: React.FC = () => {
   }));
 
   // --- Опции сортировки
-  const priceSortOptions = [
-    { label: 'Price Asc', value: 'asc' },
-    { label: 'Price Desc', value: 'desc' },
-  ] as const;
+  const priceSortOptions: readonly SortOption[] = [
+    { label: 'Price Asc', value: 'asc', type: 'price' },
+    { label: 'Price Desc', value: 'desc', type: 'price' },
+  ];
 
-  const alphaSortOptions = [
-    { label: 'A → Z', value: 'asc' },
-    { label: 'Z → A', value: 'desc' },
-  ] as const;
+  const alphaSortOptions: readonly SortOption[] = [
+    { label: 'A → Z', value: 'asc', type: 'alpha' },
+    { label: 'Z → A', value: 'desc', type: 'alpha' },
+  ];
 
   // --- Начальные значения из query
   const initialCategories = searchParams.get('category')?.split(',') || [];
@@ -71,11 +70,9 @@ export const ProductsPage: React.FC = () => {
     if (selectedCategories.length) {
       dispatch(setFilters({ category: selectedCategories }));
     }
-
     if (selectedPriceSort) {
       dispatch(setSort({ type: 'price', value: selectedPriceSort }));
     }
-
     if (selectedAlphaSort) {
       dispatch(setSort({ type: 'alpha', value: selectedAlphaSort }));
     }
@@ -92,24 +89,16 @@ export const ProductsPage: React.FC = () => {
     });
   };
 
-  const handlePriceSortChange = (newSort: 'asc' | 'desc') => {
-    setSelectedPriceSort(newSort);
-    dispatch(setSort({ type: 'price', value: newSort }));
+  const handleSortChange = (type: 'price' | 'alpha', value: 'asc' | 'desc') => {
+    if (type === 'price') setSelectedPriceSort(value);
+    if (type === 'alpha') setSelectedAlphaSort(value);
+    dispatch(setSort({ type, value }));
     setSearchParams({
       category: selectedCategories.join(','),
-      priceSort: newSort,
-      alphaSort: selectedAlphaSort,
+      priceSort: type === 'price' ? value : selectedPriceSort,
+      alphaSort: type === 'alpha' ? value : selectedAlphaSort,
     });
-  };
-
-  const handleAlphaSortChange = (newSort: 'asc' | 'desc') => {
-    setSelectedAlphaSort(newSort);
-    dispatch(setSort({ type: 'alpha', value: newSort }));
-    setSearchParams({
-      category: selectedCategories.join(','),
-      priceSort: selectedPriceSort,
-      alphaSort: newSort,
-    });
+    console.log(`Sorted by ${type}: ${value}`);
   };
 
   return (
@@ -123,16 +112,16 @@ export const ProductsPage: React.FC = () => {
 
       <div className={styles.right}>
         <div className={styles.sorts}>
-          <Sort<'asc' | 'desc'>
+          <Sort
+            title="Price"
             options={priceSortOptions}
-            value={selectedPriceSort}
-            onChange={handlePriceSortChange}
+            onChange={(value, type) => handleSortChange(type, value)}
           />
 
-          <Sort<'asc' | 'desc'>
+          <Sort
+            title="Name"
             options={alphaSortOptions}
-            value={selectedAlphaSort}
-            onChange={handleAlphaSortChange}
+            onChange={(value, type) => handleSortChange(type, value)}
           />
         </div>
 

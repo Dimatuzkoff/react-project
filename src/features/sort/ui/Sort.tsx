@@ -8,18 +8,20 @@ export interface SortOption {
 }
 
 interface SortProps {
-  options: SortOption[];
-  onChange: (option: SortOption) => void;
+  title?: string;
+  options: readonly SortOption[];
+  onChange: (value: 'asc' | 'desc', type: 'price' | 'alpha') => void;
 }
 
-export const Sort: FC<SortProps> = ({ options, onChange }) => {
+
+export const Sort: FC<SortProps> = ({ title, options, onChange }) => {
   return (
     <label>
-      Sort:
+      {title && <span>{title}: </span>}
       <select
         onChange={e => {
           const selected = options.find(opt => opt.label === e.target.value);
-          if (selected) onChange(selected);
+          if (selected) onChange(selected.value, selected.type);
         }}
       >
         <option value="">Select</option>
