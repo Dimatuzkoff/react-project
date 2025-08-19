@@ -1,4 +1,4 @@
-export const randIndex = (total: number, count: number) => {
+export const smartPickRandomIndex = (total: number, count: number) => {
     if (count > total) throw new Error("count не может быть больше total");
     const nums = Array.from({ length: total }, (_, i) => i + 1);
     const result = [];
