@@ -14,7 +14,7 @@ import styles from './HomePage.module.scss';
 
 export const HomePage = () => {
     
-    const topProducts: Product[] = products.slice(0, 100);
+    const topProducts: Product[] = products.slice(0, 5);
 
     const dispatch = useDispatch();
     const { clearBreadcrumbs } = breadcrumbActionCreators;
