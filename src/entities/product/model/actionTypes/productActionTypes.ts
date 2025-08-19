@@ -1,0 +1,6 @@
+export enum ProductActionTypes {
+  SET_PRODUCTS = 'SET_PRODUCTS',
+  SET_SORT = 'SET_SORT',
+  SET_FILTERS = 'SET_FILTERS',
+  CLEAR_FILTERS = 'CLEAR_FILTERS',
+}

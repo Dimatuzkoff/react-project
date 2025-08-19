@@ -1,13 +1,16 @@
+import { products } from '@/mockData/products';
+
 export const routeConfig = {
-    home: '/',
-    contact: '/contact',
-    about: '/about',
-    auth: '/auth',
-    wishlist: '/wishlist',
-    cart: '/cart',
-    checkout: '/checkout',
-    account: '/account',
-    // productById: '/product/:id',
-    productBySlug: '/product/:slug',
-    notFound: '*',
+  home: '/',
+  contact: '/contact',
+  about: '/about',
+  auth: '/auth',
+  wishlist: '/wishlist',
+  cart: '/cart',
+  checkout: '/checkout',
+  account: '/account',
+  // productById: '/product/:id',
+  productBySlug: '/product/:slug',
+  products: '/products',
+  notFound: '*',
 };

@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%
+}
+
+.sorts {
+  display: flex;
+  gap: 20px;
+}
