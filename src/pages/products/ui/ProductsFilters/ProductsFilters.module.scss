@@ -1,0 +1,12 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 240px;
+}

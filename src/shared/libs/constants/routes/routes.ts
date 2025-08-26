@@ -22,4 +22,6 @@ export const getAccountRoute = () => routeConfig.account;
 export const getProductBySlugRoute = (slug: string = ':slug') =>
   routeConfig.productBySlug.replace(':slug', slug);
 
+export const getProducts = () => routeConfig.products;
+
 export const getNotFoundRoute = () => routeConfig.notFound;

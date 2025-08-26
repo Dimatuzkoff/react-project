@@ -3,6 +3,7 @@ import { cartReducer } from '@/entities/cart/model/reducer/cartReducer';
 import { wishlistReducer } from '@/entities/wishlist/model/reducer/wishlistReducer';
 import { breadcrumbReducer } from '@/widgets/breadcrumbs/model/reducer/breadcrumbReducer';
 import { smartPickReducer } from '@/features/smartPick/model/reducer/smartPickReducer';
+import { productsPageReducer } from '@/pages/products/model/reducer/productsPageReducer';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -17,7 +18,8 @@ export const createReduxStore = () => {
         cart: cartReducer,
         wishlist: wishlistReducer,
         breadcrumbs: breadcrumbReducer,
-        smartPick: smartPickReducer
+        smartPick: smartPickReducer,
+        products: productsPageReducer
     };
 
     const rootReducer  = combineReducers(reducers);

@@ -1,0 +1,43 @@
+@use '@/app/styles/variables/global.scss' as *;
+
+.sortSelect{
+  position: relative;
+}
+
+.select {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition:
+    border 0.2s,
+    box-shadow 0.2s;
+
+  &:hover {
+    border-color: #333;
+  }
+
+  &:focus {
+    border-color: #84caff;
+    outline: 4px solid rgba(46, 144, 250, 0.2392156863);
+  }
+}
+
+.arrow {
+  pointer-events: none;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #333;
+}
