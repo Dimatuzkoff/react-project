@@ -1,5 +1,5 @@
 // react
-import { useState, type FC } from 'react';
+import { type FC } from 'react';
 // redux
 import { useSelector } from 'react-redux';
 import { getFilteredProducts } from '../../model/selectors/productsPageSelectors';
@@ -14,34 +14,21 @@ import { Sidebar } from '@/shared/ui/Sidebar';
 // styles
 import styles from './ProductsPage.module.scss';
 import clsx from 'clsx';
-import type { Product } from '@/entities/product/model/types/product';
 
 export const ProductsPage: FC = () => {
   const products = allProducts.slice(0, 30);
-    const [filteredProducts, setFilteredProducts] =
-      useState<Product[]>(allProducts);
 
-  // const filteredProducts = useSelector((state: StateSchema) =>
-  //   getFilteredProducts(state, products)
-  // );
+  const filteredProducts = useSelector((state: StateSchema) =>
+    getFilteredProducts(state, products)
+  );
 
   return (
     <div className={clsx(styles.productsPage, styles.container)}>
       <div className={styles.filtersSidebarDesktop}>
         <Sidebar>
           <ProductsFilters />
-          {/* <ProductsFilters2
-            products={products}
-            onFilter={setFilteredProducts}
-          /> */}
         </Sidebar>
       </div>
-
-      {/* <div className={styles.products}>
-        {filteredProducts.map(p => (
-          <ProductCard key={p.id} product={p} />
-        ))}
-      </div> */}
 
       <div className={styles.products}>
         {filteredProducts.length ? (
