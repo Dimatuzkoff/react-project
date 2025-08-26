@@ -9,5 +9,6 @@ export const routeConfig = {
     account: '/account',
     // productById: '/product/:id',
     productBySlug: '/product/:slug',
+    products: '/products',
     notFound: '*',
 };

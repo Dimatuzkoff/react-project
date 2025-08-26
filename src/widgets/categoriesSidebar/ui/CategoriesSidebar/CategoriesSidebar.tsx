@@ -1,7 +1,7 @@
 // react
 import React from 'react';
 // helpers
-import { getUniqueCategories } from '@/entities/category/libs/helpers/getUniqueCategories';
+import { getUniqueCategories } from '@/entities/product/libs/helpers/getUniqueCategories';
 // components
 import { Sidebar } from '@/shared/ui/Sidebar';
 // styles
