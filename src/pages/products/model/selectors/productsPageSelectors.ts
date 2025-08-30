@@ -16,47 +16,56 @@ export const getFilteredProducts = (
     selectedBrands,
   } = state.products;
 
-  let filtered = products.filter(p => {
-    // поиск по тексту
-    if (query && !p.title.toLowerCase().includes(query.toLowerCase()))
-      return false;
+  let filtered = products;
 
-    // фильтр по цене
-    if (priceFilter) {
-      if (priceFilter.min !== null && p.price < priceFilter.min) return false;
-      if (priceFilter.max !== null && p.price > priceFilter.max) return false;
-    }
+  // поиск по тексту
+  if (query) {
+    filtered = filtered.filter(p =>
+      p.title.toLowerCase().includes(query.toLowerCase())
+    );
+  }
 
-    // фильтр по категориям
-    if (
-      selectedCategories.length &&
-      !selectedCategories
-        .map(c => c.toLowerCase().trim())
-        .includes(p.category?.toLowerCase().trim() || '')
-    )
-      return false;
+  // фильтр по цене
+  if (priceFilter?.min != null) {
+    filtered = filtered.filter(p => p.price >= priceFilter.min!);
+  }
+  if (priceFilter?.max != null) {
+    filtered = filtered.filter(p => p.price <= priceFilter.max!);
+  }
 
-    // фильтр по брендам
-    if (
-      selectedBrands.length &&
-      !selectedBrands
-        .map(b => b.toLowerCase().trim())
-        .includes(p.brand?.toLowerCase().trim() || '')
-    )
-      return false;
+  // фильтр по категориям
+  if (selectedCategories.length) {
+    const catSet = new Set(selectedCategories.map(c => c.toLowerCase().trim()));
+    filtered = filtered.filter(
+      p => p.category && catSet.has(p.category.toLowerCase().trim())
+    );
+  }
 
-    return true;
-  });
+  // фильтр по брендам
+  if (selectedBrands.length) {
+    const brandSet = new Set(selectedBrands.map(b => b.toLowerCase().trim()));
+    filtered = filtered.filter(
+      p => p.brand && brandSet.has(p.brand.toLowerCase().trim())
+    );
+  }
 
   // сортировка
-  if (priceSortDirection === 'asc')
-    filtered = [...filtered].sort((a, b) => a.price - b.price);
-  if (priceSortDirection === 'desc')
-    filtered = [...filtered].sort((a, b) => b.price - a.price);
-  if (nameSortDirection === 'asc')
-    filtered = [...filtered].sort((a, b) => a.title.localeCompare(b.title));
-  if (nameSortDirection === 'desc')
-    filtered = [...filtered].sort((a, b) => b.title.localeCompare(a.title));
+  if (priceSortDirection) {
+    filtered = filtered
+      .slice()
+      .sort((a, b) =>
+        priceSortDirection === 'asc' ? a.price - b.price : b.price - a.price
+      );
+  }
+  if (nameSortDirection) {
+    filtered = filtered
+      .slice()
+      .sort((a, b) =>
+        nameSortDirection === 'asc'
+          ? a.title.localeCompare(b.title)
+          : b.title.localeCompare(a.title)
+      );
+  }
 
   return filtered;
 };

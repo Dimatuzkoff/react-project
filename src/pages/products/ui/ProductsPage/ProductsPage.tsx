@@ -8,7 +8,6 @@ import type { StateSchema } from '@/app/config/store/stateSchema';
 import { products as allProducts } from '@/mockData/products';
 // components
 import { ProductsFilters } from '../ProductsFilters/ProductsFilters';
-// import { ProductsFilters2 } from '../ProductsFilters/ProductsFilters2';
 import { ProductCard } from '@/entities/product/ui/ProductCard';
 import { Sidebar } from '@/shared/ui/Sidebar';
 // styles
@@ -16,7 +15,7 @@ import styles from './ProductsPage.module.scss';
 import clsx from 'clsx';
 
 export const ProductsPage: FC = () => {
-  const products = allProducts.slice(0, 30);
+  const products = allProducts.slice(0, 40);
 
   const filteredProducts = useSelector((state: StateSchema) =>
     getFilteredProducts(state, products)
