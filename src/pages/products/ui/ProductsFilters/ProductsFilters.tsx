@@ -1,5 +1,7 @@
+// react
 import { useEffect, useMemo, type FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
+// redux
 import { useSelector, useDispatch } from 'react-redux';
 import {
   toggleCategory,
@@ -8,24 +10,38 @@ import {
   resetFilters,
   setCategories,
   setBrands,
+  setPriceFilter,
+  setPriceSortDirection,
+  setNameSortDirection,
 } from '../../model/actionCreators/productsPageActionCreators';
 import { getProductsPageState } from '../../model/selectors/productsPageSelectors';
+// helpers
 import { getUniqueCategories } from '@/entities/product/libs/helpers/getUniqueCategories';
 import { getUniqueBrands } from '@/entities/product/libs/helpers/getUniqueBrands';
-import { ProductsFilterCheckbox } from '../ProductsFilterCheckbox/ProductsFilterCheckbox';
+// components
 import { ProductsSortSelect } from '../ProductsSortSelect';
 import { ProductsPriceFilter } from '../ProductsPriceFilter';
+import { ProductsFilterCheckboxList } from '../ProductsFilterCheckboxList';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/input';
+// assets
 import Search from '@/shared/libs/assets/svg/icons/search.svg';
+// styles
 import styles from './ProductsFilters.module.scss';
 
 export const ProductsFilters: FC = () => {
   const categories = useMemo(() => getUniqueCategories(), []);
   const brands = useMemo(() => getUniqueBrands(), []);
   const dispatch = useDispatch();
-  const { selectedCategories, selectedBrands, query } =
-    useSelector(getProductsPageState);
+
+  const {
+    selectedCategories,
+    selectedBrands,
+    query,
+    priceFilter,
+    priceSortDirection,
+    nameSortDirection,
+  } = useSelector(getProductsPageState);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -34,21 +50,51 @@ export const ProductsFilters: FC = () => {
     const urlCategories = searchParams.get('categories')?.split(',') ?? [];
     const urlBrands = searchParams.get('brands')?.split(',') ?? [];
     const urlQuery = searchParams.get('q') ?? '';
+    const urlPriceMin = searchParams.get('priceMin');
+    const urlPriceMax = searchParams.get('priceMax');
+    const urlPriceSort = searchParams.get('priceSort') as 'asc' | 'desc' | null;
+    const urlNameSort = searchParams.get('nameSort') as 'asc' | 'desc' | null;
 
     if (urlCategories.length) dispatch(setCategories(urlCategories));
     if (urlBrands.length) dispatch(setBrands(urlBrands));
     if (urlQuery) dispatch(setQuery(urlQuery));
-  }, [dispatch]);
+    if (urlPriceMin || urlPriceMax) {
+      dispatch(
+        setPriceFilter({
+          min: urlPriceMin ? Number(urlPriceMin) : null,
+          max: urlPriceMax ? Number(urlPriceMax) : null,
+        })
+      );
+    }
+    if (urlPriceSort) dispatch(setPriceSortDirection(urlPriceSort));
+    if (urlNameSort) dispatch(setNameSortDirection(urlNameSort));
+  }, []);
 
   // --- синхронизация URL при изменении фильтров ---
   useEffect(() => {
     const params = new URLSearchParams();
+
     if (selectedCategories.length)
       params.set('categories', selectedCategories.join(','));
     if (selectedBrands.length) params.set('brands', selectedBrands.join(','));
     if (query) params.set('q', query);
+    if (priceFilter?.min != null)
+      params.set('priceMin', String(priceFilter.min));
+    if (priceFilter?.max != null)
+      params.set('priceMax', String(priceFilter.max));
+    if (priceSortDirection) params.set('priceSort', priceSortDirection);
+    if (nameSortDirection) params.set('nameSort', nameSortDirection);
+
     setSearchParams(params);
-  }, [selectedCategories, selectedBrands, query, setSearchParams]);
+  }, [
+    selectedCategories,
+    selectedBrands,
+    query,
+    priceFilter,
+    priceSortDirection,
+    nameSortDirection,
+    setSearchParams,
+  ]);
 
   const reset = () => {
     dispatch(resetFilters());
@@ -90,26 +136,24 @@ export const ProductsFilters: FC = () => {
 
       <div className={styles.filterGroup}>
         <h4>Категорії</h4>
-        {categories.map(cat => (
-          <ProductsFilterCheckbox
-            key={cat.id}
-            label={cat.name}
-            checked={selectedCategories.includes(cat.name)}
-            onChange={() => categoryChange(cat.name)}
-          />
-        ))}
+        <ProductsFilterCheckboxList
+          items={categories.map(cat => ({
+            label: cat.name,
+            checked: selectedCategories.includes(cat.name),
+            onChange: () => categoryChange(cat.name),
+          }))}
+        />
       </div>
 
       <div className={styles.filterGroup}>
         <h4>Бренди</h4>
-        {brands.map(brand => (
-          <ProductsFilterCheckbox
-            key={brand}
-            label={brand}
-            checked={selectedBrands.includes(brand)}
-            onChange={() => brandChange(brand)}
-          />
-        ))}
+        <ProductsFilterCheckboxList
+          items={brands.map(brand => ({
+            label: brand,
+            checked: selectedBrands.includes(brand),
+            onChange: () => brandChange(brand),
+          }))}
+        />
       </div>
     </div>
   );

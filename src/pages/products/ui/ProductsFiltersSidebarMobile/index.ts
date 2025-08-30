@@ -1,0 +1,1 @@
+export { ProductsFiltersSidebarMobile } from './ProductsFiltersSidebarMobile';

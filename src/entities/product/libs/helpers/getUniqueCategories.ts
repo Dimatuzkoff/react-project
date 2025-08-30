@@ -6,6 +6,6 @@ export const getUniqueCategories = () => {
   return uniqueNames.map(name => ({
     id: name,
     name: name.charAt(0).toUpperCase() + name.slice(1),
-    href: `/category/${name}`, 
+    href: `products?categories=${name}`,
   }));
 };

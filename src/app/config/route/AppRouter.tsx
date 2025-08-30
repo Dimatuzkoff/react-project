@@ -27,7 +27,7 @@ import {
     getAccountRoute,
     // getProductByIdRoute,
     getProductBySlugRoute,
-    getProducts,
+    getProductsRoute,
     getNotFoundRoute,
 } from '@/shared/libs/constants/routes/routes';
 
@@ -48,7 +48,7 @@ export const AppRouter: FC<AppRouterProps> = ({}) => {
                 <Route path={getAccountRoute()} element={<AccountPage />} />
                 {/* <Route path={getProductByIdRoute()} element={<ProductPage />} /> */}
                 <Route path={getProductBySlugRoute()} element={<ProductPage />} />
-                <Route path={getProducts()} element={<ProductsPage />} />
+                <Route path={getProductsRoute()} element={<ProductsPage />} />
                 <Route path={getNotFoundRoute()} element={<NotFound />} />
             </Route>
         </Routes>
