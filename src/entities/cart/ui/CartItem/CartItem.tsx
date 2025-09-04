@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 // types
 import type { CartProduct } from '../../model/types/cartProduct';
+import type { Promocode } from '@/entities/cart/model/types/promocodeType'
 // utils
 import { cartFormatPrice } from '../../libs/utils/cartFormatPrice';
 // styles
@@ -13,7 +14,8 @@ import { CartQuantity } from '../CartQuantity';
 import { getProductBySlugRoute } from '@/shared/libs/constants/routes/routes';
 
 interface CartItemProps {
-  item: CartProduct;
+  item: CartProduct,
+  promocode?: Promocode | string,
   onQuantityChange?: (
     id: CartProduct['id'],
     qty: CartProduct['quantity']
@@ -23,6 +25,7 @@ interface CartItemProps {
 
 export const CartItem: FC<CartItemProps> = ({
   item,
+  promocode,
   onQuantityChange,
   onRemove,
 }) => {
@@ -39,6 +42,11 @@ export const CartItem: FC<CartItemProps> = ({
   const remove = () => {
     onRemove?.(item.id);
   };
+if (promocode) console.log('promocode', promocode);
+const isPromocode = (promocode?.type === 'ALL' ) || promocode?.categories.includes(item.category) || false
+console.log('isPromocode', isPromocode);
+console.log('item', item);
+
 
   return (
     <tr className={styles.cartItem}>
@@ -62,7 +70,15 @@ export const CartItem: FC<CartItemProps> = ({
           {item.title}
         </Link>
       </td>
-      <td className={styles.price}>${priceFormatted}</td>
+      <td>
+           {isPromocode && <div className={styles.priceBlock}>
+                    <span className={styles.currentPrice}>${price - price*(promocode.discount/100)}</span>
+                    
+                        <span className={styles.oldPrice}>${price}</span>
+                    
+            </div>}
+      </td>
+      {!isPromocode && <td className={styles.price}>${priceFormatted}</td>}
       <td className={styles.quantity}>
         <CartQuantity
           quantity={item.quantity}
