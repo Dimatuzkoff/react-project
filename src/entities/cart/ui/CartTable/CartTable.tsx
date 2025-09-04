@@ -1,5 +1,6 @@
 // react
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { cartActionCreators } from '../../model/actionCreators/cartActionCreators';
@@ -15,48 +16,51 @@ import { Button } from '@/shared/ui/Button';
 import EmptyCart from '@/shared/libs/assets/svg/authImg.svg';
 // types
 import type { CartProduct } from '../../model/types/cartProduct';
+import type { Promocode } from '@/entities/cart/model/types/promocodeType'
+
 // helpers
 import { cartSubtotal } from '../../libs/helpers/cartSubtotal';
+import { getPromocodeByCode } from '@/entities/cart/libs/helpers/getPromocodeByCode'
 // constants 
 import { getHomeRoute } from '@/shared/libs/constants/routes/routes';
 // styles
 import styles from './CartTable.module.scss';
 
 export const CartTable = () => {
-  const dispatch = useDispatch();
-
-  const navigate = useNavigate();
-
-  const cart = useSelector(getCartState);
-
-  const items = cart.cart;
-
-  const subtotal = cartSubtotal(items);
-
-  const shipping = 0;
-
-  const total = subtotal + shipping;
-
-  const changeQuantity = (
-    id: CartProduct['id'],
-    qty: CartProduct['quantity']
-  ) => {
+    const [promocode, setPromocode] = useState<Promocode | string >();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const cart = useSelector(getCartState);
+    const items = cart.cart;
+    const subtotal = cartSubtotal(items);
+    const shipping = 0;
+    const total = subtotal + shipping;
+    const changeQuantity = (
+        id: CartProduct['id'],
+        qty: CartProduct['quantity']
+    ) => {
     dispatch(cartActionCreators.updateQuantity(id, qty));
   };
 
-  const removeItem = (id: CartProduct['id']) => {
-    dispatch(cartActionCreators.deleteProductFromCart(id));
-  };
+    const removeItem = (id: CartProduct['id']) => {
+        dispatch(cartActionCreators.deleteProductFromCart(id));
+    };
 
-  const applyCoupon = (code: string) => {
-    console.log('Coupon applied:', code);
-  };
+    const applyCoupon = (code: string) => {
+        if (!code.trim()) return
+        const currentCode = getPromocodeByCode(code)
+        
+        alert(JSON.stringify(currentCode));
+        if (currentCode.id)  {
+            setPromocode(currentCode)
+        }
+    };
 
-  const goHome = () => {
-    navigate(getHomeRoute());
-  };
+    const goHome = () => {
+        navigate(getHomeRoute());
+    };
 
-  return (
+    return (
     <div className={styles.cartTable}>
       {items.length === 0 ? (
         <div className={styles.emptyWrapper}>
@@ -73,6 +77,7 @@ export const CartTable = () => {
               {items.map(item => (
                 <CartItem
                   key={item.id}
+                  promocode = {promocode}
                   item={item}
                   onQuantityChange={changeQuantity}
                   onRemove={removeItem}

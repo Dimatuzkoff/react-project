@@ -23,7 +23,7 @@ export const HomePage = () => {
     dispatch(breadcrumbActionCreators.clearBreadcrumbs());
   }, [dispatch]);
 
-  const topProducts: Product[] = products.slice(0, 5);
+  const topProducts: Product[] = products
 
   return (
     <main className={clsx(styles.container, styles.homePage)}>
