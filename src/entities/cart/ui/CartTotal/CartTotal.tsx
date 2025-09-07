@@ -1,5 +1,7 @@
 // react
 import type { FC } from 'react';
+// hooks
+import { useRemovePromocode } from '@/entities/cart/libs/hooks/promocodeActionsHooks'
 // components
 import { Button } from '@/shared/ui/Button';
 // styles
@@ -9,15 +11,15 @@ interface CartTotalProps {
     subtotal: number;
     shipping: number;
     total: number;
-    onCheckout?: () => void;
 }
 
 export const CartTotal: FC<CartTotalProps> = ({
     subtotal = 0,
     shipping = 0,
-    total = 0,
-    onCheckout,
+    total = 0
 }) => {
+    const removePromocode = useRemovePromocode()
+    const onCheckout = () => removePromocode()
     return (
         <div className={styles.cartTotal}>
             <h3>Cart Total</h3>
@@ -36,10 +38,10 @@ export const CartTotal: FC<CartTotalProps> = ({
                 <span>${total.toFixed(2)}</span>
             </div>
             <Button
-                children="Proceed to checkout"
                 uiColor="danger"
                 onClick={onCheckout}
-            />
+            > Видалити промокод
+                </Button>
         </div>
     );
 };

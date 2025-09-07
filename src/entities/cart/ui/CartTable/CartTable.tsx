@@ -1,6 +1,5 @@
 // react
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react'
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { cartActionCreators } from '../../model/actionCreators/cartActionCreators';
@@ -16,8 +15,9 @@ import { Button } from '@/shared/ui/Button';
 import EmptyCart from '@/shared/libs/assets/svg/authImg.svg';
 // types
 import type { CartProduct } from '../../model/types/cartProduct';
-import type { Promocode } from '@/entities/cart/model/types/promocodeType'
-
+import { getPromocodeState } from '@/entities/cart/model/selectors/cartSelectors'
+// hooks
+import { useAddPromocode } from '@/entities/cart/libs/hooks/promocodeActionsHooks'
 // helpers
 import { cartSubtotal } from '../../libs/helpers/cartSubtotal';
 import { getPromocodeByCode } from '@/entities/cart/libs/helpers/getPromocodeByCode'
@@ -27,7 +27,9 @@ import { getHomeRoute } from '@/shared/libs/constants/routes/routes';
 import styles from './CartTable.module.scss';
 
 export const CartTable = () => {
-    const [promocode, setPromocode] = useState<Promocode | string >();
+    const promocodeState = useSelector(getPromocodeState);
+    
+    const addPromocode = useAddPromocode()
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const cart = useSelector(getCartState);
@@ -48,11 +50,14 @@ export const CartTable = () => {
 
     const applyCoupon = (code: string) => {
         if (!code.trim()) return
+        if (promocodeState) {
+            alert('Промокод вже застосованно')
+            return
+        } 
         const currentCode = getPromocodeByCode(code)
-        
         alert(JSON.stringify(currentCode));
-        if (currentCode.id)  {
-            setPromocode(currentCode)
+        if (currentCode && typeof currentCode === "object") {
+            addPromocode(currentCode)
         }
     };
 
@@ -77,7 +82,6 @@ export const CartTable = () => {
               {items.map(item => (
                 <CartItem
                   key={item.id}
-                  promocode = {promocode}
                   item={item}
                   onQuantityChange={changeQuantity}
                   onRemove={removeItem}
