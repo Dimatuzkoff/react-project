@@ -4,6 +4,8 @@ import type {
     DeleteProductFromCartByIdType,
     ClearCartType,
     UpdateQuantityType,
+    AddPromocodeType,
+    RemovePromocodeType
 } from '../types/cartAction';
 import type { CartProduct } from '../types/cartProduct';
 
@@ -31,6 +33,21 @@ const clearCart = (): ClearCartType => {
     };
 };
 
+const addPromocode = (
+    payload: AddPromocodeType['payload']
+): AddPromocodeType => {
+    return {
+        type: CartActionTypes.ADD_PROMOCODE,
+        payload: payload,
+    }
+}
+
+const deletePromocode = (): RemovePromocodeType => {
+    return {
+        type: CartActionTypes.REMOVE_PROMOCODE
+    }
+}
+
 const updateQuantity = (
     id: CartProduct['id'],
     quantity: CartProduct['quantity']
@@ -44,4 +61,6 @@ export const cartActionCreators = {
     deleteProductFromCart,
     clearCart,
     updateQuantity,
+    addPromocode,
+    deletePromocode
 };

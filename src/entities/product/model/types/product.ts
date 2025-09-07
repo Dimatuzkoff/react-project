@@ -5,6 +5,7 @@ export interface Product {
   category: string;
   price: number;
   discountPercentage: number;
+  promocodeDiscount?: number;
   rating: number;
   stock: number;
   tags: string[];

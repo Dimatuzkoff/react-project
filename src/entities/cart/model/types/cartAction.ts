@@ -1,5 +1,7 @@
 import { CartActionTypes } from '../actionTypes/cartActionTypes';
 import { type CartProduct } from '@/entities/cart/model/types/cartProduct';
+import { type Promocode} from './promocodeType'
+
 
 export type AddProductToCartType = {
     type: CartActionTypes.ADD_TO_CART;
@@ -23,8 +25,19 @@ export type UpdateQuantityType = {
     };
 };
 
+export type AddPromocodeType = {
+    type: CartActionTypes.ADD_PROMOCODE;
+    payload: Promocode;
+}
+
+export type RemovePromocodeType = {
+    type: CartActionTypes.REMOVE_PROMOCODE;
+}
+
 export type CartActions =
     | AddProductToCartType
     | DeleteProductFromCartByIdType
     | ClearCartType
-    | UpdateQuantityType;
+    | UpdateQuantityType
+    | AddPromocodeType
+    | RemovePromocodeType;

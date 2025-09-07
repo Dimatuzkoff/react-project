@@ -9,3 +9,5 @@ export const getCartItemCount = (state: StateSchema) => {
 export const getCartStateItemsIds = (state: StateSchema) => {
     return state.cart.cart.map((item) => item.id) || [];
 }
+
+export const getPromocodeState = (state: StateSchema) => state.cart.promocode;
