@@ -3,8 +3,6 @@ import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 // types
 import type { CartProduct } from '../../model/types/cartProduct';
-// utils
-import { cartFormatPrice } from '../../libs/utils/cartFormatPrice';
 // styles
 import styles from './CartItem.module.scss';
 // component
@@ -28,12 +26,6 @@ export const CartItem: FC<CartItemProps> = ({
     onRemove,
 }) => {
   
-    const price = typeof item.price === 'number' ? item.price : 0;
-
-    const priceFormatted = cartFormatPrice(price);
-
-    const subtotal = cartFormatPrice(price * item.quantity);
-
     const quantityChange = (qty: CartProduct['quantity']) => {
         onQuantityChange?.(item.id, qty);
     }
@@ -60,7 +52,9 @@ export const CartItem: FC<CartItemProps> = ({
             <td className={styles.quantity}>
                 <CartQuantity quantity={item.quantity} stock={item.stock} onChange={quantityChange} />
             </td>
-            <td className={styles.subtotal}>${subtotal}</td>
+            <td className={styles.subtotal}>
+                 <CartItemPrice isSubtotal item={item} />
+            </td>
         </tr>
     );
 };

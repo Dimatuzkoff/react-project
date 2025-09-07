@@ -7,6 +7,7 @@
 }
 .priceBlock {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 8px;
@@ -16,5 +17,10 @@
     .oldPrice {
         color: $gray-400;
         text-decoration: line-through;
+    }
+}
+@media screen and (min-width: 600px) {
+    .priceBlock {
+        flex-direction: row;
     }
 }
