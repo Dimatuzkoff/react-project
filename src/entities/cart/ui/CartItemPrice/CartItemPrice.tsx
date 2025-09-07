@@ -8,19 +8,28 @@ import styles from './CartItemPrice.module.scss'
 import { cartFormatPrice } from '@/entities/cart/libs/utils/cartFormatPrice';
 
 interface CartItemPriceProps {
-  item: CartProduct
+  item: CartProduct,
+  isSubtotal?: boolean,
 }
-export const CartItemPrice: FC<CartItemPriceProps> = ({item}) => {
+export const CartItemPrice: FC<CartItemPriceProps> = ({item, isSubtotal = false}) => {
 
     const discont = item.promocodeDiscount ? item.price*(item.promocodeDiscount/100) : null
     const priceFormatted = discont ?  cartFormatPrice(item.price - discont) : cartFormatPrice(item.price)
+    const subtotalPriceFormatted = discont ? cartFormatPrice((item.price - discont)*item.quantity) : cartFormatPrice(item.price*item.quantity)
     return(
         <>
-            { discont && <span className={styles.priceBlock}>
+            { !isSubtotal && discont && <span className={styles.priceBlock}>
                 <span className={styles.currentPrice}> { priceFormatted } </span>
                 <span className={styles.oldPrice}>{item.price}</span> 
             </span> }
-            { !discont && <span className={styles.price}> { priceFormatted } </span>
+            { !isSubtotal && !discont && <span className={styles.price}> { priceFormatted } </span>
+
+            }
+             { isSubtotal && discont && <span className={styles.priceBlock}>
+                <span className={styles.currentPrice}> { subtotalPriceFormatted } </span>
+                <span className={styles.oldPrice}>{item.price*item.quantity}</span> 
+            </span> }
+            { isSubtotal && !discont && <span className={styles.price}> { subtotalPriceFormatted } </span>
 
             }
         </>

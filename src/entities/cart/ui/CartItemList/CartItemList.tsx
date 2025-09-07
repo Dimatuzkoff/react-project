@@ -14,10 +14,10 @@ export const CartItemList: FC<CartItemListProps> = ({ children }) => {
     <table className={styles.cartItemList}>
       <thead>
         <tr className={styles.header}>
-          <th className={styles.product}>Product</th>
-          <th className={styles.price}>Price</th>
-          <th className={styles.quantity}>Quantity</th>
-          <th className={styles.subtotal}>SubTotal</th>
+          <th className={styles.product}>Товар</th>
+          <th className={styles.price}>Ціна</th>
+          <th className={styles.quantity}>Кількість</th>
+          <th className={styles.subtotal}>Підсумок</th>
         </tr>
       </thead>
       <tbody>{children}</tbody>

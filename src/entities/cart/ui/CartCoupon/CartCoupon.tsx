@@ -31,7 +31,7 @@ export const CartCoupon: FC<CartCouponProps> = ({
         <div className={styles.cartCoupon}>
             <div className={styles.inputWrapper}>
                 <Input
-                    placeholder="Coupon Code"
+                    placeholder="Промокод"
                     type="text"
                     uiType="outline"
                     value={couponCode}
@@ -43,7 +43,7 @@ export const CartCoupon: FC<CartCouponProps> = ({
                 uiColor="danger"
                 disabled={disabled}
             >
-                Apply Coupon
+                Застосувати промокод
             </Button>
         </div>
     );

@@ -20,6 +20,7 @@ import { getPromocodeState } from '@/entities/cart/model/selectors/cartSelectors
 import { useAddPromocode } from '@/entities/cart/libs/hooks/promocodeActionsHooks'
 // helpers
 import { cartSubtotal } from '../../libs/helpers/cartSubtotal';
+import { cartDiscount } from '@/entities/cart/libs/helpers/cartDiscount'
 import { getPromocodeByCode } from '@/entities/cart/libs/helpers/getPromocodeByCode'
 // constants 
 import { getHomeRoute } from '@/shared/libs/constants/routes/routes';
@@ -27,16 +28,17 @@ import { getHomeRoute } from '@/shared/libs/constants/routes/routes';
 import styles from './CartTable.module.scss';
 
 export const CartTable = () => {
+
     const promocodeState = useSelector(getPromocodeState);
-    
     const addPromocode = useAddPromocode()
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const cart = useSelector(getCartState);
     const items = cart.cart;
     const subtotal = cartSubtotal(items);
+    const discount = cartDiscount(items);
     const shipping = 0;
-    const total = subtotal + shipping;
+    const total = subtotal - discount + shipping;
     const changeQuantity = (
         id: CartProduct['id'],
         qty: CartProduct['quantity']
@@ -66,36 +68,36 @@ export const CartTable = () => {
     };
 
     return (
-    <div className={styles.cartTable}>
-      {items.length === 0 ? (
-        <div className={styles.emptyWrapper}>
-          <p className={styles.emptyText}>Ваш кошик порожній</p>
-          <img src={EmptyCart} alt="Empty cart" />
-          <div className={styles.btnWrapper}>
-            <Button children="За покупками" uiColor="danger" onClick={goHome} />
-          </div>
+        <div className={styles.cartTable}>
+            {items.length === 0 ? (
+            <div className={styles.emptyWrapper}>
+                <p className={styles.emptyText}>Ваш кошик порожній</p>
+                <img src={EmptyCart} alt="Empty cart" />
+                <div className={styles.btnWrapper}>
+                    <Button children="За покупками" uiColor="danger" onClick={goHome} />
+                </div>
+            </div>
+            ) : (
+            <>
+                <div className={styles.cartBody}>
+                    <CartItemList>
+                        {items.map(item => (
+                        <CartItem
+                        key={item.id}
+                        item={item}
+                        onQuantityChange={changeQuantity}
+                        onRemove={removeItem}
+                        />
+                        ))}
+                    </CartItemList>
+                    <CartActions />
+                </div>
+                <div className={styles.cartFooter}>
+                    <CartCoupon onApplyCoupon={applyCoupon} />
+                    <CartTotal subtotal={subtotal} shipping={shipping} discount={discount} total={total} />
+                </div>
+            </>
+        )}
         </div>
-      ) : (
-        <>
-          <div className={styles.cartBody}>
-            <CartItemList>
-              {items.map(item => (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  onQuantityChange={changeQuantity}
-                  onRemove={removeItem}
-                />
-              ))}
-            </CartItemList>
-            <CartActions />
-          </div>
-          <div className={styles.cartFooter}>
-            <CartCoupon onApplyCoupon={applyCoupon} />
-            <CartTotal subtotal={subtotal} shipping={shipping} total={total} />
-          </div>
-        </>
-      )}
-    </div>
-  );
+    );
 };
