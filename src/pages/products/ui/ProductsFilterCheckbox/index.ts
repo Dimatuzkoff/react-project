@@ -1,1 +1,0 @@
-export { ProductsFilterCheckbox } from './ProductsFilterCheckbox';

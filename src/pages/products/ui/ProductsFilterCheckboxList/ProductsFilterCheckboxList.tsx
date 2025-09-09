@@ -1,27 +1,29 @@
 // react
-import { useState, type FC } from 'react'
+import { useState, type FC } from 'react';
 // components
-import { ProductsFilterCheckbox } from '../ProductsFilterCheckbox/ProductsFilterCheckbox';
-// styles
-import styles from './ProductsFilterCheckboxList.module.scss'
+import { Checkbox } from '@/shared/ui/Checkbox';
 import { Button } from '@/shared/ui/Button';
+// styles
+import styles from './ProductsFilterCheckboxList.module.scss';
 
 interface ProductsFilterCheckboxListProps {
   items: { label: string; checked: boolean; onChange: () => void }[];
-  initialVisible?: number; 
+  initialVisible?: number;
 }
 
-export const ProductsFilterCheckboxList: FC<ProductsFilterCheckboxListProps> = ({
-  items,
-  initialVisible = 10,
-}) => {
+export const ProductsFilterCheckboxList: FC<
+  ProductsFilterCheckboxListProps
+> = ({ items, initialVisible = 10 }) => {
   const [showAll, setShowAll] = useState(false);
 
   const visibleItems = showAll ? items : items.slice(0, initialVisible);
+
+  const toggleShowAll = () => setShowAll(prev => !prev);
+
   return (
     <div className={styles.checkboxList}>
       {visibleItems.map((item, index) => (
-        <ProductsFilterCheckbox
+        <Checkbox
           key={index}
           label={item.label}
           checked={item.checked}
@@ -29,15 +31,15 @@ export const ProductsFilterCheckboxList: FC<ProductsFilterCheckboxListProps> = (
         />
       ))}
 
-      {items.length > initialVisible && !showAll && (
+      {items.length > initialVisible && (
         <div className={styles.showMoreButton}>
           <Button
             type="button"
-            onClick={() => setShowAll(true)}
+            onClick={toggleShowAll}
             uiColor="primary"
             uiType="outline"
           >
-            Показати ще
+            {showAll ? 'Згорнути' : 'Показати ще'}
           </Button>
         </div>
       )}

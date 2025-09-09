@@ -1,60 +1,52 @@
-import {
-  SET_PRICE_SORT_DIRECTION,
-  SET_NAME_SORT_DIRECTION,
-  SET_PRICE_FILTER,
-  SET_QUERY,
-  TOGGLE_CATEGORY,
-  TOGGLE_BRAND,
-  RESET_FILTERS,
-  SET_CATEGORIES,
-  SET_BRANDS,
-} from '../actionTypes/productsPageTypes';
+import { ProductsPageActionTypes } from '../actionTypes/productsPageActionTypes';
+import type { ProductsPageStateSchema } from '../types/productsTypes';
 
-export const setPriceSortDirection = (direction: 'asc' | 'desc') => ({
-  type: SET_PRICE_SORT_DIRECTION,
+export const setPriceSortDirection = (
+  direction: ProductsPageStateSchema['priceSortDirection']
+) => ({
+  type: ProductsPageActionTypes.SET_PRICE_SORT_DIRECTION,
   payload: direction,
 });
 
-export const setNameSortDirection = (direction: 'asc' | 'desc') => ({
-  type: SET_NAME_SORT_DIRECTION,
+export const setNameSortDirection = (
+  direction: ProductsPageStateSchema['nameSortDirection']
+) => ({
+  type: ProductsPageActionTypes.SET_NAME_SORT_DIRECTION,
   payload: direction,
 });
 
-export const setPriceFilter = (payload: {
-  min: number | null;
-  max: number | null;
-}) => ({
-  type: SET_PRICE_FILTER,
+export const setPriceFilter = (payload: ProductsPageStateSchema['priceFilter']) => ({
+  type: ProductsPageActionTypes.SET_PRICE_FILTER,
   payload,
 });
 
-export const setQuery = (query: string) => ({
-  type: SET_QUERY,
+export const setQuery = (query: ProductsPageStateSchema['query']) => ({
+  type: ProductsPageActionTypes.SET_QUERY,
   payload: query,
 });
 
 export const toggleCategory = (category: string) => ({
-  type: TOGGLE_CATEGORY,
+  type: ProductsPageActionTypes.TOGGLE_CATEGORY,
   payload: category,
 });
 
 export const toggleBrand = (brand: string) => ({
-  type: TOGGLE_BRAND,
+  type: ProductsPageActionTypes.TOGGLE_BRAND,
   payload: brand,
 });
 
 export const setCategories = (categories: string[]) => ({
-  type: SET_CATEGORIES,
+  type: ProductsPageActionTypes.SET_CATEGORIES,
   payload: categories,
 });
 
 export const setBrands = (brands: string[]) => ({
-  type: SET_BRANDS,
+  type: ProductsPageActionTypes.SET_BRANDS,
   payload: brands,
 });
 
 export const resetFilters = () => ({
-  type: RESET_FILTERS,
+  type: ProductsPageActionTypes.RESET_FILTERS,
 });
 
 export const productsPageActionCreators = {
@@ -67,4 +59,4 @@ export const productsPageActionCreators = {
   resetFilters,
   setCategories,
   setBrands,
-};  
+};
