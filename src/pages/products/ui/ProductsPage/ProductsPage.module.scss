@@ -34,6 +34,9 @@
   width: 250px;
   display: none;
   border-right: 1px solid gray;
+  position: sticky;
+  top: 0px;
+  height: fit-content;
   @media (min-width: 768px) {
     display: block;
   }

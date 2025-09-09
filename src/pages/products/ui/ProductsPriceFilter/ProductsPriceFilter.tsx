@@ -34,7 +34,6 @@ export const ProductsPriceFilter: FC = () => {
           onChange={e => handleChange('min', e.target.value)}
         />
       </div>
-
       <span className={styles.separator}>-</span>
       <div className={styles.inputWrapper}>
         <Input

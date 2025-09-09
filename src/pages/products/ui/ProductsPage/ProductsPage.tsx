@@ -15,7 +15,7 @@ import styles from './ProductsPage.module.scss';
 import clsx from 'clsx';
 
 export const ProductsPage: FC = () => {
-  const products = allProducts.slice(0, 40);
+  const products = allProducts.slice(0, 100);
 
   const filteredProducts = useSelector((state: StateSchema) =>
     getFilteredProducts(state, products)

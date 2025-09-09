@@ -14,6 +14,7 @@ export const getFilteredProducts = (
     query,
     selectedCategories,
     selectedBrands,
+    lastSort,
   } = state.products;
 
   let filtered = products;
@@ -50,21 +51,30 @@ export const getFilteredProducts = (
   }
 
   // сортировка
-  if (priceSortDirection) {
-    filtered = filtered
-      .slice()
-      .sort((a, b) =>
-        priceSortDirection === 'asc' ? a.price - b.price : b.price - a.price
-      );
-  }
-  if (nameSortDirection) {
-    filtered = filtered
-      .slice()
-      .sort((a, b) =>
-        nameSortDirection === 'asc'
-          ? a.title.localeCompare(b.title)
-          : b.title.localeCompare(a.title)
-      );
+  if (priceSortDirection || nameSortDirection) {
+    filtered = filtered.slice().sort((a, b) => {
+      const sortByPrice = () => {
+        if (!priceSortDirection) return 0;
+        return priceSortDirection === 'asc'
+          ? a.price - b.price
+          : b.price - a.price;
+      };
+
+      const sortByName = () => {
+        if (!nameSortDirection) return 0;
+        const diff = a.title.localeCompare(b.title);
+        return nameSortDirection === 'asc' ? diff : -diff;
+      };
+
+      if (lastSort === 'price') {
+        return sortByPrice() || sortByName();
+      }
+      if (lastSort === 'name') {
+        return sortByName() || sortByPrice();
+      }
+
+      return 0;
+    });
   }
 
   return filtered;

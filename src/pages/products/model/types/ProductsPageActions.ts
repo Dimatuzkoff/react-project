@@ -1,61 +1,52 @@
-import {
-  SET_PRICE_SORT_DIRECTION,
-  SET_NAME_SORT_DIRECTION,
-  SET_PRICE_FILTER,
-  SET_QUERY,
-  TOGGLE_CATEGORY,
-  TOGGLE_BRAND,
-  RESET_FILTERS,
-  SET_CATEGORIES,
-  SET_BRANDS,
-} from '../actionTypes/productsPageTypes';
+import { ProductsPageActionTypes } from '../actionTypes/productsPageActionTypes';
+import type { ISortType } from '@/shared/model/types/ISortType';
 
 // payload для price фильтра
 export type PriceFilterType = { min: number | null; max: number | null };
 
 // отдельные типы экшенов
 export type SetCategoriesActionType = {
-  type: typeof SET_CATEGORIES;
+  type: typeof ProductsPageActionTypes.SET_CATEGORIES;
   payload: string[];
 };
 
 export type SetBrandsActionType = {
-  type: typeof SET_BRANDS;
+  type: typeof ProductsPageActionTypes.SET_BRANDS;
   payload: string[];
 };
 
 export type ToggleCategoryActionType = {
-  type: typeof TOGGLE_CATEGORY;
+  type: typeof ProductsPageActionTypes.TOGGLE_CATEGORY;
   payload: string;
 };
 
 export type ToggleBrandActionType = {
-  type: typeof TOGGLE_BRAND;
+  type: typeof ProductsPageActionTypes.TOGGLE_BRAND;
   payload: string;
 };
 
 export type SetQueryActionType = {
-  type: typeof SET_QUERY;
+  type: typeof ProductsPageActionTypes.SET_QUERY;
   payload: string;
 };
 
 export type SetPriceFilterActionType = {
-  type: typeof SET_PRICE_FILTER;
+  type: typeof ProductsPageActionTypes.SET_PRICE_FILTER;
   payload: PriceFilterType;
 };
 
 export type SetPriceSortDirectionActionType = {
-  type: typeof SET_PRICE_SORT_DIRECTION;
-  payload: 'asc' | 'desc' | null;
+  type: typeof ProductsPageActionTypes.SET_PRICE_SORT_DIRECTION;
+  payload: ISortType['direction'] | null;
 };
 
 export type SetNameSortDirectionActionType = {
-  type: typeof SET_NAME_SORT_DIRECTION;
-  payload: 'asc' | 'desc' | null;
+  type: typeof ProductsPageActionTypes.SET_NAME_SORT_DIRECTION;
+  payload: ISortType['direction'] | null;
 };
 
 export type ResetFiltersActionType = {
-  type: typeof RESET_FILTERS;
+  type: typeof ProductsPageActionTypes.RESET_FILTERS;
 };
 
 // объединённый тип для всех экшенов

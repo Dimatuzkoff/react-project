@@ -8,11 +8,8 @@ import {
   toggleBrand,
   setQuery,
   resetFilters,
-  setCategories,
-  setBrands,
-  setPriceFilter,
-  setPriceSortDirection,
   setNameSortDirection,
+  setPriceSortDirection,
 } from '../../model/actionCreators/productsPageActionCreators';
 import { getProductsPageState } from '../../model/selectors/productsPageSelectors';
 // helpers
@@ -24,6 +21,13 @@ import { ProductsPriceFilter } from '../ProductsPriceFilter';
 import { ProductsFilterCheckboxList } from '../ProductsFilterCheckboxList';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/input';
+// hooks
+import { useSyncUrlFilters } from '../../libs/hooks/useSyncUrlFilters';
+// constants
+import {
+  priceSortOptions,
+  nameSortOptions,
+} from '@/shared/libs/constants/sortOptions';
 // assets
 import Search from '@/shared/libs/assets/svg/icons/search.svg';
 // styles
@@ -46,29 +50,7 @@ export const ProductsFilters: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // --- инициализация из URL ---
-  useEffect(() => {
-    const urlCategories = searchParams.get('categories')?.split(',') ?? [];
-    const urlBrands = searchParams.get('brands')?.split(',') ?? [];
-    const urlQuery = searchParams.get('q') ?? '';
-    const urlPriceMin = searchParams.get('priceMin');
-    const urlPriceMax = searchParams.get('priceMax');
-    const urlPriceSort = searchParams.get('priceSort') as 'asc' | 'desc' | null;
-    const urlNameSort = searchParams.get('nameSort') as 'asc' | 'desc' | null;
-
-    if (urlCategories.length) dispatch(setCategories(urlCategories));
-    if (urlBrands.length) dispatch(setBrands(urlBrands));
-    if (urlQuery) dispatch(setQuery(urlQuery));
-    if (urlPriceMin || urlPriceMax) {
-      dispatch(
-        setPriceFilter({
-          min: urlPriceMin ? Number(urlPriceMin) : null,
-          max: urlPriceMax ? Number(urlPriceMax) : null,
-        })
-      );
-    }
-    if (urlPriceSort) dispatch(setPriceSortDirection(urlPriceSort));
-    if (urlNameSort) dispatch(setNameSortDirection(urlNameSort));
-  }, []);
+  useSyncUrlFilters(searchParams);
 
   // --- синхронизация URL при изменении фильтров ---
   useEffect(() => {
@@ -121,17 +103,28 @@ export const ProductsFilters: FC = () => {
       </div>
 
       <div className={styles.filterGroup}>
-        <h4>Сортування</h4>
-        <ProductsSortSelect />
+        <h4>Сортування за ціною</h4>
+        <ProductsSortSelect
+          value={priceSortDirection}
+          placeholder="Sort by price"
+          options={priceSortOptions}
+          onChange={val => dispatch(setPriceSortDirection(val))}
+        />
+      </div>
+
+      <div className={styles.filterGroup}>
+        <h4>Сортування за назвою</h4>
+        <ProductsSortSelect
+          value={nameSortDirection}
+          placeholder="Sort by name"
+          options={nameSortOptions}
+          onChange={val => dispatch(setNameSortDirection(val))}
+        />
       </div>
 
       <div className={styles.filterGroup}>
         <h4>Ціна</h4>
         <ProductsPriceFilter />
-      </div>
-
-      <div className={styles.filterGroup}>
-        <Button children="Очистити фільтри" uiColor="danger" onClick={reset} />
       </div>
 
       <div className={styles.filterGroup}>
@@ -154,6 +147,10 @@ export const ProductsFilters: FC = () => {
             onChange: () => brandChange(brand),
           }))}
         />
+      </div>
+
+      <div className={styles.filterGroup}>
+        <Button children="Очистити фільтри" uiColor="danger" onClick={reset} />
       </div>
     </div>
   );

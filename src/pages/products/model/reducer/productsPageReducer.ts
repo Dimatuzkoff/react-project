@@ -1,46 +1,29 @@
-import {
-  SET_PRICE_SORT_DIRECTION,
-  SET_NAME_SORT_DIRECTION,
-  SET_PRICE_FILTER,
-  SET_QUERY,
-  TOGGLE_CATEGORY,
-  TOGGLE_BRAND,
-  RESET_FILTERS,
-  SET_CATEGORIES,
-  SET_BRANDS,
-} from '../actionTypes/productsPageTypes';
-import type { ProductsPageActions } from '../types/ProductsPageActions';
+import type { ProductsPageActions } from '../types/productsPageActions';
+import { ProductsPageActionTypes } from '../actionTypes/productsPageActionTypes';
+import type { ProductsPageStateSchema } from '../types/productsTypes';
 
-interface ProductsPageState {
-  selectedCategories: string[];
-  selectedBrands: string[];
-  priceFilter: { min: number | null; max: number | null };
-  query: string;
-  priceSortDirection: 'asc' | 'desc' | null;
-  nameSortDirection: 'asc' | 'desc' | null;
-}
-
-const initialState: ProductsPageState = {
+const initialState: ProductsPageStateSchema = {
   selectedCategories: [],
   selectedBrands: [],
   priceFilter: { min: null, max: null },
   query: '',
   priceSortDirection: null,
   nameSortDirection: null,
+  lastSort: null,
 };
 
 export const productsPageReducer = (
   state = initialState,
   action: ProductsPageActions
-): ProductsPageState => {
+): ProductsPageStateSchema => {
   switch (action.type) {
-    case SET_CATEGORIES:
+    case ProductsPageActionTypes.SET_CATEGORIES:
       return { ...state, selectedCategories: action.payload };
 
-    case SET_BRANDS:
+    case ProductsPageActionTypes.SET_BRANDS:
       return { ...state, selectedBrands: action.payload };
 
-    case TOGGLE_CATEGORY:
+    case ProductsPageActionTypes.TOGGLE_CATEGORY:
       return {
         ...state,
         selectedCategories: state.selectedCategories.includes(action.payload)
@@ -48,7 +31,7 @@ export const productsPageReducer = (
           : [...state.selectedCategories, action.payload],
       };
 
-    case TOGGLE_BRAND:
+    case ProductsPageActionTypes.TOGGLE_BRAND:
       return {
         ...state,
         selectedBrands: state.selectedBrands.includes(action.payload)
@@ -56,19 +39,30 @@ export const productsPageReducer = (
           : [...state.selectedBrands, action.payload],
       };
 
-    case SET_QUERY:
+    case ProductsPageActionTypes.SET_QUERY:
       return { ...state, query: action.payload };
 
-    case SET_PRICE_FILTER:
-      return { ...state, priceFilter: action.payload };
+    case ProductsPageActionTypes.SET_PRICE_FILTER:
+      return {
+        ...state,
+        priceFilter: action.payload,
+      };
 
-    case SET_PRICE_SORT_DIRECTION:
-      return { ...state, priceSortDirection: action.payload };
+    case ProductsPageActionTypes.SET_PRICE_SORT_DIRECTION:
+      return {
+        ...state,
+        priceSortDirection: action.payload,
+        lastSort: 'price', // 👈 фиксируем, что последней изменилась сортировка по цене
+      };
+    
+    case ProductsPageActionTypes.SET_NAME_SORT_DIRECTION:
+      return {
+        ...state,
+        nameSortDirection: action.payload,
+        lastSort: 'name', // 👈 фиксируем, что последней изменилась сортировка по имени
+      };
 
-    case SET_NAME_SORT_DIRECTION:
-      return { ...state, nameSortDirection: action.payload };
-
-    case RESET_FILTERS:
+    case ProductsPageActionTypes.RESET_FILTERS:
       return { ...initialState };
 
     default:

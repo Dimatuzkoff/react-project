@@ -1,20 +1,20 @@
 import React from 'react';
 // styles
-import styles from './ProductsFilterCheckbox.module.scss';
+import styles from './Checkbox.module.scss';
 
-interface ProductsFilterCheckboxProps {
+interface CheckboxProps {
   label: string;
   checked: boolean;
   onChange: () => void;
 }
 
-export const ProductsFilterCheckbox: React.FC<ProductsFilterCheckboxProps> = ({
+export const Checkbox: React.FC<CheckboxProps> = ({
   label,
   checked,
   onChange,
 }) => {
   return (
-    <label className={styles.filterCheckbox}>
+    <label className={styles.checkbox}>
       <input type="checkbox" checked={checked} onChange={onChange} />
       <span>{label}</span>
     </label>
