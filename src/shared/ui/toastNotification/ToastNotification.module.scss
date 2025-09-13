@@ -1,0 +1,87 @@
+.notifications {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    top: 150px;
+    left: 50px;
+    z-index: 2000;
+}
+.toast {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 250px;
+    height: 50px;
+    border-radius: 5px;
+    background-size: 0% 100%;
+    &.success {
+        background: linear-gradient(to left,#0abf30, #22242f 100%);
+        background-repeat: no-repeat;
+        .label {
+            color: #17f347;
+        }
+    }
+    &.error {
+        background: linear-gradient(to left,#ff2727, #22242f 100%);
+        background-repeat: no-repeat;
+        .label {
+            color: #ff2727;
+        }
+    }
+    &.warning {
+        background: linear-gradient(to left,#FF9800, #22242f 100%);
+        background-repeat: no-repeat;
+        .label {
+            color: #FF9800;
+        }
+    }
+    animation:  show 0.3s ease forwards,
+                gradientFill 1s linear forwards,
+                fadeOut 1s linear forwards 3s;  
+}
+.label {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.text {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 auto;
+    color: #fff;
+}
+
+@keyframes show {
+    0% {
+        transform: translateX(100%);
+    }
+    40% {
+        transform: translateX(-5%);
+    }
+    80% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-10%);
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@keyframes gradientFill {
+    from { 
+        background-size: 0% 100%; 
+    }
+    to {
+        background-size: 100% 100%; 
+    }
+}
+

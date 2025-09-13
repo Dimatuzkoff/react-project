@@ -6,10 +6,12 @@ import { cartActionCreators } from '@/entities/cart/model/actionCreators/cartAct
 import { getCartState } from '@/entities/cart/model/selectors/cartSelectors';
 // hooks
 import { useAddToProductStory } from '@/features/smartPick/libs/hooks/smartPickActionsHooks'
+import { useToastNotification } from '@/shared/libs/hooks/useToastNotification'
 // types
 import type { Product } from '@/entities/product/model/types/product';
 // components
 import { Button } from '@/shared/ui/Button';
+import { ToastNotification } from '@/shared/ui/toastNotification'
 // assets
 import CartIcon from '@/shared/libs/assets/svg/icons/cart.svg';
 // libs
@@ -24,6 +26,7 @@ interface Props {
 }
 
 export const ProductButton: FC<Props> = ({ variant, className, product }) => {
+    const { addToast } = useToastNotification()
     const dispatch = useDispatch();
     const addToProductStory = useAddToProductStory(product);
     const { cart } = useSelector(getCartState);
@@ -44,6 +47,9 @@ export const ProductButton: FC<Props> = ({ variant, className, product }) => {
             })
         );
         addToProductStory();
+        console.log('Товар додано');
+        addToast('Товар доданий до кошика', "success")
+        
     };
 
     return (
