@@ -11,7 +11,6 @@ import { useToastNotification } from '@/shared/libs/hooks/useToastNotification'
 import type { Product } from '@/entities/product/model/types/product';
 // components
 import { Button } from '@/shared/ui/Button';
-import { ToastNotification } from '@/shared/ui/toastNotification'
 // assets
 import CartIcon from '@/shared/libs/assets/svg/icons/cart.svg';
 // libs
@@ -47,7 +46,6 @@ export const ProductButton: FC<Props> = ({ variant, className, product }) => {
             })
         );
         addToProductStory();
-        console.log('Товар додано');
         addToast('Товар доданий до кошика', "success")
         
     };
