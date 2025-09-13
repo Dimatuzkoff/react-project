@@ -28,26 +28,30 @@ import {
     getProductBySlugRoute,
     getNotFoundRoute,
 } from '@/shared/libs/constants/routes/routes';
+//provider
+import { ToastProvider } from '@/app/providers/toast/toastProvider'
 
 interface AppRouterProps {
     [key: string]: unknown;
 }
 export const AppRouter: FC<AppRouterProps> = ({}) => {
     return (
-        <Routes>
-            <Route element={<BaseLayout />}>
-                <Route path={getHomeRoute()} element={<HomePage />} />
-                <Route path={getContactRoute()} element={<ContactPage />} />
-                <Route path={getAboutRoute()} element={<AboutPage />} />
-                <Route path={getAuthRoute()} element={<AuthPage />} />
-                <Route path={getWishlistRoute()} element={<WishlistPage />} />
-                <Route path={getCartRoute()} element={<CartPage />} />
-                <Route path={getCheckoutRoute()} element={<CheckoutPage />} />
-                <Route path={getAccountRoute()} element={<AccountPage />} />
-                {/* <Route path={getProductByIdRoute()} element={<ProductPage />} /> */}
-                <Route path={getProductBySlugRoute()} element={<ProductPage />} />
-                <Route path={getNotFoundRoute()} element={<NotFound />} />
-            </Route>
-        </Routes>
+        <ToastProvider>
+            <Routes>
+                <Route element={<BaseLayout />}>
+                    <Route path={getHomeRoute()} element={<HomePage />} />
+                    <Route path={getContactRoute()} element={<ContactPage />} />
+                    <Route path={getAboutRoute()} element={<AboutPage />} />
+                    <Route path={getAuthRoute()} element={<AuthPage />} />
+                    <Route path={getWishlistRoute()} element={<WishlistPage />} />
+                    <Route path={getCartRoute()} element={<CartPage />} />
+                    <Route path={getCheckoutRoute()} element={<CheckoutPage />} />
+                    <Route path={getAccountRoute()} element={<AccountPage />} />
+                    {/* <Route path={getProductByIdRoute()} element={<ProductPage />} /> */}
+                    <Route path={getProductBySlugRoute()} element={<ProductPage />} />
+                    <Route path={getNotFoundRoute()} element={<NotFound />} />
+                </Route>
+            </Routes>
+        </ToastProvider>
     );
 };
