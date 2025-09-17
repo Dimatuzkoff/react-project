@@ -131,9 +131,9 @@ export const ProductsFilters: FC = () => {
         <h4>Категорії</h4>
         <ProductsFilterCheckboxList
           items={categories.map(cat => ({
-            label: cat.name,
-            checked: selectedCategories.includes(cat.name),
-            onChange: () => categoryChange(cat.name),
+            label: cat.name, // отображение с первой заглавной буквой
+            checked: selectedCategories.includes(cat.name.toLowerCase()), // сравниваем с state в нижнем регистре
+            onChange: () => categoryChange(cat.name.toLowerCase()), // диспатчим toggle
           }))}
         />
       </div>
