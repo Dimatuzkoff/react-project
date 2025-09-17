@@ -1,5 +1,6 @@
 // react
 import type { FC } from 'react';
+import { Link } from 'react-router-dom';
 // styles
 import styles from './Sidebar.module.scss';
 
@@ -21,7 +22,7 @@ export const Sidebar: FC<SidebarProps> = ({ items, children }) => {
         <ul>
           {items.map(item => (
             <li key={item.id}>
-              <a href={item.href}>{item.name}</a>
+              <Link to={`/${item.href}`}>{item.name}</Link>
             </li>
           ))}
         </ul>

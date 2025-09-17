@@ -15,7 +15,13 @@ export const useSyncUrlFilters = (searchParams: URLSearchParams) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const urlCategories = searchParams.get('categories')?.split(',') ?? [];
+    const urlCategories =
+      searchParams
+        .get('categories')
+        ?.split(',')
+        .map(c => c.toLowerCase()) ?? [];
+    dispatch(setCategories(urlCategories));
+
     const urlBrands = searchParams.get('brands')?.split(',') ?? [];
     const urlQuery = searchParams.get('q') ?? '';
 

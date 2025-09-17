@@ -31,6 +31,10 @@ export const ProductPage = () => {
       dispatch(
         setBreadcrumbs([
           {
+            label: product.category,
+            path: `/products?categories=${product.category}`,
+          },
+          {
             label: product.title,
             path: getProductBySlugRoute(product.slug),
           },

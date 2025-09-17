@@ -32,7 +32,7 @@ export const ProductsPage: FC = () => {
       <div className={styles.products}>
         {filteredProducts.length ? (
           filteredProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} isShowPreview  />
           ))
         ) : (
           <p className={styles.noProducts}>
