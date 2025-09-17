@@ -1,5 +1,6 @@
-import type { ProductsPageActions } from '../types/productsPageActions';
 import { ProductsPageActionTypes } from '../actionTypes/productsPageActionTypes';
+// types
+import type { ProductsPageActions } from '../types/productsPageActions';
 import type { ProductsPageStateSchema } from '../types/productsTypes';
 
 const initialState: ProductsPageStateSchema = {
