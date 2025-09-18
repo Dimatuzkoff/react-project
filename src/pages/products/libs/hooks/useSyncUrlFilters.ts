@@ -1,4 +1,3 @@
-// hooks/useSyncUrlFilters.ts
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import type { ISortType } from '@/shared/model/types/ISortType';
@@ -7,8 +6,7 @@ import {
   setBrands,
   setQuery,
   setPriceFilter,
-  setPriceSortDirection,
-  setNameSortDirection,
+  setSort,
 } from '../../model/actionCreators/productsPageActionCreators';
 
 export const useSyncUrlFilters = (searchParams: URLSearchParams) => {
@@ -32,8 +30,12 @@ export const useSyncUrlFilters = (searchParams: URLSearchParams) => {
       ? Number(searchParams.get('priceMax'))
       : null;
 
-    const urlPriceSortRaw = searchParams.get('priceSort');
-    const urlNameSortRaw = searchParams.get('nameSort');
+    const urlPriceSortRaw = searchParams.get('priceSort') as
+      | ISortType['direction']
+      | null;
+    const urlNameSortRaw = searchParams.get('nameSort') as
+      | ISortType['direction']
+      | null;
 
     // Тайпгварды
     const isStringArray = (arr: unknown): arr is string[] =>
@@ -50,9 +52,11 @@ export const useSyncUrlFilters = (searchParams: URLSearchParams) => {
       dispatch(setPriceFilter({ min: priceMin, max: priceMax }));
     }
 
-    if (isSortDirection(urlPriceSortRaw))
-      dispatch(setPriceSortDirection(urlPriceSortRaw));
-    if (isSortDirection(urlNameSortRaw))
-      dispatch(setNameSortDirection(urlNameSortRaw));
+    // единый сорт
+    if (isSortDirection(urlPriceSortRaw)) {
+      dispatch(setSort({ type: 'price', direction: urlPriceSortRaw }));
+    } else if (isSortDirection(urlNameSortRaw)) {
+      dispatch(setSort({ type: 'name', direction: urlNameSortRaw }));
+    }
   }, [searchParams, dispatch]);
 };

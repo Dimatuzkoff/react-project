@@ -1,6 +1,6 @@
 import type { ISortType } from "./ISortType";
 
 export interface ISortOption {
-  value: ISortType['direction'];
+  value: ISortType;
   label: string;
 }

@@ -1,18 +1,10 @@
+import type { ISortType } from '@/shared/model/types/ISortType';
 import { ProductsPageActionTypes } from '../actionTypes/productsPageActionTypes';
 import type { ProductsPageStateSchema } from '../types/productsTypes';
 
-export const setPriceSortDirection = (
-  direction: ProductsPageStateSchema['priceSortDirection']
-) => ({
-  type: ProductsPageActionTypes.SET_PRICE_SORT_DIRECTION,
-  payload: direction,
-});
-
-export const setNameSortDirection = (
-  direction: ProductsPageStateSchema['nameSortDirection']
-) => ({
-  type: ProductsPageActionTypes.SET_NAME_SORT_DIRECTION,
-  payload: direction,
+export const setSort = (sort: ISortType | null) => ({
+  type: ProductsPageActionTypes.SET_SORT,
+  payload: sort,
 });
 
 export const setPriceFilter = (payload: ProductsPageStateSchema['priceFilter']) => ({
@@ -50,8 +42,7 @@ export const resetFilters = () => ({
 });
 
 export const productsPageActionCreators = {
-  setPriceSortDirection,
-  setNameSortDirection,
+  setSort,
   setPriceFilter,
   setQuery,
   toggleCategory,

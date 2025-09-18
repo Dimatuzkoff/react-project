@@ -1,20 +1,18 @@
-// react
+// ProductsSortSelect.tsx
 import type { FC } from 'react';
-// types
 import type { ISortType } from '@/shared/model/types/ISortType';
-// styles
 import styles from './ProductsSortSelect.module.scss';
 
 interface SortOption {
-  value: ISortType['direction'];
+  value: ISortType;
   label: string;
 }
 
 interface ProductsSortSelectProps {
-  value: ISortType['direction'] | null;
+  value: ISortType | null;
   options: SortOption[];
   placeholder?: string;
-  onChange: (value: ISortType['direction']) => void;
+  onChange: (value: ISortType | null) => void; // разрешаем null
 }
 
 export const ProductsSortSelect: FC<ProductsSortSelectProps> = ({
@@ -24,20 +22,31 @@ export const ProductsSortSelect: FC<ProductsSortSelectProps> = ({
   onChange,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const val = e.target.value as ISortType['direction'];
-    onChange(val);
+    if (e.target.value === '') {
+      onChange(null); // сброс сортировки
+      return;
+    }
+
+    const selected = options.find(
+      opt => JSON.stringify(opt.value) === e.target.value
+    );
+    if (selected) onChange(selected.value);
   };
 
   return (
     <div className={styles.sortSelect}>
       <select
         className={styles.select}
-        value={value ?? ''}
+        value={value ? JSON.stringify(value) : ''}
         onChange={handleChange}
+        style={{ color: value ? 'black' : 'gray' }}
       >
         <option value="">{placeholder}</option>
         {options.map(opt => (
-          <option key={opt.value} value={opt.value}>
+          <option
+            key={JSON.stringify(opt.value)}
+            value={JSON.stringify(opt.value)}
+          >
             {opt.label}
           </option>
         ))}

@@ -1,4 +1,4 @@
 export interface ISortType {
   direction: 'asc' | 'desc';
-  type: 'price' | 'name';
+  type: 'price' | 'name' | 'rating';
 }

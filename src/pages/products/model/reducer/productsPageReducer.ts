@@ -8,9 +8,7 @@ const initialState: ProductsPageStateSchema = {
   selectedBrands: [],
   priceFilter: { min: null, max: null },
   query: '',
-  priceSortDirection: null,
-  nameSortDirection: null,
-  lastSort: null,
+  sort: null,
 };
 
 export const productsPageReducer = (
@@ -49,18 +47,10 @@ export const productsPageReducer = (
         priceFilter: action.payload,
       };
 
-    case ProductsPageActionTypes.SET_PRICE_SORT_DIRECTION:
+    case ProductsPageActionTypes.SET_SORT:
       return {
         ...state,
-        priceSortDirection: action.payload,
-        lastSort: 'price', // 👈 фиксируем, что последней изменилась сортировка по цене
-      };
-    
-    case ProductsPageActionTypes.SET_NAME_SORT_DIRECTION:
-      return {
-        ...state,
-        nameSortDirection: action.payload,
-        lastSort: 'name', // 👈 фиксируем, что последней изменилась сортировка по имени
+        sort: action.payload,
       };
 
     case ProductsPageActionTypes.RESET_FILTERS:

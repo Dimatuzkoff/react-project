@@ -35,14 +35,9 @@ export type SetPriceFilterActionType = {
   payload: PriceFilterType;
 };
 
-export type SetPriceSortDirectionActionType = {
-  type: typeof ProductsPageActionTypes.SET_PRICE_SORT_DIRECTION;
-  payload: ISortType['direction'] | null;
-};
-
-export type SetNameSortDirectionActionType = {
-  type: typeof ProductsPageActionTypes.SET_NAME_SORT_DIRECTION;
-  payload: ISortType['direction'] | null;
+export type SetSortActionType = {
+  type: typeof ProductsPageActionTypes.SET_SORT;
+  payload: ISortType | null;
 };
 
 export type ResetFiltersActionType = {
@@ -57,6 +52,5 @@ export type ProductsPageActions =
   | ToggleBrandActionType
   | SetQueryActionType
   | SetPriceFilterActionType
-  | SetPriceSortDirectionActionType
-  | SetNameSortDirectionActionType
+  | SetSortActionType
   | ResetFiltersActionType;
