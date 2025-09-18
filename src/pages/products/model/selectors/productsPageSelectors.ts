@@ -8,13 +8,11 @@ export const getFilteredProducts = (
   products: Product[]
 ): Product[] => {
   const {
-    priceSortDirection,
-    nameSortDirection,
+    sort,
     priceFilter,
     query,
     selectedCategories,
     selectedBrands,
-    lastSort,
   } = state.products;
 
   let filtered = products;
@@ -51,28 +49,20 @@ export const getFilteredProducts = (
   }
 
   // сортировка
-  if (priceSortDirection || nameSortDirection) {
+  if (sort) {
     filtered = filtered.slice().sort((a, b) => {
-      const sortByPrice = () => {
-        if (!priceSortDirection) return 0;
-        return priceSortDirection === 'asc'
-          ? a.price - b.price
-          : b.price - a.price;
-      };
-
-      const sortByName = () => {
-        if (!nameSortDirection) return 0;
+      if (sort.type === 'price') {
+        return sort.direction === 'asc' ? a.price - b.price : b.price - a.price;
+      }
+      if (sort.type === 'name') {
         const diff = a.title.localeCompare(b.title);
-        return nameSortDirection === 'asc' ? diff : -diff;
-      };
-
-      if (lastSort === 'price') {
-        return sortByPrice() || sortByName();
+        return sort.direction === 'asc' ? diff : -diff;
       }
-      if (lastSort === 'name') {
-        return sortByName() || sortByPrice();
+      if (sort.type === 'rating') {
+        return sort.direction === 'asc'
+          ? a.rating - b.rating
+          : b.rating - a.rating;
       }
-
       return 0;
     });
   }

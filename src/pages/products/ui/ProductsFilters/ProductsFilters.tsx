@@ -8,8 +8,7 @@ import {
   toggleBrand,
   setQuery,
   resetFilters,
-  setNameSortDirection,
-  setPriceSortDirection,
+  setSort,
 } from '../../model/actionCreators/productsPageActionCreators';
 import { getProductsPageState } from '../../model/selectors/productsPageSelectors';
 // helpers
@@ -24,10 +23,7 @@ import { Input } from '@/shared/ui/input';
 // hooks
 import { useSyncUrlFilters } from '../../libs/hooks/useSyncUrlFilters';
 // constants
-import {
-  priceSortOptions,
-  nameSortOptions,
-} from '@/shared/libs/constants/sortOptions';
+import { sortOptions } from '@/shared/libs/constants/sortOptions';
 // assets
 import Search from '@/shared/libs/assets/svg/icons/search.svg';
 // styles
@@ -38,14 +34,8 @@ export const ProductsFilters: FC = () => {
   const brands = useMemo(() => getUniqueBrands(), []);
   const dispatch = useDispatch();
 
-  const {
-    selectedCategories,
-    selectedBrands,
-    query,
-    priceFilter,
-    priceSortDirection,
-    nameSortDirection,
-  } = useSelector(getProductsPageState);
+  const { selectedCategories, selectedBrands, query, priceFilter, sort } =
+    useSelector(getProductsPageState);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -64,8 +54,7 @@ export const ProductsFilters: FC = () => {
       params.set('priceMin', String(priceFilter.min));
     if (priceFilter?.max != null)
       params.set('priceMax', String(priceFilter.max));
-    if (priceSortDirection) params.set('priceSort', priceSortDirection);
-    if (nameSortDirection) params.set('nameSort', nameSortDirection);
+    if (sort) params.set('sort', `${sort.type}-${sort.direction}`);
 
     setSearchParams(params);
   }, [
@@ -73,8 +62,7 @@ export const ProductsFilters: FC = () => {
     selectedBrands,
     query,
     priceFilter,
-    priceSortDirection,
-    nameSortDirection,
+    sort,
     setSearchParams,
   ]);
 
@@ -103,22 +91,18 @@ export const ProductsFilters: FC = () => {
       </div>
 
       <div className={styles.filterGroup}>
-        <h4>Сортування за ціною</h4>
+        <h4>Сортування:</h4>
         <ProductsSortSelect
-          value={priceSortDirection}
-          placeholder="Sort by price"
-          options={priceSortOptions}
-          onChange={val => dispatch(setPriceSortDirection(val))}
-        />
-      </div>
-
-      <div className={styles.filterGroup}>
-        <h4>Сортування за назвою</h4>
-        <ProductsSortSelect
-          value={nameSortDirection}
-          placeholder="Sort by name"
-          options={nameSortOptions}
-          onChange={val => dispatch(setNameSortDirection(val))}
+          value={sort}
+          placeholder="Sort by ..."
+          options={sortOptions}
+          onChange={val => {
+            if (!val) {
+              dispatch(setSort(null));
+            } else {
+              dispatch(setSort(val));
+            }
+          }}
         />
       </div>
 
