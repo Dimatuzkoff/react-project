@@ -13,50 +13,38 @@ export const useSyncUrlFilters = (searchParams: URLSearchParams) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const urlCategories =
-      searchParams
-        .get('categories')
-        ?.split(',')
-        .map(c => c.toLowerCase()) ?? [];
-    dispatch(setCategories(urlCategories));
-
+    const urlCategories = searchParams
+      .get('categories')
+      ?.split(',')
+      .map(c => c.toLowerCase());
     const urlBrands = searchParams.get('brands')?.split(',') ?? [];
     const urlQuery = searchParams.get('q') ?? '';
 
-    const priceMin = searchParams.get('priceMin')
-      ? Number(searchParams.get('priceMin'))
-      : null;
-    const priceMax = searchParams.get('priceMax')
-      ? Number(searchParams.get('priceMax'))
-      : null;
+    if (urlCategories?.every(c => typeof c === 'string'))
+      dispatch(setCategories(urlCategories));
+    if (urlBrands?.every(b => typeof b === 'string'))
+      dispatch(setBrands(urlBrands));
+    if (urlQuery) dispatch(setQuery(urlQuery));
 
-    const urlPriceSortRaw = searchParams.get('priceSort') as
-      | ISortType['direction']
-      | null;
-    const urlNameSortRaw = searchParams.get('nameSort') as
-      | ISortType['direction']
-      | null;
+    const priceMin = parseFloat(searchParams.get('priceMin') || '');
+    const priceMax = parseFloat(searchParams.get('priceMax') || '');
+    dispatch(
+      setPriceFilter({
+        min: !isNaN(priceMin) ? priceMin : null,
+        max: !isNaN(priceMax) ? priceMax : null,
+      })
+    );
 
-    // Тайпгварды
-    const isStringArray = (arr: unknown): arr is string[] =>
-      Array.isArray(arr) && arr.every(a => typeof a === 'string');
-
-    const isSortDirection = (val: unknown): val is ISortType['direction'] =>
-      val === 'asc' || val === 'desc';
-
-    if (isStringArray(urlCategories)) dispatch(setCategories(urlCategories));
-    if (isStringArray(urlBrands)) dispatch(setBrands(urlBrands));
-    if (typeof urlQuery === 'string' && urlQuery) dispatch(setQuery(urlQuery));
-
-    if (priceMin !== null || priceMax !== null) {
-      dispatch(setPriceFilter({ min: priceMin, max: priceMax }));
-    }
-
-    // единый сорт
-    if (isSortDirection(urlPriceSortRaw)) {
-      dispatch(setSort({ type: 'price', direction: urlPriceSortRaw }));
-    } else if (isSortDirection(urlNameSortRaw)) {
-      dispatch(setSort({ type: 'name', direction: urlNameSortRaw }));
+    const sortTypes: ISortType['type'][] = ['price', 'name', 'rating']; // добавляем новые типы по необходимости
+    for (const type of sortTypes) {
+      const direction = searchParams.get(type + 'Sort') as
+        | ISortType['direction']
+        | null;
+      if (direction === 'asc' || direction === 'desc') {
+        dispatch(setSort({ type, direction }));
+        break; // берём только первый найденный сорт
+      }
     }
   }, [searchParams, dispatch]);
+
 };
