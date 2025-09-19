@@ -1,5 +1,6 @@
 import type { Reducer } from 'redux';
 import type { ProductsPageStateSchema } from '../types/productsTypes';
+import type { ProductsPageActions } from '../types/productsPageActionTypes';
 import { ProductsPageActionTypes } from '../actionTypes/productsPageActionTypes';
 
 const initialState: ProductsPageStateSchema = {
