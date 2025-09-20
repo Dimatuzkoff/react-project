@@ -28,13 +28,11 @@ import { sortOptions } from '@/shared/libs/constants/sortOptions';
 import Search from '@/shared/libs/assets/svg/icons/search.svg';
 // styles
 import styles from './ProductsFilters.module.scss';
-import { usePageParam } from '@/shared/libs/hooks/usePageParam';
 
 export const ProductsFilters: FC = () => {
   const categories = useMemo(() => getUniqueCategories(), []);
   const brands = useMemo(() => getUniqueBrands(), []);
   const dispatch = useDispatch();
-  const { setPage } = usePageParam();
 
   const { selectedCategories, selectedBrands, query, priceFilter, sort } =
     useSelector(getProductsPageState);

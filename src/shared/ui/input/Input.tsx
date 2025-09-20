@@ -36,8 +36,8 @@ interface InputProps {
   value?: string | number;
   readOnly?: boolean;
   ref?: React.Ref<HTMLInputElement>;
-  min?: number;
-  max?: number;
+  min?: number | string;
+  max?: number | string;
 }
 
 export const Input: FC<InputProps> = memo(
