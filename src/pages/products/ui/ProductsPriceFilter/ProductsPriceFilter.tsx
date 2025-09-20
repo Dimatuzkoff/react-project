@@ -32,6 +32,7 @@ export const ProductsPriceFilter: FC = () => {
           placeholder="Min price"
           value={priceFilter?.min ?? ''}
           onChange={e => handleChange('min', e.target.value)}
+          min={0}
         />
       </div>
       <span className={styles.separator}>-</span>
@@ -41,6 +42,7 @@ export const ProductsPriceFilter: FC = () => {
           placeholder="Max price"
           value={priceFilter?.max ?? ''}
           onChange={e => handleChange('max', e.target.value)}
+          min={0}
         />
       </div>
     </div>

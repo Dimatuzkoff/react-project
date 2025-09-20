@@ -28,11 +28,13 @@ import { sortOptions } from '@/shared/libs/constants/sortOptions';
 import Search from '@/shared/libs/assets/svg/icons/search.svg';
 // styles
 import styles from './ProductsFilters.module.scss';
+import { usePageParam } from '@/shared/libs/hooks/usePageParam';
 
 export const ProductsFilters: FC = () => {
   const categories = useMemo(() => getUniqueCategories(), []);
   const brands = useMemo(() => getUniqueBrands(), []);
   const dispatch = useDispatch();
+  const { setPage } = usePageParam();
 
   const { selectedCategories, selectedBrands, query, priceFilter, sort } =
     useSelector(getProductsPageState);
@@ -44,17 +46,41 @@ export const ProductsFilters: FC = () => {
 
   // --- синхронизация URL при изменении фильтров ---
   useEffect(() => {
-    const params = new URLSearchParams();
+    // Клонируем текущие параметры, чтобы не сбросить page и другие query
+    const params = new URLSearchParams(searchParams.toString());
 
     if (selectedCategories.length)
       params.set('categories', selectedCategories.join(','));
+    else params.delete('categories');
+
     if (selectedBrands.length) params.set('brands', selectedBrands.join(','));
+    else params.delete('brands');
+
     if (query) params.set('q', query);
+    else params.delete('q');
+
     if (priceFilter?.min != null)
       params.set('priceMin', String(priceFilter.min));
+    else params.delete('priceMin');
+
     if (priceFilter?.max != null)
       params.set('priceMax', String(priceFilter.max));
+    else params.delete('priceMax');
+
     if (sort) params.set('sort', `${sort.type}-${sort.direction}`);
+    else params.delete('sort');
+
+    // сброс страницы на 1 при фильтрах или поиске
+    if (
+      selectedCategories.length ||
+      selectedBrands.length ||
+      query ||
+      priceFilter?.min != null ||
+      priceFilter?.max != null ||
+      sort
+    ) {
+      params.set('page', '1');
+    }
 
     setSearchParams(params);
   }, [
@@ -63,6 +89,7 @@ export const ProductsFilters: FC = () => {
     query,
     priceFilter,
     sort,
+    searchParams,
     setSearchParams,
   ]);
 
@@ -83,7 +110,7 @@ export const ProductsFilters: FC = () => {
         <Input
           value={query ?? ''}
           onChange={e => queryChange(e.target.value)}
-          type="text"
+          type="search"
           iconBefore={<img src={Search} alt="cart" />}
           uiType="outline"
           placeholder="Search products..."

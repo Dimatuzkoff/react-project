@@ -30,6 +30,11 @@
     cursor: not-allowed;
   }
 
+  &:disabled:hover {
+    background-color: $bg-secondary_hover;
+    color: $border-disabled;
+  }
+
   &.loading {
     cursor: progress;
   }
