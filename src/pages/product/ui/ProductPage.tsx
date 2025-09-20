@@ -14,6 +14,8 @@ import { products } from '@/mockData/products';
 import { ProductFull } from '@/entities/product/ui/ProductFull';
 // reducer
 import { setBreadcrumbs } from '@/widgets/breadcrumbs/model/actionCreators/breadcrumbActionCreators';
+// constants
+import { capitalize } from '@/shared/libs/constants/capitalize';
 // styles
 import styles from './ProductPage.module.scss';
 import clsx from 'clsx';
@@ -31,7 +33,7 @@ export const ProductPage = () => {
       dispatch(
         setBreadcrumbs([
           {
-            label: product.category,
+            label: capitalize(product.category),
             path: `/products?categories=${product.category}`,
           },
           {

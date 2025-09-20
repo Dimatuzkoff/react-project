@@ -13,38 +13,37 @@ export const useSyncUrlFilters = (searchParams: URLSearchParams) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const urlCategories = searchParams
-      .get('categories')
-      ?.split(',')
-      .map(c => c.toLowerCase());
+    // Если URL пустой — не трогаем Redux, остаются дефолтные значения
+    if (!searchParams.toString()) return;
+
+    const urlCategories = searchParams.get('categories')?.split(',') ?? [];
     const urlBrands = searchParams.get('brands')?.split(',') ?? [];
     const urlQuery = searchParams.get('q') ?? '';
 
-    if (urlCategories?.every(c => typeof c === 'string'))
-      dispatch(setCategories(urlCategories));
-    if (urlBrands?.every(b => typeof b === 'string'))
-      dispatch(setBrands(urlBrands));
+    if (urlCategories.length) dispatch(setCategories(urlCategories));
+    if (urlBrands.length) dispatch(setBrands(urlBrands));
     if (urlQuery) dispatch(setQuery(urlQuery));
 
     const priceMin = parseFloat(searchParams.get('priceMin') || '');
     const priceMax = parseFloat(searchParams.get('priceMax') || '');
-    dispatch(
-      setPriceFilter({
-        min: !isNaN(priceMin) ? priceMin : null,
-        max: !isNaN(priceMax) ? priceMax : null,
-      })
-    );
+    if (!isNaN(priceMin) || !isNaN(priceMax)) {
+      dispatch(
+        setPriceFilter({
+          min: !isNaN(priceMin) ? priceMin : null,
+          max: !isNaN(priceMax) ? priceMax : null,
+        })
+      );
+    }
 
-    const sortTypes: ISortType['type'][] = ['price', 'name', 'rating']; // добавляем новые типы по необходимости
+    const sortTypes: ISortType['type'][] = ['price', 'name', 'rating'];
     for (const type of sortTypes) {
-      const direction = searchParams.get(type + 'Sort') as
+      const direction = searchParams.get(`${type}Sort`) as
         | ISortType['direction']
         | null;
       if (direction === 'asc' || direction === 'desc') {
         dispatch(setSort({ type, direction }));
-        break; // берём только первый найденный сорт
+        break;
       }
     }
   }, [searchParams, dispatch]);
-
 };
