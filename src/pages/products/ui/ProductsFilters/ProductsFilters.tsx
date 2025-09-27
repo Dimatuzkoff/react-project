@@ -1,5 +1,5 @@
 // react
-import { useEffect, useMemo, type FC } from 'react';
+import { useEffect, useMemo, useRef, type FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -29,6 +29,15 @@ import Search from '@/shared/libs/assets/svg/icons/search.svg';
 // styles
 import styles from './ProductsFilters.module.scss';
 
+// Типизация фильтров (можно вынести в отдельный файл)
+interface FiltersState {
+  query: string | null;
+  sort: { type: string; direction: string } | null;
+  priceFilter: { min: number | null; max: number | null } | null;
+  categories: string[];
+  brands: string[];
+}
+
 export const ProductsFilters: FC = () => {
   const categories = useMemo(() => getUniqueCategories(), []);
   const brands = useMemo(() => getUniqueBrands(), []);
@@ -42,45 +51,85 @@ export const ProductsFilters: FC = () => {
   // --- инициализация из URL ---
   useSyncUrlFilters(searchParams);
 
+  // хранение предыдущих фильтров
+  const prevFiltersRef = useRef<FiltersState>({
+    query: null,
+    sort: null,
+    priceFilter: null,
+    categories: [],
+    brands: [],
+  });
+
   // --- синхронизация URL при изменении фильтров ---
   useEffect(() => {
-    // Клонируем текущие параметры, чтобы не сбросить page и другие query
     const params = new URLSearchParams(searchParams.toString());
 
-    if (selectedCategories.length)
+    // categories
+    if (selectedCategories.length) {
       params.set('categories', selectedCategories.join(','));
-    else params.delete('categories');
+    } else {
+      params.delete('categories');
+    }
 
-    if (selectedBrands.length) params.set('brands', selectedBrands.join(','));
-    else params.delete('brands');
+    // brands
+    if (selectedBrands.length) {
+      params.set('brands', selectedBrands.join(','));
+    } else {
+      params.delete('brands');
+    }
 
-    if (query) params.set('q', query);
-    else params.delete('q');
+    // query
+    if (query) {
+      params.set('q', query);
+    } else {
+      params.delete('q');
+    }
 
-    if (priceFilter?.min != null)
+    // priceFilter
+    if (priceFilter?.min != null) {
       params.set('priceMin', String(priceFilter.min));
-    else params.delete('priceMin');
+    } else {
+      params.delete('priceMin');
+    }
 
-    if (priceFilter?.max != null)
+    if (priceFilter?.max != null) {
       params.set('priceMax', String(priceFilter.max));
-    else params.delete('priceMax');
+    } else {
+      params.delete('priceMax');
+    }
 
-    if (sort) params.set('sort', `${sort.type}-${sort.direction}`);
-    else params.delete('sort');
+    // sort
+    if (sort) {
+      params.set('sort', `${sort.type}-${sort.direction}`);
+    } else {
+      params.delete('sort');
+    }
 
-    // сброс страницы на 1 при фильтрах или поиске
-    if (
-      selectedCategories.length ||
-      selectedBrands.length ||
-      query ||
-      priceFilter?.min != null ||
-      priceFilter?.max != null ||
-      sort
-    ) {
+    // --- сравниваем с предыдущими ---
+    const prev = prevFiltersRef.current;
+    const filtersChanged =
+      prev.query !== query ||
+      prev.sort?.type !== sort?.type ||
+      prev.sort?.direction !== sort?.direction ||
+      prev.priceFilter?.min !== priceFilter?.min ||
+      prev.priceFilter?.max !== priceFilter?.max ||
+      prev.categories.join(',') !== selectedCategories.join(',') ||
+      prev.brands.join(',') !== selectedBrands.join(',');
+
+    if (filtersChanged) {
       params.set('page', '1');
     }
 
     setSearchParams(params);
+
+    // обновляем prev
+    prevFiltersRef.current = {
+      query,
+      sort,
+      priceFilter,
+      categories: [...selectedCategories],
+      brands: [...selectedBrands],
+    };
   }, [
     selectedCategories,
     selectedBrands,
@@ -109,7 +158,7 @@ export const ProductsFilters: FC = () => {
           value={query ?? ''}
           onChange={e => queryChange(e.target.value)}
           type="search"
-          iconBefore={<img src={Search} alt="cart" />}
+          iconBefore={<img src={Search} alt="search" />}
           uiType="outline"
           placeholder="Search products..."
         />
@@ -121,13 +170,7 @@ export const ProductsFilters: FC = () => {
           value={sort}
           placeholder="Sort by ..."
           options={sortOptions}
-          onChange={val => {
-            if (!val) {
-              dispatch(setSort(null));
-            } else {
-              dispatch(setSort(val));
-            }
-          }}
+          onChange={val => dispatch(setSort(val ?? null))}
         />
       </div>
 
@@ -140,9 +183,9 @@ export const ProductsFilters: FC = () => {
         <h4>Категорії</h4>
         <ProductsFilterCheckboxList
           items={categories.map(cat => ({
-            label: cat.name, // отображение с первой заглавной буквой
-            checked: selectedCategories.includes(cat.name.toLowerCase()), // сравниваем с state в нижнем регистре
-            onChange: () => categoryChange(cat.name.toLowerCase()), // диспатчим toggle
+            label: cat.name,
+            checked: selectedCategories.includes(cat.name.toLowerCase()),
+            onChange: () => categoryChange(cat.name.toLowerCase()),
           }))}
         />
       </div>
@@ -159,7 +202,9 @@ export const ProductsFilters: FC = () => {
       </div>
 
       <div className={styles.filterGroup}>
-        <Button children="Очистити фільтри" uiColor="danger" onClick={reset} />
+        <Button uiColor="danger" onClick={reset}>
+          Очистити фільтри
+        </Button>
       </div>
     </div>
   );
