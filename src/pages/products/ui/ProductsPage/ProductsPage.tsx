@@ -17,14 +17,11 @@ import { usePageParam } from '@/shared/libs/hooks/usePageParam';
 // styles
 import styles from './ProductsPage.module.scss';
 import clsx from 'clsx';
+import { scrollToTop } from '@/shared/libs/helpers/scrollToTop';
 
 export const ProductsPage: FC = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(breadcrumbActionCreators.clearBreadcrumbs());
-  }, [dispatch]);
-  
   const filteredProducts = useSelector((state: StateSchema) =>
     getFilteredProducts(state, products)
   );
@@ -39,6 +36,14 @@ export const ProductsPage: FC = () => {
       startIndex,
       startIndex + pageSize
     );
+  
+   useEffect(() => {
+     dispatch(breadcrumbActionCreators.clearBreadcrumbs());
+   }, [dispatch]);
+
+   useEffect(() => {
+     scrollToTop();
+   }, [page]);
 
   return (
     <div className={clsx(styles.productsPage, styles.container)}>
