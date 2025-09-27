@@ -2,60 +2,74 @@
 @use '@/app/styles/mixins/index' as *;
 
 .productGallery {
-    display: flex;
-    gap: 16px;
+  display: flex;
+  gap: 16px;
 }
 
 .thumbnailList {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .thumbnail {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    transition: border 0.2s ease;
-    background-color: $bg-secondary_hover;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: border 0.2s ease;
+  background-color: $bg-secondary_hover;
 
-    @media screen and (min-width: 500px) {
-        width: 120px;
-        height: 100px;
-    }
+  @media screen and (min-width: 500px) {
+    width: 120px;
+    height: 100px;
+  }
 
-    @media screen and (min-width: 1200px) {
-        width: 150px;
-        height: 120px;
-    }
+  @media screen and (min-width: 1200px) {
+    width: 150px;
+    height: 120px;
+  }
 
-    @media screen and (min-width: 1440px) {
-        width: 170px;
-        height: 138px;
-    }
-}
+  @media screen and (min-width: 1440px) {
+    width: 170px;
+    height: 138px;
+  }
 
-.thumbnail:hover {
+  &:hover {
     border-color: $bg-secondary_active;
-}
+  }
 
-.thumbnail.active {
+  &.active {
     border-color: $bg-secondary-solid;
+  }
 }
 
 .mainImageWrapper {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: $bg-secondary_hover;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $bg-secondary_hover;
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+
+  &.zoomed {
+    background-repeat: no-repeat;
+    background-size: 200%; // степень увеличения
+    cursor: zoom-out;
+
+    .mainImage {
+      opacity: 0; // прячем картинку, когда активен зум
+    }
+  }
 }
 
 .mainImage {
-    width: 100%;
-    max-width: 500px;
-    object-fit: contain;
+  width: 100%;
+  max-width: 500px;
+  object-fit: contain;
+  transition: opacity 0.2s ease;
 }
