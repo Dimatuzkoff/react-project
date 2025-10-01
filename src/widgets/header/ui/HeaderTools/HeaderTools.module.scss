@@ -21,6 +21,21 @@
             transform: scale(0.95);
         }
     }
+
+    .inputWrapper {
+        position: relative;
+        .dropdownWrapper {
+            width: 300px;
+            position: absolute;
+            top: 100%; 
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 4px;
+            background-color: aliceblue;
+            z-index: 2000;
+        }
+    }
+    
 }
 
 .wishlistIcon,
