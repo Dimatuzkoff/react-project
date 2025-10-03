@@ -1,5 +1,5 @@
 // react
-import type { FC } from 'react';
+import type { FC, } from 'react';
 //libs
 import clsx from 'clsx';
 // styles
@@ -8,13 +8,15 @@ import styles from './ToastNotification.module.scss';
 interface ToastNotificationProps {
     text?: string,
     type?: 'success' | 'error' | 'warning',
-    duration?: number;
+    duration?: number,
+    onClose?: () => void,
 }
 
 export const ToastNotification: FC<ToastNotificationProps> = ({
     text = 'success',
     type ='success',
     duration = 3,
+    onClose
 }) => {    
     return(
         <>
@@ -27,7 +29,7 @@ export const ToastNotification: FC<ToastNotificationProps> = ({
                     ${styles.show} 0.3s ease forwards,
                     ${styles.gradientFill} 1s linear forwards,
                     ${styles.fadeOut} 1s linear forwards ${duration}s
-                    `}}
+                    `}} onClick={onClose}
             > 
                 <h4 className={styles.label}> { type } </h4>
                 <span className={styles.text}> { text } </span>
