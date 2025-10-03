@@ -1,7 +1,7 @@
 // react
 import { createContext, useState, type ReactNode, type FC } from "react";
 // ui
-import { ToastNotification } from '@/shared/ui/ToastNotification'
+import { ToastNotification } from '@/shared/ui/ToastNotification/index'
 // styles
 import styles from '@/shared/ui/toastNotification/ToastNotification.module.scss';
 // types
@@ -32,7 +32,13 @@ export const ToastProvider: FC<ToastProviderProps> = ({children}) => {
             {children}
             <div className={ styles.notifications }>
                 { toasts.map(toast => (
-                    <ToastNotification key={ toast.id } duration={toast.duration} text={toast.message} type={toast.type}/>
+                    <ToastNotification
+                        key={ toast.id } 
+                        duration={toast.duration} 
+                        text={toast.message} 
+                        type={toast.type}
+                        onClose={() => removeToast(toast.id)}
+                    />
                 ))
                 }
             </div>

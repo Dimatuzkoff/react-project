@@ -17,6 +17,7 @@
     height: 50px;
     border-radius: 5px;
     background-size: 0% 100%;
+    cursor: pointer;
     &.success {
         background: linear-gradient(to left,#0abf30, #22242f 100%);
         background-repeat: no-repeat;
