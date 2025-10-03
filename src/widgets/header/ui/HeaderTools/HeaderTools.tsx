@@ -1,6 +1,8 @@
 //react
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+// hooks
+import { useClickOutside } from '@/shared/libs/hooks/useClickOutside';
 //styles
 import styles from './HeaderTools.module.scss';
 //assets
@@ -23,15 +25,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from '@/pages/products/model/actionCreators/productsPageActionCreators';
 import { getProductsPageState } from '@/pages/products/model/selectors/productsPageSelectors';
 import type { Product } from '@/entities/product/model/types/product';
-
+// helpers
 import { searchProductsByFields } from '@/widgets/header/libs/helpers/searchProductsByFields'
 
-
 export const HeaderTools = () => {
+        const divClickOutsideRef = useRef<HTMLDivElement | null>(null);
+    useClickOutside(divClickOutsideRef, () => setIsDropdownOpen(false));
+
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const query = useSelector(getProductsPageState).query;
-
+  
     const cartCount = useSelector(getCartItemCount);
     const wishlistCount = useSelector(getWishlistState).wishlist.length;
 
@@ -40,44 +45,49 @@ export const HeaderTools = () => {
 
     const onSearchChange = (value: string) => {
         setSearchValue(value);
-    
-    const products = searchProductsByFields(value)
-    setFoundProducts(products)
-    // dispatch(setQuery(value));
-    // navigate(`/products?q=${encodeURIComponent(value)}`);
+        if (value.length === 0 ) setIsDropdownOpen(false)
+        if (value.length < 3) return
+        const products = searchProductsByFields(value)
+        setFoundProducts(products)
+        setIsDropdownOpen(true)
     };
-
-  return (
-    <>
-        <div className={styles.headerTools}>
-            <div className={styles.inputWrapper}>
-                <Input
-                    type="search"
-                    placeholder="Що ви шукаєте?"
-                    iconAfter={<img src={Search} alt="search" />}
-                    uiType="outline"
-                    value = { searchValue }
-                    onChange={e => onSearchChange(e.target.value)}
-                />
-                <div className={styles.dropdownWrapper}> 
-                    <Dropdown isOpen={searchValue.length > 2}>
-                        <HeaderToolsFoundProductList foundProducts={foundProducts}/>
-                    </Dropdown >
+    const onClick = (slug: string) => {
+        navigate(`/product/${slug}`);
+        dispatch(setQuery(slug));
+        setIsDropdownOpen(false);
+        setSearchValue("");
+    }
+    return (
+        <>
+            <div className={styles.headerTools}>
+                <div ref={divClickOutsideRef} className={styles.inputWrapper} >
+                    <Input
+                        type="search"
+                        placeholder="Що ви шукаєте?"
+                        iconAfter={<img src={Search} alt="search" />}
+                        uiType="outline"
+                        value = { searchValue }
+                        onChange={e => onSearchChange(e.target.value)}
+                    />
+                    <div className={styles.dropdownWrapper}> 
+                        <Dropdown isOpen={isDropdownOpen}>
+                            <HeaderToolsFoundProductList onClick={onClick} foundProducts={foundProducts}/>
+                        </Dropdown >
+                    </div>
                 </div>
+                <NavLink to={getWishlistRoute()} className={styles.wishlistIcon}>
+                <img src={Wishlist} alt="wishlist" />
+                {wishlistCount > 0 && (
+                    <span className={styles.wishlistCount}>{wishlistCount}</span>
+                )}
+                </NavLink>
+                <NavLink to={getCartRoute()} className={styles.cartIcon}>
+                <img src={Cart} alt="cart" />
+                {cartCount > 0 && (
+                    <span className={styles.cartCount}>{cartCount}</span>
+                )}
+                </NavLink>
             </div>
-        <NavLink to={getWishlistRoute()} className={styles.wishlistIcon}>
-          <img src={Wishlist} alt="wishlist" />
-          {wishlistCount > 0 && (
-            <span className={styles.wishlistCount}>{wishlistCount}</span>
-          )}
-        </NavLink>
-        <NavLink to={getCartRoute()} className={styles.cartIcon}>
-          <img src={Cart} alt="cart" />
-          {cartCount > 0 && (
-            <span className={styles.cartCount}>{cartCount}</span>
-          )}
-        </NavLink>
-      </div>
-    </>
-  );
+        </>
+    );
 };

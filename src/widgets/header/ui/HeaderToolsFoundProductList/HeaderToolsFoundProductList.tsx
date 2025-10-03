@@ -6,21 +6,23 @@ import styles from './HeaderToolsFoundProductList.module.scss'
 import type { Product } from '@/entities/product/model/types/product';
 
 interface HeaderToolsFoundProductListProps {
-  foundProducts?: Product[]
+  foundProducts?: Product[],
+  onClick?: (slug: string) => void;
 }
 
 export const HeaderToolsFoundProductList: FC<HeaderToolsFoundProductListProps> = ({
-    foundProducts = []
+    foundProducts = [],
+    onClick
 }) => {
     return(
         <>
             <div className={styles.products}>
                 {foundProducts.length > 0 ? (
                     foundProducts.map((product) => (
-                        <div key={product.id} className={styles.dropdownItem}>
+                        <div onClick={() => onClick?.(product.slug)} key={product.id} className={styles.dropdownItem}>
+                            <img src={product.images[0]} alt={product.slug} />
                             <span>{product.title}</span>
-                            <span>{product.price} ₴</span>
-                            </div>
+                        </div>
                     ))) : (
                     <span>Нічого не знайдено :(</span>
                 )}
