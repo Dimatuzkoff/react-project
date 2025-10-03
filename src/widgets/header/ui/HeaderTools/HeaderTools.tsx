@@ -23,7 +23,6 @@ import { getCartItemCount } from '@/entities/cart/model/selectors/cartSelectors'
 import { getWishlistState } from '@/entities/wishlist/model/selectors/wishlistSelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from '@/pages/products/model/actionCreators/productsPageActionCreators';
-import { getProductsPageState } from '@/pages/products/model/selectors/productsPageSelectors';
 import type { Product } from '@/entities/product/model/types/product';
 // helpers
 import { searchProductsByFields } from '@/widgets/header/libs/helpers/searchProductsByFields'
@@ -35,7 +34,6 @@ export const HeaderTools = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const query = useSelector(getProductsPageState).query;
   
     const cartCount = useSelector(getCartItemCount);
     const wishlistCount = useSelector(getWishlistState).wishlist.length;
