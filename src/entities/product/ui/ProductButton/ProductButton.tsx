@@ -46,7 +46,7 @@ export const ProductButton: FC<Props> = ({ variant, className, product }) => {
             })
         );
         addToProductStory();
-        addToast('Товар доданий до кошика', "success")
+        addToast('Товар доданий до кошика', "success", 4)
         
     };
 

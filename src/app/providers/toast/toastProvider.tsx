@@ -1,7 +1,7 @@
 // react
 import { createContext, useState, type ReactNode, type FC } from "react";
 // ui
-import { ToastNotification } from '@/shared/ui/toastNotification'
+import { ToastNotification } from '@/shared/ui/ToastNotification'
 // styles
 import styles from '@/shared/ui/toastNotification/ToastNotification.module.scss';
 // types
@@ -22,17 +22,17 @@ export const ToastProvider: FC<ToastProviderProps> = ({children}) => {
         setToasts(prevState => prevState.filter(toast => toast.id !== id))
     }
 
-    const addToast = (message: string, type: "success" | "error" | "warning" = "success") => {
+    const addToast = (message: string, type: "success" | "error" | "warning" = "success", duration: number = 1) => {
         const id = Date.now().toString()
-        setToasts(prevState => [{id, message, type}, ...prevState])
-        setTimeout(() => removeToast(id), 4000)
+        setToasts(prevState => [{id, message, type, duration}, ...prevState])
+        setTimeout(() => removeToast(id), duration*1000 + 1000)
     }
     return(
         <toastContext.Provider value={{addToast}}>
             {children}
             <div className={ styles.notifications }>
                 { toasts.map(toast => (
-                    <ToastNotification key={ toast.id } text={toast.message} type={toast.type}/>
+                    <ToastNotification key={ toast.id } duration={toast.duration} text={toast.message} type={toast.type}/>
                 ))
                 }
             </div>
