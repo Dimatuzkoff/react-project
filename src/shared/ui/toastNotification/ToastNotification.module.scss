@@ -4,7 +4,7 @@
     flex-direction: column;
     gap: 10px;
     top: 150px;
-    left: 50px;
+    right: 50px;
     z-index: 2000;
 }
 .toast {
@@ -38,9 +38,6 @@
             color: #FF9800;
         }
     }
-    animation:  show 0.3s ease forwards,
-                gradientFill 1s linear forwards,
-                fadeOut 1s linear forwards 3s;  
 }
 .label {
     font-size: 12px;
