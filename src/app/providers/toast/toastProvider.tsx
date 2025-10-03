@@ -1,7 +1,7 @@
 // react
 import { createContext, useState, type ReactNode, type FC } from "react";
 // ui
-import { ToastNotification } from '@/shared/ui/ToastNotification/index'
+import { ToastNotification } from '@/shared/ui/ToastNotification'
 // styles
 import styles from '@/shared/ui/toastNotification/ToastNotification.module.scss';
 // types
