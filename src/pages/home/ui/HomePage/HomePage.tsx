@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 // types
 import type { Product } from '@/entities/product/model/types/product';
 // components
-import { ProductList } from '@/entities/product/ui/ProductList/ProductList';
+import { ProductListSlider } from '@/entities/product/ui/ProductListSlider';
 import { CategoriesSidebar } from '@/widgets/categoriesSidebar/ui/CategoriesSidebar';
 import { HomePageMainBanner } from '@/pages/home/ui/HomePageMainBanner';
 import { SectionTitle } from '@/shared/ui/SectionTitle';
@@ -35,7 +35,7 @@ export const HomePage = () => {
       </section>
       <section className={styles.productSection}>
         <SectionTitle title="Today’s" />
-        <ProductList products={topProducts} variant="default" />
+        <ProductListSlider products={topProducts} variant="default" />
         <br />
         {/* <h2>justForYou</h2>
         <ProductList
